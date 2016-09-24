@@ -7,19 +7,36 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        checkCameraPermission()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
+    
+    private func checkCameraPermission() {
+        if (AVAuthorizationStatus.authorized ==
+            AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ) {
+            
+        } else {
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
+                                          completionHandler: { (granted : Bool) -> Void in
+                                            if (true == granted){
+                                                
+                                            } else {
+                                                
+                                            }
+            });
 
+        }
+        
+    }
 
 }
 

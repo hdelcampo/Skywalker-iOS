@@ -13,6 +13,7 @@
 		C4583E311D9686D3001B1659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4583E301D9686D3001B1659 /* Assets.xcassets */; };
 		C4583E341D9686D3001B1659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4583E321D9686D3001B1659 /* LaunchScreen.storyboard */; };
 		C4583E3F1D9686D3001B1659 /* SkyWalkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E3E1D9686D3001B1659 /* SkyWalkerTests.swift */; };
+		C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E4B1D969073001B1659 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		C4583E3A1D9686D3001B1659 /* SkyWalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyWalkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4583E3E1D9686D3001B1659 /* SkyWalkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyWalkerTests.swift; sourceTree = "<group>"; };
 		C4583E401D9686D3001B1659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4583E4B1D969073001B1659 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				C4583E301D9686D3001B1659 /* Assets.xcassets */,
 				C4583E321D9686D3001B1659 /* LaunchScreen.storyboard */,
 				C4583E351D9686D3001B1659 /* Info.plist */,
+				C4583E4B1D969073001B1659 /* CameraViewController.swift */,
 			);
 			path = SkyWalker;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 			files = (
 				C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */,
 				C4583E2A1D9686D3001B1659 /* AppDelegate.swift in Sources */,
+				C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +418,7 @@
 				C4583E451D9686D3001B1659 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C4583E461D9686D3001B1659 /* Build configuration list for PBXNativeTarget "SkyWalkerTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +427,7 @@
 				C4583E481D9686D3001B1659 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
