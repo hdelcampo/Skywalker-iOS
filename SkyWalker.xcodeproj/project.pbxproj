@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4555C801D9AEDA600129C50 /* OverlayViewController.swift */; };
 		C4583E2A1D9686D3001B1659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E291D9686D3001B1659 /* AppDelegate.swift */; };
 		C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E2B1D9686D3001B1659 /* ViewController.swift */; };
 		C4583E2F1D9686D3001B1659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4583E2D1D9686D3001B1659 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4555C801D9AEDA600129C50 /* OverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
 		C4583E261D9686D3001B1659 /* SkyWalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyWalker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4583E291D9686D3001B1659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4583E2B1D9686D3001B1659 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				C4583E321D9686D3001B1659 /* LaunchScreen.storyboard */,
 				C4583E351D9686D3001B1659 /* Info.plist */,
 				C4583E4B1D969073001B1659 /* CameraViewController.swift */,
+				C4555C801D9AEDA600129C50 /* OverlayViewController.swift */,
 			);
 			path = SkyWalker;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */,
 				C4583E2A1D9686D3001B1659 /* AppDelegate.swift in Sources */,
 				C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */,
+				C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
