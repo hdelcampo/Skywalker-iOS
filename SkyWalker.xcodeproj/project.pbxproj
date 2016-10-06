@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3B1D9D83F800EE90BF /* Camera.swift */; };
+		C4461E3E1D9D83F800EE90BF /* OrientationSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */; };
+		C447C7621DA3FF500094B5CD /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C447C7611DA3FF500094B5CD /* PointOfInterest.swift */; };
 		C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4555C801D9AEDA600129C50 /* OverlayViewController.swift */; };
 		C4583E2A1D9686D3001B1659 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E291D9686D3001B1659 /* AppDelegate.swift */; };
 		C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E2B1D9686D3001B1659 /* ViewController.swift */; };
@@ -28,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4461E3B1D9D83F800EE90BF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationSensor.swift; sourceTree = "<group>"; };
+		C447C7611DA3FF500094B5CD /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		C4555C801D9AEDA600129C50 /* OverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayViewController.swift; sourceTree = "<group>"; };
 		C4583E261D9686D3001B1659 /* SkyWalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyWalker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4583E291D9686D3001B1659 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +87,8 @@
 		C4583E281D9686D3001B1659 /* SkyWalker */ = {
 			isa = PBXGroup;
 			children = (
+				C4461E3B1D9D83F800EE90BF /* Camera.swift */,
+				C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */,
 				C4583E291D9686D3001B1659 /* AppDelegate.swift */,
 				C4583E2B1D9686D3001B1659 /* ViewController.swift */,
 				C4583E2D1D9686D3001B1659 /* Main.storyboard */,
@@ -89,6 +97,7 @@
 				C4583E351D9686D3001B1659 /* Info.plist */,
 				C4583E4B1D969073001B1659 /* CameraViewController.swift */,
 				C4555C801D9AEDA600129C50 /* OverlayViewController.swift */,
+				C447C7611DA3FF500094B5CD /* PointOfInterest.swift */,
 			);
 			path = SkyWalker;
 			sourceTree = "<group>";
@@ -207,9 +216,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C447C7621DA3FF500094B5CD /* PointOfInterest.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */,
+				C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */,
 				C4583E2A1D9686D3001B1659 /* AppDelegate.swift in Sources */,
 				C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */,
+				C4461E3E1D9D83F800EE90BF /* OrientationSensor.swift in Sources */,
 				C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,14 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNy-cx-ks6">
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNy-cx-ks6" userLabel="Camera View">
                                 <connections>
                                     <segue destination="fyp-62-2Q9" kind="embed" id="l9m-8h-4x4"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5rq-0h-4Ts">
-                                <frame key="frameInset" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rq-0h-4Ts" userLabel="Overlay View">
                                 <connections>
                                     <segue destination="lSF-rf-UkG" kind="embed" id="gdJ-Aq-Nu8"/>
                                 </connections>
@@ -33,16 +31,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="oNy-cx-ks6" secondAttribute="trailing" id="1Bb-Hr-eU6"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oNy-cx-ks6" secondAttribute="bottom" id="I6O-0Z-Umn"/>
-                            <constraint firstItem="oNy-cx-ks6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="c3X-gO-mcC"/>
-                            <constraint firstItem="oNy-cx-ks6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dvr-3V-plj"/>
+                            <constraint firstItem="5rq-0h-4Ts" firstAttribute="top" secondItem="oNy-cx-ks6" secondAttribute="top" id="6sO-zI-k4g"/>
+                            <constraint firstItem="oNy-cx-ks6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="M0O-y7-Gfm"/>
+                            <constraint firstItem="5rq-0h-4Ts" firstAttribute="leading" secondItem="oNy-cx-ks6" secondAttribute="leading" id="WWO-Us-Y9o"/>
+                            <constraint firstItem="5rq-0h-4Ts" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="YlU-5U-Ekm"/>
+                            <constraint firstAttribute="trailing" secondItem="oNy-cx-ks6" secondAttribute="trailing" id="baN-1C-rC5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oNy-cx-ks6" secondAttribute="bottom" id="cdu-wa-3Fi"/>
+                            <constraint firstItem="5rq-0h-4Ts" firstAttribute="trailing" secondItem="oNy-cx-ks6" secondAttribute="trailing" id="hzv-rB-Xjv"/>
+                            <constraint firstItem="oNy-cx-ks6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sfZ-Wj-q7A"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="124.58770614692655"/>
+            <point key="canvasLocation" x="-635.625" y="928.52112676056333"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="rpb-Pz-j0X">
@@ -65,10 +67,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSv-mD-c2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Overlay View Controller-->
         <scene sceneID="ZC8-c6-cLH">
             <objects>
-                <viewController id="lSF-rf-UkG" sceneMemberID="viewController">
+                <viewController id="lSF-rf-UkG" customClass="OverlayViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="udP-Tm-ADj"/>
                         <viewControllerLayoutGuide type="bottom" id="9DJ-Hz-UYC"/>
@@ -77,19 +79,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Testing" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
-                                <frame key="frameInset" minX="139" minY="318" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
+                                <frame key="frameInset" minX="13" minY="269" width="164" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="1" green="0.16613870298538047" blue="0.21462232031903017" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azimuth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
+                                <frame key="frameInset" minX="4.13%" minY="43.96%" width="43.73%" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Roll" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-tp-CJW">
+                                <frame key="frameInset" minX="13" minY="307" width="164" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="AzimuthLabel" destination="Kyn-Ln-C4R" id="MsR-bd-byS"/>
+                        <outlet property="pitchLabel" destination="Iv5-qG-Jdr" id="Ruy-1Z-D0O"/>
+                        <outlet property="rollLabel" destination="Ahp-tp-CJW" id="flX-vl-IP5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GhY-3G-A4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="149.59999999999999" y="928.78560719640188"/>
         </scene>
     </scenes>
 </document>
