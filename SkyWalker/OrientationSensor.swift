@@ -18,6 +18,7 @@ class OrientationSensor {
     
     let motionManager = CMMotionManager()
     let updateRate: Double = 1/60
+    let alpha = 0.25
     
     //MARK: Functions
     
@@ -43,14 +44,33 @@ class OrientationSensor {
         Handler to update class members with correspondant data from the hardware
     */
     private func updateData(from: CMDeviceMotion){
+        //Due to lack of pitch distinguish between up and down, we need gravity data to know which one we are facing.
+        //Also, notice we are taking Android reference so code is all compatible
+        let gravity = from.gravity
         let attitude = from.attitude
-        roll = attitude.roll.toDegrees
-        pitch = attitude.pitch.toDegrees - 90
-        azimuth = attitude.yaw.toDegrees
         
-        if abs(roll) < 100 {
-            pitch = -pitch
+        var rotateVector = [azimuth, pitch, roll]
+        rotateVector = lowFilter(input: [attitude.yaw, attitude.pitch, attitude.roll],
+                                 previousValues: rotateVector)
+        roll = attitude.roll.toDegrees
+        azimuth = -attitude.yaw.toDegrees
+        
+        pitch = attitude.pitch.toDegrees - 90
+        pitch = -copysign(pitch, gravity.z)
+    }
+    
+    private func lowFilter(input: [Double], previousValues: [Double]?) -> [Double] {
+        if (nil == previousValues){
+            return input;
         }
+        
+        var output: [Double] = [0, 0, 0]
+        
+        for i in 0..<3 {
+            output[i] = previousValues![i] + alpha * (input[i] - previousValues![i]);
+        }
+        
+        return output;
     }
     
 }

@@ -18,6 +18,10 @@ class PointOfInterest {
     
     let id : String
     
+    let directon: Double = 50
+    
+    let velocity: Double = 0.2
+    
     init(name: String, x: Int, y: Int, z: Int){
         id = name
         self.x = x

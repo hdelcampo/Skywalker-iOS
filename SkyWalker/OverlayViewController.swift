@@ -75,7 +75,25 @@ class OverlayViewController: UIViewController {
         circleLayer.strokeColor = UIColor.red.cgColor
         circleLayer.lineWidth = 3.0
         
+        let text = CATextLayer()
+        text.string = point.id
+        text.fontSize = 12
+        text.contentsScale = UIScreen.main.scale
+        text.foregroundColor = UIColor.red.cgColor
+        text.isWrapped = false
+        text.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+        text.position = CGPoint(x: x_center + 20*Double(cos(angle)),
+                                y: y_center + 20*Double(sin(angle)))
+        circleLayer.addSublayer(text)
+        
         view.layer.addSublayer(circleLayer)
+    }
+    
+    /**
+        Adds a layer of text
+    */
+    private func addText(to: CAShapeLayer, text: String, x: Float, y: Float) {
+        
     }
     
     private func getAngle(x: Float, y: Float) -> Float {
@@ -115,6 +133,17 @@ class OverlayViewController: UIViewController {
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.strokeColor = UIColor.red.cgColor
         circleLayer.lineWidth = 3.0
+        
+        let text = CATextLayer()
+        text.string = "\(point.id) \n\(point.directon) m\n\(point.velocity) m/s"
+        text.fontSize = 12
+        text.contentsScale = UIScreen.main.scale
+        text.foregroundColor = UIColor.red.cgColor
+        text.isWrapped = false
+        text.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+        text.position = CGPoint(x: x + 45,
+                                y: y + 20)
+        circleLayer.addSublayer(text)
         
         view.layer.addSublayer(circleLayer)
         
