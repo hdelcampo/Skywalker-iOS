@@ -120,9 +120,11 @@ class OverlayViewController: UIViewController {
         let x = Double(view.frame.width)/2 - (-orientationSensor.azimuth + Double(point.x))*Double(view.frame.width)/Double(fovWidth),
             y = Double(view.frame.height)/2 - (orientationSensor.pitch - Double(point.z))*Double(view.frame.height)/Double(fovHeight)
         
+        let radius: Double = 20
+        
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: x,
                                                          y: y),
-                                      radius: CGFloat(20),
+                                      radius: CGFloat(radius),
                                       startAngle: CGFloat(0),
                                       endAngle: CGFloat(M_PI*2),
                                       clockwise: true)
@@ -134,8 +136,26 @@ class OverlayViewController: UIViewController {
         circleLayer.strokeColor = UIColor.red.cgColor
         circleLayer.lineWidth = 3.0
         
+        let directionLayer = CAShapeLayer()
+        let directionPath = UIBezierPath()
+        let a = point.direction * .pi/180
+        let arrowSize = 2.0
+        let arrowLength = 1.25
+        
+        directionPath.move(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius))
+        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius+arrowSize))
+        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius-arrowSize))
+        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius*arrowLength, y: y + sin(a)*radius))
+        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius+arrowSize))
+        
+        directionLayer.path = directionPath.cgPath
+        directionLayer.strokeColor = UIColor.red.cgColor
+        directionLayer.fillColor = UIColor.red.cgColor
+        directionLayer.lineWidth = 3.0
+        circleLayer.addSublayer(directionLayer)
+        
         let text = CATextLayer()
-        text.string = "\(point.id) \n\(point.directon) m\n\(point.velocity) m/s"
+        text.string = "\(point.id) \n\(point.distance) m\n\(point.velocity) m/s"
         text.fontSize = 12
         text.contentsScale = UIScreen.main.scale
         text.foregroundColor = UIColor.red.cgColor
