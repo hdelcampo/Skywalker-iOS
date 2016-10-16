@@ -7,6 +7,7 @@
 //
 
 import CoreMotion
+import GLKit
 
 class OrientationSensor {
     
@@ -27,7 +28,7 @@ class OrientationSensor {
     */
     func registerEvents () {
         motionManager.deviceMotionUpdateInterval = updateRate
-        motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
+        motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical,
                                                to: OperationQueue.current!,
                                                withHandler: {
                                                 (deviceMotion, error) -> Void in
@@ -43,22 +44,35 @@ class OrientationSensor {
     /**
         Handler to update class members with correspondant data from the hardware
     */
-    private func updateData(from: CMDeviceMotion){
-        //Due to lack of pitch distinguish between up and down, we need gravity data to know which one we are facing.
-        //Also, notice we are taking Android reference so code is all compatible
-        let gravity = from.gravity
+    private func updateData(from: CMDeviceMotion) {
+        //We cant set a custom reference frame, but we can transform data using our own reference frame
+        //Notice gimbal lock will also occur when looking 90º up or down, if that happens, we must move to quaternions
         let attitude = from.attitude
         
-        var rotateVector = [azimuth, pitch, roll]
-        rotateVector = lowFilter(input: [attitude.yaw, attitude.pitch, attitude.roll],
-                                 previousValues: rotateVector)
-        roll = attitude.roll.toDegrees
-        azimuth = -attitude.yaw.toDegrees
+        let q = rotate(quaternion: attitude.quaternion, axes: [0,0,1], radians: Float(M_PI/2))
         
-        pitch = attitude.pitch.toDegrees - 90
-        pitch = -copysign(pitch, gravity.z)
+        pitch  = atan2(Double(2.0*q.y*q.w - 2.0*q.x*q.z), Double(1 - 2.0*q.y*q.y - 2.0*q.z*q.z)).toDegrees + 90
+        azimuth = atan2(Double(2.0*q.x*q.w - 2.0*q.y*q.z), Double(1 - 2.0*q.x*q.x - 2.0*q.z*q.z)).toDegrees
+        roll =  asin(Double(2.0*q.x*q.y + 2.0*q.z*q.w)).toDegrees
     }
     
+    private func rotate(quaternion: CMQuaternion, axes: [Float], radians: Float) -> GLKQuaternion {
+        
+        var originalQuaternion = GLKQuaternionMake(Float(quaternion.x), Float(quaternion.y), Float(quaternion.z), Float(quaternion.w))
+        var rotationQuaternion = GLKQuaternionMakeWithAngleAndAxis(radians, axes[0], axes[1], axes[2])
+        
+        originalQuaternion = GLKQuaternionNormalize(originalQuaternion)
+        rotationQuaternion = GLKQuaternionNormalize(rotationQuaternion)
+        
+        let rotatedQuaternion = GLKQuaternionMultiply(originalQuaternion, rotationQuaternion)
+        
+        return rotatedQuaternion
+        
+    }
+    
+    /**
+        Low-pass filter to sensor data
+    */
     private func lowFilter(input: [Double], previousValues: [Double]?) -> [Double] {
         if (nil == previousValues){
             return input;

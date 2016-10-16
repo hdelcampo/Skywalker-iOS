@@ -25,7 +25,7 @@ class OverlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         points.append(PointOfInterest(name: "Wally", x: 0, y: 0, z: 0))
-        points.append(PointOfInterest(name: "Robin", x: 135, y: 0, z: 45))
+        points.append(PointOfInterest(name: "Robin", x: 50, y: 0, z: 45))
         orientationSensor.registerEvents()
         if #available(iOS 10.0, *) {
             Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,
@@ -54,7 +54,7 @@ class OverlayViewController: UIViewController {
         let x_center: Double = Double(self.view.frame.width) / 2,
             y_center: Double = Double(self.view.frame.height) / 2;
         
-        let x = -(orientationSensor.azimuth - Double(point.x)) / 180,
+        let x = (orientationSensor.azimuth - Double(point.x)) / 180,
             y = (orientationSensor.pitch - Double(point.z)) / 90;
         
         let arcSize: Float = Float(M_PI) / 2
@@ -87,13 +87,6 @@ class OverlayViewController: UIViewController {
         circleLayer.addSublayer(text)
         
         view.layer.addSublayer(circleLayer)
-    }
-    
-    /**
-        Adds a layer of text
-    */
-    private func addText(to: CAShapeLayer, text: String, x: Float, y: Float) {
-        
     }
     
     private func getAngle(x: Float, y: Float) -> Float {
