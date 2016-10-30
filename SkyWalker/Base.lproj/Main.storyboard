@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,11 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNy-cx-ks6" userLabel="Camera View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="fyp-62-2Q9" kind="embed" id="l9m-8h-4x4"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5rq-0h-4Ts" userLabel="Overlay View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="lSF-rf-UkG" kind="embed" id="gdJ-Aq-Nu8"/>
                                 </connections>
@@ -79,26 +85,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
-                                <frame key="frameInset" minX="13" minY="269" width="164" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azimuth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
-                                <frame key="frameInset" minX="4.13%" minY="43.96%" width="43.73%" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Roll" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-tp-CJW">
-                                <frame key="frameInset" minX="13" minY="307" width="164" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-By-yS5">
+                                <rect key="frame" x="16" y="292" width="57" height="83"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
+                                        <rect key="frame" x="0.0" y="33" width="37" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azimuth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
+                                        <rect key="frame" x="0.0" y="8" width="57" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Roll" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-tp-CJW">
+                                        <rect key="frame" x="0.0" y="58" width="28" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="top" secondItem="Iv5-qG-Jdr" secondAttribute="bottom" constant="8" id="0jX-nn-P7K"/>
+                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="top" secondItem="Kyn-Ln-C4R" secondAttribute="bottom" constant="8" id="A6E-3P-CUg"/>
+                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="A7D-DH-bVk"/>
+                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="MPx-79-N71"/>
+                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" constant="8" id="V7A-m4-B8v"/>
+                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="Xv9-4C-4nd"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ahp-tp-CJW" secondAttribute="bottom" constant="8" id="zjh-Cd-ctW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ac0-By-yS5" firstAttribute="top" secondItem="udP-Tm-ADj" secondAttribute="bottom" constant="292" id="9UH-Ea-wK5"/>
+                            <constraint firstItem="Ac0-By-yS5" firstAttribute="leading" secondItem="MaH-FV-XT8" secondAttribute="leadingMargin" id="AiK-vz-dXK"/>
+                            <constraint firstItem="9DJ-Hz-UYC" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="bottom" constant="292" id="Av2-nI-S0s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ac0-By-yS5" secondAttribute="trailing" constant="286" id="gTg-Ch-53M"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="AzimuthLabel" destination="Kyn-Ln-C4R" id="MsR-bd-byS"/>

@@ -19,11 +19,22 @@ class OverlayViewController: UIViewController {
     
     let orientationSensor = OrientationSensor()
     
-    var points : [PointOfInterest] = []
+    //MARK: Icon properties
+    let inSightIconPath = "arrow_down.png"
+    let iconSize = 20
 
+    //MARK: Text properties
+    let textSize = 12
+    let textColor = UIColor.white.cgColor
+    let textSeparator = "\n"
+    
+    var points : [PointOfInterest] = []
+    var initialLayers : [CALayer] = []
+    
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialLayers = self.view.layer.sublayers!
         points.append(PointOfInterest(name: "Wally", x: 0, y: 0, z: 0))
         points.append(PointOfInterest(name: "Robin", x: 50, y: 0, z: 45))
         orientationSensor.registerEvents()
@@ -31,8 +42,11 @@ class OverlayViewController: UIViewController {
             Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,
                                  repeats: true,
                                  block: { _ -> Void in
-                                    self.view.layer.sublayers?.forEach({ if $0 is CAShapeLayer {
-                                        $0.removeFromSuperlayer()} })
+                                    
+                                    // Remove all but debug info
+                                    self.view.layer.sublayers?.forEach( { if !(self.initialLayers.contains($0)) { $0.removeFromSuperlayer() } })
+                                    
+                                    
                                     self.azimuthLabel.text = String(format: "Azimuth %.6f", self.orientationSensor.azimuth)
                                     self.pitchLabel.text = String(format: "Pitch %.6f", self.orientationSensor.pitch)
                                     self.rollLabel.text = String(format: "Roll %.6f", self.orientationSensor.roll)
@@ -43,7 +57,8 @@ class OverlayViewController: UIViewController {
                                             self.drawIndicator(for: point)
                                         }
                                     }
-            })
+                                }
+            )
         } else {
             // Fallback on earlier versions
         }
@@ -113,53 +128,49 @@ class OverlayViewController: UIViewController {
         let x = Double(view.frame.width)/2 - (-orientationSensor.azimuth + Double(point.x))*Double(view.frame.width)/Double(fovWidth),
             y = Double(view.frame.height)/2 - (orientationSensor.pitch - Double(point.z))*Double(view.frame.height)/Double(fovHeight)
         
-        let radius: Double = 20
+        draw(text: [point.id, String(point.distance)], to: view, x: x, y: y)
+        draw(icon: inSightIconPath, to: view, x: x + Double(iconSize), y: y - Double(iconSize), angle: 0);
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: x,
-                                                         y: y),
-                                      radius: CGFloat(radius),
-                                      startAngle: CGFloat(0),
-                                      endAngle: CGFloat(M_PI*2),
-                                      clockwise: true)
+    }
+    
+    /**
+     * Draws to given view, at given position, formating text with new line separators
+     */
+    private func draw(text: [String], to: UIView, x: Double, y: Double) -> Void {
         
-        let circleLayer = CAShapeLayer()
-        circleLayer.path = circlePath.cgPath
+        let textLayer = CATextLayer()
+        let text = text.joined(separator: textSeparator)
         
-        circleLayer.fillColor = UIColor.clear.cgColor
-        circleLayer.strokeColor = UIColor.red.cgColor
-        circleLayer.lineWidth = 3.0
+        textLayer.string = text
+        textLayer.fontSize = CGFloat(textSize)
+        textLayer.contentsScale = UIScreen.main.scale
+        textLayer.foregroundColor = textColor
+        textLayer.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+        textLayer.position = CGPoint(x: x, y: y)
         
-        let directionLayer = CAShapeLayer()
-        let directionPath = UIBezierPath()
-        let a = point.direction * .pi/180
-        let arrowSize = 2.0
-        let arrowLength = 1.25
+        to.layer.addSublayer(textLayer)
         
-        directionPath.move(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius))
-        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius+arrowSize))
-        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius-arrowSize))
-        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius*arrowLength, y: y + sin(a)*radius))
-        directionPath.addLine(to: CGPoint(x: x + cos(a)*radius, y: y + sin(a)*radius+arrowSize))
+    }
+    
+    /**
+     * Draws to given view, at given position, a image specified by path, with given rotation in degrees
+     */
+    private func draw(icon: String, to: UIView, x: Double, y: Double, angle: Double) -> Void {
         
-        directionLayer.path = directionPath.cgPath
-        directionLayer.strokeColor = UIColor.red.cgColor
-        directionLayer.fillColor = UIColor.red.cgColor
-        directionLayer.lineWidth = 3.0
-        circleLayer.addSublayer(directionLayer)
+        let iconLayer = CALayer()
+        iconLayer.contents = UIImage(named: icon)?.cgImage
+        iconLayer.transform = CATransform3DMakeRotation(CGFloat(angle.toRadians), 0, 0, 1)
+        iconLayer.bounds = CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
+        iconLayer.position = CGPoint(x: x, y: y)
+
         
-        let text = CATextLayer()
-        text.string = "\(point.id) \n\(point.distance) m\n\(point.velocity) m/s"
-        text.fontSize = 12
-        text.contentsScale = UIScreen.main.scale
-        text.foregroundColor = UIColor.red.cgColor
-        text.isWrapped = false
-        text.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
-        text.position = CGPoint(x: x + 45,
-                                y: y + 20)
-        circleLayer.addSublayer(text)
-        
-        view.layer.addSublayer(circleLayer)
+        to.layer.addSublayer(iconLayer)
         
     }
 
+}
+
+private extension Double {
+    var toDegrees: Double { return self * 180 / .pi }
+    var toRadians: Double { return self * .pi / 180 }
 }
