@@ -72,9 +72,9 @@ class OverlayViewController: UIViewController {
         let x = (orientationSensor.azimuth - Double(point.x)) / 180,
             y = (orientationSensor.pitch - Double(point.z)) / 90;
         
-        let arcSize: Float = Float(M_PI) / 2
+        let arcSize: Double = Double(M_PI) / 2
         
-        let angle = getAngle(x: Float(x), y: Float(y)) - arcSize;
+        let angle = Vector3D.getAngle(x: x, y: y) - Double(arcSize);
         
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: x_center + x,
                                                          y: y_center + y),
@@ -102,10 +102,6 @@ class OverlayViewController: UIViewController {
         circleLayer.addSublayer(text)
         
         view.layer.addSublayer(circleLayer)
-    }
-    
-    private func getAngle(x: Float, y: Float) -> Float {
-        return atan2(x, y)
     }
     
     /**
