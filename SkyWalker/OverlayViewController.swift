@@ -144,8 +144,8 @@ class OverlayViewController: UIViewController {
         let x = Double(view.frame.width)/2 - (-orientationSensor.azimuth + Double(point.x))*Double(view.frame.width)/Double(fovWidth),
             y = Double(view.frame.height)/2 - (orientationSensor.pitch - Double(point.z))*Double(view.frame.height)/Double(fovHeight)
         
-        draw(text: [point.id, String(point.distance)], to: view, x: x, y: y)
-        draw(icon: inSightIconPath, to: view, x: x + Double(iconSize), y: y - Double(iconSize), angle: 0);
+        draw(text: [point.id, String(point.distance)], to: view, x: x + Double(iconSize)*2, y: y + Double(iconSize))
+        draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
         
     }
     
