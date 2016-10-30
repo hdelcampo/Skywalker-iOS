@@ -19,7 +19,11 @@ class OverlayViewController: UIViewController {
     
     let orientationSensor = OrientationSensor()
     
+    //MARK: Indicator properties
+    let margin = 0.9
+    
     //MARK: Icon properties
+    let outOfSightIconPath = "arrow_right.png"
     let inSightIconPath = "arrow_down.png"
     let iconSize = 20
 
@@ -65,43 +69,59 @@ class OverlayViewController: UIViewController {
         
     }
     
+    /**
+        Draws an indicator for the given point indicating heading direction
+    */
     private func drawIndicator(for point: PointOfInterest) {
-        let x_center: Double = Double(self.view.frame.width) / 2,
-            y_center: Double = Double(self.view.frame.height) / 2;
         
-        let x = (orientationSensor.azimuth - Double(point.x)) / 180,
+        var x = (orientationSensor.azimuth - Double(point.x)) / 180,
             y = (orientationSensor.pitch - Double(point.z)) / 90;
         
-        let arcSize: Double = Double(M_PI) / 2
+        let angle = Vector3D.getAngle(x: x, y: -y)
         
-        let angle = Vector3D.getAngle(x: x, y: y) - Double(arcSize);
+        let height = Double(view.bounds.height)
+        let width = Double(view.bounds.width)
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: x_center + x,
-                                                         y: y_center + y),
-                                      radius: CGFloat(20),
-                                      startAngle: CGFloat(angle),
-                                      endAngle: CGFloat(angle + arcSize),
-                                      clockwise: true)
+        /**
+         * So once we get angle, we must remap it to coordinates. There are 2 kinds:
+         *  -Left screen and down screen, they go in reverse coordinates system
+         *  -Up and right screen are "normal" cases. However, right screen is special due to [0,360) angles
+         *
+         * Once we get corrected angle, we start coordinates from size*margin, and we multiply current angle to
+         * size of the "rect", size of rect is size of height or weight subtracting twice the margin.
+         */
+        var correctedAngle = 0.0
         
-        let circleLayer = CAShapeLayer()
-        circleLayer.path = circlePath.cgPath
+        if (0 <= angle && angle <= 45 ||
+            315 <= angle && angle <= 360) {
+            x = width*margin
+            correctedAngle = 0.0
+            
+            // As angle can be > 315, correct it
+            if (315 <= angle && angle <= 360) {
+                correctedAngle = abs(360-angle-45)
+            } else {
+                correctedAngle = angle + 45
+            }
+            
+            y = height*(1 - margin) + ((correctedAngle/(45*2))) * height*(1 - (1 - margin) * 2)   //Decimal part from div by 45 angles
+            
+        } else if (45 < angle && angle <= 135) {
+            correctedAngle =  135 - angle;
+            x = width*(1 - margin) + (correctedAngle/(45*2)) * width*(1 - (1 - margin) * 2);
+            y = height*margin;
+        } else if (135 < angle && angle <= 225) {
+            correctedAngle = 225 - angle;
+            x = width*(1-margin);
+            y = height*(1 - margin) + (correctedAngle/(45*2)) * height*(1 - (1 - margin) * 2);
+        } else {
+            correctedAngle = angle - 225;
+            x = width*(1 - margin) + (correctedAngle/(45*2)) * width*(1 - (1 - margin) * 2);
+            y = height*(1-margin);
+        }
         
-        circleLayer.fillColor = UIColor.clear.cgColor
-        circleLayer.strokeColor = UIColor.red.cgColor
-        circleLayer.lineWidth = 3.0
-        
-        let text = CATextLayer()
-        text.string = point.id
-        text.fontSize = 12
-        text.contentsScale = UIScreen.main.scale
-        text.foregroundColor = UIColor.red.cgColor
-        text.isWrapped = false
-        text.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
-        text.position = CGPoint(x: x_center + 20*Double(cos(angle)),
-                                y: y_center + 20*Double(sin(angle)))
-        circleLayer.addSublayer(text)
-        
-        view.layer.addSublayer(circleLayer)
+        draw(text: [point.id], to: view, x: x, y: y)
+        draw(icon: outOfSightIconPath, to: view, x: x, y: y, angle: angle)
     }
     
     /**
