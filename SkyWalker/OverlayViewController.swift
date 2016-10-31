@@ -39,8 +39,7 @@ class OverlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialLayers = self.view.layer.sublayers!
-        points.append(PointOfInterest(name: "Wally", x: 0, y: 0, z: 0))
-        points.append(PointOfInterest(name: "Robin", x: 50, y: 0, z: 45))
+        points = PointOfInterest.getPoints()
         orientationSensor.registerEvents()
         if #available(iOS 10.0, *) {
             Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,
@@ -65,6 +64,17 @@ class OverlayViewController: UIViewController {
             )
         } else {
             // Fallback on earlier versions
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if ("filterSegue" == segue.identifier) {
+            let svc = segue.destination as! FilterViewController
+            svc.allPoints = PointOfInterest.getPoints()
+            svc.usedPoints = self.points
+            svc.caller = self
         }
         
     }
