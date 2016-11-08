@@ -171,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-By-yS5">
-                                <rect key="frame" x="16" y="292" width="57" height="83"/>
+                                <rect key="frame" x="16" y="292" width="57" height="104"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
                                         <rect key="frame" x="0.0" y="33" width="37" height="17"/>
@@ -188,16 +188,24 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-Mh-KHX" userLabel="Build Label">
+                                        <rect key="frame" x="0.0" y="83" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="top" secondItem="Iv5-qG-Jdr" secondAttribute="bottom" constant="8" id="0jX-nn-P7K"/>
-                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="top" secondItem="Kyn-Ln-C4R" secondAttribute="bottom" constant="8" id="A6E-3P-CUg"/>
-                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="A7D-DH-bVk"/>
-                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="MPx-79-N71"/>
-                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" constant="8" id="V7A-m4-B8v"/>
-                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="Xv9-4C-4nd"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ahp-tp-CJW" secondAttribute="bottom" constant="8" id="zjh-Cd-ctW"/>
+                                    <constraint firstItem="fgI-Mh-KHX" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="5X1-hv-cn4"/>
+                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="Rgr-OZ-ofd"/>
+                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="VQd-e4-STy"/>
+                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" constant="8" id="WHq-sk-aQ5"/>
+                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="hog-Iy-8ho"/>
+                                    <constraint firstAttribute="bottom" secondItem="fgI-Mh-KHX" secondAttribute="bottom" id="nFY-DV-xUu"/>
+                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="top" secondItem="Kyn-Ln-C4R" secondAttribute="bottom" constant="8" id="pp8-FT-b4W"/>
+                                    <constraint firstItem="fgI-Mh-KHX" firstAttribute="top" secondItem="Ahp-tp-CJW" secondAttribute="bottom" constant="8" id="wih-2B-Gqj"/>
+                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="top" secondItem="Iv5-qG-Jdr" secondAttribute="bottom" constant="8" id="yz3-Z6-gws"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqg-AT-hi4">
@@ -234,7 +242,7 @@
                             <constraint firstItem="C9W-nb-s32" firstAttribute="top" secondItem="Uqg-AT-hi4" secondAttribute="bottom" constant="8" id="8VS-cU-T3L"/>
                             <constraint firstItem="Ac0-By-yS5" firstAttribute="top" secondItem="udP-Tm-ADj" secondAttribute="bottom" constant="292" id="9UH-Ea-wK5"/>
                             <constraint firstItem="Ac0-By-yS5" firstAttribute="leading" secondItem="MaH-FV-XT8" secondAttribute="leadingMargin" id="AiK-vz-dXK"/>
-                            <constraint firstItem="9DJ-Hz-UYC" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="bottom" constant="292" id="Av2-nI-S0s"/>
+                            <constraint firstItem="9DJ-Hz-UYC" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="bottom" constant="271" id="RTs-EF-frM"/>
                             <constraint firstItem="C9W-nb-s32" firstAttribute="trailing" secondItem="MaH-FV-XT8" secondAttribute="trailingMargin" id="ac3-ki-pr5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ac0-By-yS5" secondAttribute="trailing" constant="286" id="gTg-Ch-53M"/>
                             <constraint firstItem="Uqg-AT-hi4" firstAttribute="top" secondItem="udP-Tm-ADj" secondAttribute="bottom" constant="20" id="hBE-eP-cQ7"/>
@@ -244,6 +252,7 @@
                     </view>
                     <connections>
                         <outlet property="AzimuthLabel" destination="Kyn-Ln-C4R" id="MsR-bd-byS"/>
+                        <outlet property="buildLabel" destination="fgI-Mh-KHX" id="5up-al-avk"/>
                         <outlet property="pitchLabel" destination="Iv5-qG-Jdr" id="Ruy-1Z-D0O"/>
                         <outlet property="rollLabel" destination="Ahp-tp-CJW" id="flX-vl-IP5"/>
                     </connections>
@@ -327,6 +336,10 @@
         <scene sceneID="FSy-di-Toa">
             <objects>
                 <viewController id="wrT-6N-Z8u" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tu7-TB-ikY"/>
+                        <viewControllerLayoutGuide type="bottom" id="dYY-mm-ZBi"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GBx-m2-8XG">
                         <rect key="frame" x="0.0" y="0.0" width="233" height="242"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -352,6 +365,10 @@
         <scene sceneID="hxZ-2g-gRv">
             <objects>
                 <viewController id="lZx-Fb-f7f" customClass="ManualConnectionViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n6n-5H-eDh"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lmo-hn-Zhf"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7R5-oF-Zbc">
                         <rect key="frame" x="0.0" y="0.0" width="233" height="242"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
