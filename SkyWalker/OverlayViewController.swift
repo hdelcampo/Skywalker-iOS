@@ -26,7 +26,7 @@ class OverlayViewController: UIViewController {
     //MARK: Icon properties
     let outOfSightIconPath = "arrow_right.png"
     let inSightIconPath = "arrow_down.png"
-    let iconSize = 20
+    let iconSize = 35
 
     //MARK: Text properties
     let textSize = 12
