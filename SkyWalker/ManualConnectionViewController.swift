@@ -26,6 +26,12 @@ class ManualConnectionViewController: UIViewController {
         let user = userField.text!
         let password = passwordField.text!
         
+        if url == "demo" {
+            let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
+            self.present(ARView!, animated: true, completion: nil)
+            return
+        }
+        
         guard let _ = URL(string: url) else {
             let alert = UIAlertController (title: "Error", message: "URL is invalid", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))

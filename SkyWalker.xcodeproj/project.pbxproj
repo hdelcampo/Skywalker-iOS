@@ -30,7 +30,7 @@
 		C49B18ED1DC76B6900FDDC2E /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18EB1DC76B6900FDDC2E /* FilterCell.swift */; };
 		C49B18EE1DC76B6900FDDC2E /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49B18EC1DC76B6900FDDC2E /* FilterCell.xib */; };
 		C49B18F01DC7910C00FDDC2E /* FilterCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */; };
-		C49BE60B1DCA8C0A00A18522 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BE60A1DCA8C0A00A18522 /* ConnectViewController.swift */; };
+		C49BE60B1DCA8C0A00A18522 /* ConnectionDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BE60A1DCA8C0A00A18522 /* ConnectionDialogController.swift */; };
 		C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +71,7 @@
 		C49B18EB1DC76B6900FDDC2E /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		C49B18EC1DC76B6900FDDC2E /* FilterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
 		C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCellData.swift; sourceTree = "<group>"; };
-		C49BE60A1DCA8C0A00A18522 /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		C49BE60A1DCA8C0A00A18522 /* ConnectionDialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionDialogController.swift; sourceTree = "<group>"; };
 		C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualConnectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,7 +134,7 @@
 				C49B18EB1DC76B6900FDDC2E /* FilterCell.swift */,
 				C49B18EC1DC76B6900FDDC2E /* FilterCell.xib */,
 				C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */,
-				C49BE60A1DCA8C0A00A18522 /* ConnectViewController.swift */,
+				C49BE60A1DCA8C0A00A18522 /* ConnectionDialogController.swift */,
 				C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */,
 				C42753AF1E5723CF00E0D17F /* ProgressAlertView.swift */,
 				C4304A1F1E5AE97600202AC6 /* ServerHandler.swift */,
@@ -280,7 +280,7 @@
 				C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */,
 				C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */,
-				C49BE60B1DCA8C0A00A18522 /* ConnectViewController.swift in Sources */,
+				C49BE60B1DCA8C0A00A18522 /* ConnectionDialogController.swift in Sources */,
 				C49B18EA1DC75DD200FDDC2E /* FilterViewController.swift in Sources */,
 				C44DB1E11DC65860000CAEED /* Vector3D.swift in Sources */,
 				C4304A221E5AF7A600202AC6 /* Token.swift in Sources */,
