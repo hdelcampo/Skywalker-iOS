@@ -18,11 +18,11 @@ class CameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+/*
         camera.view = view
         camera.setRearCamera()
         camera.beginSession()
-        
+        */
     }
     
 

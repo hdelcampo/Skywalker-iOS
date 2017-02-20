@@ -43,7 +43,7 @@ class OverlayViewController: UIViewController {
         initialLayers = self.view.layer.sublayers!
         points = PointOfInterest.getPoints()
         orientationSensor.registerEvents()
-        if #available(iOS 10.0, *) {
+        /*if #available(iOS 10.0, *) {
             Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,
                                  repeats: true,
                                  block: { _ -> Void in
@@ -66,7 +66,7 @@ class OverlayViewController: UIViewController {
             )
         } else {
             // Fallback on earlier versions
-        }
+        }*/
         
     }
     
