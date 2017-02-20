@@ -313,25 +313,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-By-yS5">
-                                <rect key="frame" x="16" y="292" width="57" height="104"/>
+                                <rect key="frame" x="16" y="292" width="343" height="104"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
                                         <rect key="frame" x="0.0" y="33" width="37" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azimuth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azimuth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
                                         <rect key="frame" x="0.0" y="8" width="57" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Roll" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-tp-CJW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Roll" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-tp-CJW">
                                         <rect key="frame" x="0.0" y="58" width="28" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-Mh-KHX" userLabel="Build Label">
-                                        <rect key="frame" x="0.0" y="83" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Build: XX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgI-Mh-KHX" userLabel="Build Label">
+                                        <rect key="frame" x="0.0" y="83" width="69.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -339,15 +339,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="fgI-Mh-KHX" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="5X1-hv-cn4"/>
-                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="Rgr-OZ-ofd"/>
-                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="VQd-e4-STy"/>
-                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" constant="8" id="WHq-sk-aQ5"/>
-                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="hog-Iy-8ho"/>
-                                    <constraint firstAttribute="bottom" secondItem="fgI-Mh-KHX" secondAttribute="bottom" id="nFY-DV-xUu"/>
-                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="top" secondItem="Kyn-Ln-C4R" secondAttribute="bottom" constant="8" id="pp8-FT-b4W"/>
-                                    <constraint firstItem="fgI-Mh-KHX" firstAttribute="top" secondItem="Ahp-tp-CJW" secondAttribute="bottom" constant="8" id="wih-2B-Gqj"/>
-                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="top" secondItem="Iv5-qG-Jdr" secondAttribute="bottom" constant="8" id="yz3-Z6-gws"/>
+                                    <constraint firstItem="fgI-Mh-KHX" firstAttribute="top" secondItem="Ahp-tp-CJW" secondAttribute="bottom" constant="8" id="67G-jw-QAh"/>
+                                    <constraint firstAttribute="trailing" secondItem="fgI-Mh-KHX" secondAttribute="trailing" id="Ezo-i4-8eq"/>
+                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="top" secondItem="Iv5-qG-Jdr" secondAttribute="bottom" constant="8" id="Lus-QY-Afm"/>
+                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="Whc-b4-i9R"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ahp-tp-CJW" secondAttribute="trailing" id="a1g-en-fnk"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kyn-Ln-C4R" secondAttribute="trailing" id="gxU-vd-lbw"/>
+                                    <constraint firstItem="fgI-Mh-KHX" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="hPZ-H2-vJY"/>
+                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="lp8-Uv-nJX"/>
+                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" constant="8" id="t9z-9e-hb2"/>
+                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="top" secondItem="Kyn-Ln-C4R" secondAttribute="bottom" constant="8" id="tkQ-YT-AK4"/>
+                                    <constraint firstAttribute="trailing" secondItem="Iv5-qG-Jdr" secondAttribute="trailing" id="toc-uA-NPD"/>
+                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="tss-Zj-aTC"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqg-AT-hi4">
@@ -382,7 +385,7 @@
                             <constraint firstItem="Ac0-By-yS5" firstAttribute="leading" secondItem="MaH-FV-XT8" secondAttribute="leadingMargin" id="AiK-vz-dXK"/>
                             <constraint firstItem="9DJ-Hz-UYC" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="bottom" constant="271" id="RTs-EF-frM"/>
                             <constraint firstItem="C9W-nb-s32" firstAttribute="trailing" secondItem="MaH-FV-XT8" secondAttribute="trailingMargin" id="ac3-ki-pr5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ac0-By-yS5" secondAttribute="trailing" constant="286" id="gTg-Ch-53M"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ac0-By-yS5" secondAttribute="trailing" id="gTg-Ch-53M"/>
                             <constraint firstItem="Uqg-AT-hi4" firstAttribute="top" secondItem="udP-Tm-ADj" secondAttribute="bottom" constant="20" id="hBE-eP-cQ7"/>
                             <constraint firstItem="Uqg-AT-hi4" firstAttribute="trailing" secondItem="MaH-FV-XT8" secondAttribute="trailingMargin" id="oE4-rJ-0aU"/>
                             <constraint firstItem="Uqg-AT-hi4" firstAttribute="top" secondItem="udP-Tm-ADj" secondAttribute="bottom" constant="20" id="zvO-wL-gK8"/>
