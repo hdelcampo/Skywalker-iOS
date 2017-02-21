@@ -8,11 +8,16 @@
 
 import Foundation
 
+/**
+    Filter cell data class
+*/
 class FilterCellData {
     
+    // MARK: Properties
     var enabled: Bool
-    
     var title: String
+    
+    // MARK: Constructors
     
     init(title: String, enabled: Bool) {
         self.enabled = enabled

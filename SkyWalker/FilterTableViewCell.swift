@@ -9,32 +9,28 @@
 import UIKit
 
 protocol SwitchCellDelegate {
-    func onSwitchChange(cell: FilterCell)
+    func onSwitchChange(cell: FilterTableViewCell)
 }
 
-class FilterCell: UITableViewCell {
+/**
+ Filter view table cells
+*/
+class FilterTableViewCell: UITableViewCell {
     
-    
+    // MARK: Outlets
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var `switch`: UISwitch!
     
+    // MARK: delegate
     var delegate: SwitchCellDelegate?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
+    // MARK: Outlets actions
     
     /**
         Handler for switch
     */
-    @IBAction func onSwitchChange(_ sender: UISwitch) {
+    @IBAction func onSwitchChange() {
         delegate?.onSwitchChange(cell: self)
     }
+    
 }
