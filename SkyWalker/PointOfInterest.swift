@@ -16,7 +16,14 @@ class PointOfInterest: Equatable {
     
     let id : Int
     let name: String
-    static var points: [PointOfInterest]?
+    static var observer: OverlayViewController?
+    static var points: [PointOfInterest]! {
+        didSet {
+            if (nil != observer){
+                observer!.points = self.points
+            }
+        }
+    }
     
     let distance: Double = 50
     

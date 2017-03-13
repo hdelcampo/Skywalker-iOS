@@ -17,7 +17,6 @@ class OverlayViewController: UIViewController {
     @IBOutlet weak var azimuthLabel: UITextField!
     @IBOutlet weak var buildLabel: UILabel!
     
-    
     let orientationSensor = OrientationSensor()
     
     //MARK: Indicator properties
@@ -42,6 +41,7 @@ class OverlayViewController: UIViewController {
         setBuildStamp()
         initialLayers = self.view.layer.sublayers!
         points = PointOfInterest.points!
+        PointOfInterest.observer = self
         orientationSensor.registerEvents()
         if #available(iOS 10.0, *) {
             Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,

@@ -27,8 +27,8 @@ class ManualConnectionViewController: UIViewController {
         let password = passwordField.text!
         
         if url == "demo" {
-            let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
-            self.present(ARView!, animated: true, completion: nil)
+            PointOfInterest.points = PointOfInterest.getDemoPoints()
+            startAR()
             return
         }
         
@@ -59,15 +59,15 @@ class ManualConnectionViewController: UIViewController {
         
     }
     
+    /*
+        Retrieves the avaliable tags from the server
+    */
     private func retrieveTags () {
         
         let onSuccess: ([PointOfInterest]) -> Void = {points in
             OperationQueue.main.addOperation {
-                self.progressIndicator.stopAnimating()
-                self.connectButton.isEnabled = true
                 PointOfInterest.points = points
-                let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
-                self.present(ARView!, animated: true, completion: nil)
+                self.startAR()
             }
         }
         
@@ -82,6 +82,20 @@ class ManualConnectionViewController: UIViewController {
         }
         
         try! ServerHandler.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
+        
+    }
+    
+    /*
+        Starts the Augmented Reality interface on a new view if caller is not the dialog
+    */
+    private func startAR () {
+        
+        if !(self.parent! is ConnectionDialogController) {
+            let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
+            self.present(ARView!, animated: true, completion: nil)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
         
     }
     
