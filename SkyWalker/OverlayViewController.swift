@@ -43,31 +43,27 @@ class OverlayViewController: UIViewController {
         points = PointOfInterest.points!
         PointOfInterest.observer = self
         orientationSensor.registerEvents()
-        if #available(iOS 10.0, *) {
-            Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,
-                                 repeats: true,
-                                 block: { _ -> Void in
-                                    
-                                    // Remove all but debug info
-                                    self.view.layer.sublayers?.forEach( { if !(self.initialLayers.contains($0)) { $0.removeFromSuperlayer() } })
-                                    
-                                    
-                                    self.azimuthLabel.text = String(format: "Azimuth %.6f", self.orientationSensor.azimuth)
-                                    self.pitchLabel.text = String(format: "Pitch %.6f", self.orientationSensor.pitch)
-                                    self.rollLabel.text = String(format: "Roll %.6f", self.orientationSensor.roll)
-                                    for point in self.points {
-                                        if self.inSight(point: point) {
-                                            self.draw(point: point)
-                                        } else {
-                                            self.drawIndicator(for: point)
-                                        }
-                                    }
-                                }
-            )
-        } else {
-            // Fallback on earlier versions
-        }
+        Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
         
+    }
+    
+    @objc func redraw (_: Any) {
+        
+        // Remove all but debug info
+        self.view.layer.sublayers?.forEach( { if !(self.initialLayers.contains($0)) { $0.removeFromSuperlayer() } })
+        
+        
+        self.azimuthLabel.text = String(format: "Azimuth %.6f", self.orientationSensor.azimuth)
+        self.pitchLabel.text = String(format: "Pitch %.6f", self.orientationSensor.pitch)
+        self.rollLabel.text = String(format: "Roll %.6f", self.orientationSensor.roll)
+        for point in self.points {
+            if self.inSight(point: point) {
+                self.draw(point: point)
+            } else {
+                self.drawIndicator(for: point)
+            }
+        }
+            
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

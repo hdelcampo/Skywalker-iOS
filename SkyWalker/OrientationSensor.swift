@@ -18,7 +18,7 @@ class OrientationSensor {
     private(set) var roll : Double = 0
     
     let motionManager = CMMotionManager()
-    let updateRate: Double = 1/60
+    static let updateRate: Double = 1/60
     let alpha = 0.25
     
     //MARK: Functions
@@ -27,7 +27,7 @@ class OrientationSensor {
         Starts registering events from the sensor
     */
     func registerEvents () {
-        motionManager.deviceMotionUpdateInterval = updateRate
+        motionManager.deviceMotionUpdateInterval = OrientationSensor.updateRate
         motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical,
                                                to: OperationQueue.current!,
                                                withHandler: {
