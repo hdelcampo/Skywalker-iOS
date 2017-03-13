@@ -40,41 +40,48 @@ class ManualConnectionViewController: UIViewController {
         
         progressIndicator.startAnimating()
         connectButton.isEnabled = false
-
-        ServerHandler.getToken(completionHandler: {(data, response, error) in
-            
+        
+        let onSuccess: (Token) -> Void = {_ in
+            self.retrieveTags()
+        }
+        
+        let onError: (ServerHandler.ErrorType) -> Void = {error in
             OperationQueue.main.addOperation {
-                
-            self.progressIndicator.stopAnimating()
-            self.connectButton.isEnabled = true
-            
-            guard error == nil else {
-                let alert = UIAlertController (title: "Error", message: "Unknown error", preferredStyle: .alert)
+                self.progressIndicator.stopAnimating()
+                self.connectButton.isEnabled = true
+                let alert = UIAlertController (title: "Error", message: String(describing: error), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
                 self.present(alert, animated: true, completion: nil)
-                return;
             }
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                
-                if (httpResponse.statusCode != 200) {
-                    let error = ServerHandler.getError(statusCode: httpResponse.statusCode)
-                    let alert = UIAlertController (title: "Error", message: String(describing: error), preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
-                    self.present(alert, animated: true, completion: nil)
-                    return;
-                }
-                
-                else {
-                    let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
-                    let dataString = String(data: data!, encoding: String.Encoding.utf8)
-                    self.present(ARView!, animated: true, completion: nil)
-                }
-                
+        }
+
+        ServerHandler.instance.getToken(url: url, username: user, password: password, onSuccess: onSuccess, onError: onError)
+        
+    }
+    
+    private func retrieveTags () {
+        
+        let onSuccess: ([PointOfInterest]) -> Void = {points in
+            OperationQueue.main.addOperation {
+                self.progressIndicator.stopAnimating()
+                self.connectButton.isEnabled = true
+                PointOfInterest.points = points
+                let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
+                self.present(ARView!, animated: true, completion: nil)
             }
-                
-            } //End of main operation
-        }, url: url, username: user, password: password)
+        }
+        
+        let onError: (ServerHandler.ErrorType) -> Void = {error in
+            OperationQueue.main.addOperation {
+                self.progressIndicator.stopAnimating()
+                self.connectButton.isEnabled = true
+                let alert = UIAlertController (title: "Error", message: String(describing: error), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        try! ServerHandler.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
         
     }
     

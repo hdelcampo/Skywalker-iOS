@@ -14,24 +14,26 @@ class PointOfInterest: Equatable {
         y = 0,
         z = 0
     
-    let id : String
+    let id : Int
+    let name: String
+    static var points: [PointOfInterest]?
     
     let distance: Double = 50
     
-    init(name: String, x: Int, y: Int, z: Int) {
-        
-        id = name
-        self.x = x
-        self.y = y
-        self.z = z
-        
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
     }
     
-    static func getPoints() -> [PointOfInterest] {
+    static func getDemoPoints() -> [PointOfInterest] {
         
         var points: [PointOfInterest] = []
-        points.append(PointOfInterest(name: "Wally", x: 0, y: 0, z: 0))
-        points.append(PointOfInterest(name: "Robin", x: 50, y: 0, z: 45))
+        points.append(PointOfInterest(id: 0, name: "Wally"))
+
+        points.append(PointOfInterest(id: 1, name: "Robin"))
+        points[1].x = 50
+        points[1].z = 45
+
         return points
         
     }

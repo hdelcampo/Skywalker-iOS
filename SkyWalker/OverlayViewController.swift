@@ -41,7 +41,7 @@ class OverlayViewController: UIViewController {
         super.viewDidLoad()
         setBuildStamp()
         initialLayers = self.view.layer.sublayers!
-        points = PointOfInterest.getPoints()
+        points = PointOfInterest.points!
         orientationSensor.registerEvents()
         if #available(iOS 10.0, *) {
             Timer.scheduledTimer(withTimeInterval: orientationSensor.updateRate,
@@ -74,7 +74,7 @@ class OverlayViewController: UIViewController {
         
         if ("filterSegue" == segue.identifier) {
             let svc = segue.destination as! FilterViewController
-            svc.allPoints = PointOfInterest.getPoints()
+            svc.allPoints = PointOfInterest.points!
             svc.usedPoints = self.points
             svc.caller = self
         }
@@ -141,7 +141,7 @@ class OverlayViewController: UIViewController {
             y = height*(1-margin);
         }
         
-        draw(text: [point.id], to: view, x: x, y: y)
+        draw(text: [point.name], to: view, x: x, y: y)
         draw(icon: outOfSightIconPath, to: view, x: x, y: y, angle: angle)
     }
     
@@ -165,7 +165,7 @@ class OverlayViewController: UIViewController {
         let x = Double(view.frame.width)/2 - (-orientationSensor.azimuth + Double(point.x))*Double(view.frame.width)/Double(fovWidth),
             y = Double(view.frame.height)/2 - (orientationSensor.pitch - Double(point.z))*Double(view.frame.height)/Double(fovHeight)
         
-        draw(text: [point.id, String(point.distance)], to: view, x: x + Double(iconSize)*2, y: y + Double(iconSize))
+        draw(text: [point.name, String(point.distance)], to: view, x: x + Double(iconSize)*2, y: y + Double(iconSize))
         draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
         
     }

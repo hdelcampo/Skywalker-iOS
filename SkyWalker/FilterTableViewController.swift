@@ -54,7 +54,7 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
         cellsData.removeAll()
         
         for point in allPoints {
-            let newCell = FilterCellData(title: point.id,
+            let newCell = FilterCellData(title: point.name,
                                          enabled: usedPoints.contains(point))
             
             cellsData.append(newCell)
