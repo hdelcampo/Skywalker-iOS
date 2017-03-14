@@ -10,7 +10,7 @@ class PointOfInterest: Equatable {
     
     //MARK: Properties
     
-    private (set) var x = 0,
+    var x = 0,
         y = 0,
         z = 0
     

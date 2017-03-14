@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="28" width="284" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="whw-hX-M58" id="fUJ-nj-b7Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="284" height="49.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="284" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1Z-3p-EO8">
@@ -333,7 +333,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Win-PE-mOu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KRs-L8-JaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController modalPresentationStyle="overCurrentContext" id="npS-1w-Atm" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="203-V1-b8l">
@@ -348,6 +347,7 @@
                         <segue destination="VF6-98-oXY" kind="relationship" relationship="rootViewController" id="ge6-ib-dVm"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KRs-L8-JaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2001" y="1497"/>
         </scene>
@@ -485,7 +485,7 @@
                                 <rect key="frame" x="110" y="129" width="174" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yOX-wq-hng">
                                 <rect key="frame" x="110" y="175" width="174" height="30"/>

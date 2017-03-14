@@ -10,11 +10,21 @@ import Foundation
 
 class ServerHandler {
     
+    /*
+     Possible errors
+    */
     public enum ErrorType: Error {
         case INVALID_USERNAME_OR_PASSWORD, NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
     }
     
+    /*
+        Connection token
+    */
     var token: Token?
+    
+    /*
+        Singleton instance
+    */
     static let instance: ServerHandler! = ServerHandler()
     
     /**
@@ -73,6 +83,9 @@ class ServerHandler {
         
     }
     
+    /*
+        Retrieves the avaliable tags for the token in use
+    */
     func getAvaliableTags (onSuccess: @escaping (_: [PointOfInterest]) -> Void, onError: @escaping (_: ErrorType) -> Void) throws {
     
         if (nil == token) {
@@ -88,7 +101,8 @@ class ServerHandler {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+                
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
@@ -107,7 +121,7 @@ class ServerHandler {
                     
                     for json in jsons as! [Dictionary<String, Any>]{
                         let id: Int = json["id"] as! Int
-                        let name: String = json["name"] as! String
+                        let name: String = json["name"] as? String ?? "Unknown"
                         let point = PointOfInterest(id: id, name: name)
                         points.append(point)
                     }
@@ -123,6 +137,61 @@ class ServerHandler {
         
         task.resume()
 
+    }
+    
+    /*
+        Retrieves a point of interest last position
+    */
+    func getLastPosition(tag: PointOfInterest,
+                         onSuccess: @escaping (_: PointOfInterest) -> Void,
+                         onError: @escaping (_: ErrorType) -> Void) throws {
+        
+        if (nil == token) {
+            throw ErrorType.NO_TOKEN_SET
+        }
+        
+        let realURL = token!.URL.appending("/api/centers/0/tags/\(tag.id)")
+        guard let URL = URL(string: realURL) else {
+            print ("Error \(realURL) is invalid")
+            return
+        }
+        
+        var request = URLRequest(url: URL)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            
+            guard error == nil else {
+                onError(.UNKNOWN)
+                return;
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                if (httpResponse.statusCode != 200) {
+                    onError(ServerHandler.getError(statusCode: httpResponse.statusCode))
+                } else {
+                    let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String, Any>
+                    if nil == json["x"] {
+                        return
+                    }
+                    tag.x = json["x"] as! Int
+                    tag.y = json["y"] as! Int
+                    tag.z = json["z"] as! Int
+                    
+                    onSuccess(tag)
+                }
+                
+            }
+            
+        }
+            
+        )
+        
+        task.resume()
         
     }
     
