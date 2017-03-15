@@ -23,8 +23,10 @@
 		C4583E2F1D9686D3001B1659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4583E2D1D9686D3001B1659 /* Main.storyboard */; };
 		C4583E311D9686D3001B1659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4583E301D9686D3001B1659 /* Assets.xcassets */; };
 		C4583E341D9686D3001B1659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4583E321D9686D3001B1659 /* LaunchScreen.storyboard */; };
-		C4583E3F1D9686D3001B1659 /* SkyWalkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E3E1D9686D3001B1659 /* SkyWalkerTests.swift */; };
 		C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E4B1D969073001B1659 /* CameraViewController.swift */; };
+		C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF01E793D2E005AA4EE /* Matrix.swift */; };
+		C468AEF31E794376005AA4EE /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF21E794376005AA4EE /* MatrixTests.swift */; };
+		C468AEF41E794730005AA4EE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF01E793D2E005AA4EE /* Matrix.swift */; };
 		C47343A11DC667CC00475078 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C473439F1DC667CC00475078 /* Fabric.framework */; };
 		C47343A21DC667CC00475078 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47343A01DC667CC00475078 /* Crashlytics.framework */; };
 		C49B18EA1DC75DD200FDDC2E /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */; };
@@ -63,9 +65,10 @@
 		C4583E331D9686D3001B1659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4583E351D9686D3001B1659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4583E3A1D9686D3001B1659 /* SkyWalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyWalkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4583E3E1D9686D3001B1659 /* SkyWalkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyWalkerTests.swift; sourceTree = "<group>"; };
 		C4583E401D9686D3001B1659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4583E4B1D969073001B1659 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C468AEF01E793D2E005AA4EE /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		C468AEF21E794376005AA4EE /* MatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		C473439F1DC667CC00475078 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C47343A01DC667CC00475078 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 				C4304A211E5AF7A600202AC6 /* Token.swift */,
 				C44DB1E01DC65860000CAEED /* Vector3D.swift */,
 				C4583E2B1D9686D3001B1659 /* ViewController.swift */,
+				C468AEF01E793D2E005AA4EE /* Matrix.swift */,
 			);
 			path = SkyWalker;
 			sourceTree = "<group>";
@@ -146,9 +150,9 @@
 		C4583E3D1D9686D3001B1659 /* SkyWalkerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C4583E3E1D9686D3001B1659 /* SkyWalkerTests.swift */,
 				C4583E401D9686D3001B1659 /* Info.plist */,
 				C44DB1E31DC65A98000CAEED /* Vector3DTests.swift */,
+				C468AEF21E794376005AA4EE /* MatrixTests.swift */,
 			);
 			path = SkyWalkerTests;
 			sourceTree = "<group>";
@@ -277,6 +281,7 @@
 			files = (
 				C447C7621DA3FF500094B5CD /* PointOfInterest.swift in Sources */,
 				C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */,
+				C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ViewController.swift in Sources */,
 				C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */,
 				C49BE60B1DCA8C0A00A18522 /* ConnectionDialogController.swift in Sources */,
@@ -299,7 +304,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4583E3F1D9686D3001B1659 /* SkyWalkerTests.swift in Sources */,
+				C468AEF41E794730005AA4EE /* Matrix.swift in Sources */,
+				C468AEF31E794376005AA4EE /* MatrixTests.swift in Sources */,
 				C44DB1E41DC65A98000CAEED /* Vector3DTests.swift in Sources */,
 				C44DB1E21DC65860000CAEED /* Vector3D.swift in Sources */,
 			);
