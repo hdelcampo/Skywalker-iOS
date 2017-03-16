@@ -12,9 +12,7 @@ class Vector2DTests: XCTestCase {
     
     let rotatingAccuracy = 0.0001
     
-    /**
-        Constructors
-    */
+    //MARK: Constructors tests
     func testConstructor() {
         let x = 1.0, y = 2.0
         let vector = Vector2D(x: x, y: y)
@@ -22,9 +20,7 @@ class Vector2DTests: XCTestCase {
         XCTAssertEqual(y, vector.y)
     }
     
-    /**
-        Normalize
-    */
+    //MARK: Normalize tests
     func testNormalize() {
         var vector = Vector2D(x: 1, y: 1)
         vector.normalize()
@@ -32,18 +28,14 @@ class Vector2DTests: XCTestCase {
         XCTAssertEqual(1/sqrt(2), vector.y)
     }
     
-    /**
-        Dot product
-    */
+    //MARK: Dot product tests
     func testDot() {
         let v1 = Vector2D(x: 2, y: -3)
         let v2 = Vector2D(x: -4, y: 2)
         XCTAssertEqual(-14, v1*v2)
     }
     
-    /**
-        Angle product
-    */
+    //MARK: Angle product tests
     func testAngle0() {
         let v1 = Vector2D(x: 1, y: 0)
         let v2 = Vector2D(x: 1, y: 0)
@@ -68,9 +60,7 @@ class Vector2DTests: XCTestCase {
         XCTAssertEqual(90, v1.angle(v: v2))
     }
     
-    /**
-        Angle with sign
-    */
+    //MARK: Angle with sign tests
     func testAngleSign0() {
         let v = Vector2D(x: 1, y: 0)
         let v2 = Vector2D(x: 1, y: 0)
@@ -95,9 +85,7 @@ class Vector2DTests: XCTestCase {
         XCTAssertEqual(270, v.angleWithSign(v: v2))
     }
     
-    /**
-        Module
-    */
+    //MARK: Module tests
     func testModule() {
         let vector = Vector2D(x: 1, y: 1)
         XCTAssertEqual(sqrt(2), vector.module())
@@ -113,9 +101,7 @@ class Vector2DTests: XCTestCase {
         XCTAssertEqual(1, vector.module())
     }
     
-    /**
-        Rotate
-    */
+    //MARK: Rotate tests
     func testRotate90X() {
         var vector = Vector2D(x: 1, y: 0)
         vector.rotateClockwise(degrees: 90)
