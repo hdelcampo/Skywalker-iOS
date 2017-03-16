@@ -202,8 +202,3 @@ class OverlayViewController: UIViewController {
     }
 
 }
-
-private extension Double {
-    var toDegrees: Double { return self * 180 / .pi }
-    var toRadians: Double { return self * .pi / 180 }
-}
