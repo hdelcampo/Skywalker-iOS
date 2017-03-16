@@ -26,7 +26,7 @@ class Matrix {
     /**
         Data of the matrix
     */
-    let data: [[Double]]
+    var data: [[Double]]
     
     /**
         Returns the asked data.
@@ -36,7 +36,25 @@ class Matrix {
         - Returns: The asked data.
     */
     subscript(row: Int, col: Int) -> Double {
-        return data[row][col]
+        get {
+            return data[row][col]
+        }
+        
+        set(newValue) {
+            data[row][col] = newValue
+        }
+    }
+    
+    /**
+     Constructs a new matrix with the sizes and fulled with 0s.
+        - Parameters:
+            - rows: The number of rows.
+            - cols: The number of columns.
+     */
+    init(rows: Int, cols: Int) {
+        self.rows = rows
+        self.cols = cols
+        data = [[Double]](repeating:[Double](repeating: 0, count: cols), count: rows)
     }
     
     /**
@@ -63,7 +81,7 @@ class Matrix {
             throw MathError.INVALID_SIZES
         }
         
-        var result = [[Double]](repeating:[Double](repeating: 0, count: left.cols), count: right.rows)
+        var result = [[Double]](repeating: [Double](repeating: 0, count: right.cols), count: left.rows)
         
         for i in 0..<left.rows {
             for j in 0..<right.cols {
