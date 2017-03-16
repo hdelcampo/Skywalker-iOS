@@ -8,15 +8,24 @@
 
 import Foundation
 
+/**
+ Geometric 2D Vector.
+*/
 struct Vector2D: Vector {
     
     /**
         Vector's components
     */
-    var x: Double, y: Double
+    private(set) var x: Double, y: Double
     
     typealias ItemType = Vector2D
     
+    /**
+     Constructs a new 2D Vector.
+     - Parameters:
+        - x: X component.
+        - y: Y component.
+     */
     init(x: Double, y: Double) {
         self.x = x
         self.y = y
