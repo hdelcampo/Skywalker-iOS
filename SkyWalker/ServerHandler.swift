@@ -178,9 +178,9 @@ class ServerHandler {
                     if nil == json["x"] {
                         return
                     }
-                    tag.x = json["x"] as! Int
-                    tag.y = json["y"] as! Int
-                    tag.z = json["z"] as! Int
+                    tag.x = json["x"] as! Double
+                    tag.y = json["y"] as! Double
+                    tag.z = json["z"] as! Double
                     
                     onSuccess(tag)
                 }

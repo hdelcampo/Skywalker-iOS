@@ -10,9 +10,9 @@ class PointOfInterest: Equatable {
     
     //MARK: Properties
     
-    var x = 0,
-        y = 0,
-        z = 0
+    var x: Double = 0,
+        y: Double = 0,
+        z: Double = 0
     
     let id : Int
     let name: String
@@ -36,10 +36,12 @@ class PointOfInterest: Equatable {
         
         var points: [PointOfInterest] = []
         points.append(PointOfInterest(id: 0, name: "Wally"))
+        points[0].x = 1
+        points[0].y = 0
 
-        points.append(PointOfInterest(id: 1, name: "Robin"))
+        /*points.append(PointOfInterest(id: 1, name: "Robin"))
         points[1].x = 50
-        points[1].z = 45
+        points[1].z = 45*/
 
         return points
         
