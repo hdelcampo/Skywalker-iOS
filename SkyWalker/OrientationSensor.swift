@@ -13,12 +13,39 @@ class OrientationSensor {
     
     //MARK : Properties
     
-    private(set) var azimuth : Double = 0
-    private(set) var pitch : Double = 0
-    private(set) var roll : Double = 0
+    static let updateRate: Double = 1/60
+    
+    var x: Double {
+        get {
+            return orientationVector.x
+        }
+    }
+    
+    var y: Double {
+        get {
+            return orientationVector.y
+        }
+    }
+    
+    var z: Double {
+        get {
+            return orientationVector.z
+        }
+    }
+    
+    static let AXIS_X = 2;
+    static let AXIS_Y = 1;
+    static let AXIS_Z = 3;
+    static let AXIS_MINUS_X = AXIS_X | 0x80;
+    static let AXIS_MINUS_Y = AXIS_Y | 0x80;
+    static let AXIS_MINUS_Z = AXIS_Z | 0x80;
+    
+    /**
+        Orientation vector
+    */
+    private var orientationVector: Vector3D = Vector3D(x: 1, y: 0, z: 0)
     
     let motionManager = CMMotionManager()
-    static let updateRate: Double = 1/60
     let alpha = 0.25
     
     //MARK: Functions
@@ -28,8 +55,8 @@ class OrientationSensor {
     */
     func registerEvents () {
         motionManager.deviceMotionUpdateInterval = OrientationSensor.updateRate
-        motionManager.startDeviceMotionUpdates(using: .xTrueNorthZVertical,
-                                               to: OperationQueue.current!,
+        motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
+                                               to: OperationQueue(),
                                                withHandler: {
                                                 (deviceMotion, error) -> Void in
                                                 
@@ -45,43 +72,39 @@ class OrientationSensor {
         Handler to update class members with correspondant data from the hardware
     */
     private func updateData(from: CMDeviceMotion) {
-        //We cant set a custom reference frame, but we can transform data using our own reference frame
-        //Notice gimbal lock will also occur when looking 90º up or down, if that happens, we must move to quaternions
-        let attitude = from.attitude
         
-        let q = rotate(quaternion: attitude.quaternion, axes: [0,0,1], radians: Float(M_PI/2))
+        let r = from.attitude.rotationMatrix
+        let rMatrix = GLKMatrix4Make(Float(r.m11), Float(r.m12), Float(r.m13), 0,
+                                        Float(r.m21), Float(r.m22), Float(r.m23), 0,
+                                        Float(r.m31), Float(r.m32), Float(r.m33), 0,
+                                        0,     0,     0,     1)
         
-        pitch  = atan2(Double(2.0*q.y*q.w - 2.0*q.x*q.z), Double(1 - 2.0*q.y*q.y - 2.0*q.z*q.z)).toDegrees + 90
-        azimuth = atan2(Double(2.0*q.x*q.w - 2.0*q.y*q.z), Double(1 - 2.0*q.x*q.x - 2.0*q.z*q.z)).toDegrees
-        roll =  asin(Double(2.0*q.x*q.y + 2.0*q.z*q.w)).toDegrees
-    }
-    
-    private func rotate(quaternion: CMQuaternion, axes: [Float], radians: Float) -> GLKQuaternion {
+        let rotated = GLKMatrix4RotateY(rMatrix, GLKMathDegreesToRadians(90))
         
-        var originalQuaternion = GLKQuaternionMake(Float(quaternion.x), Float(quaternion.y), Float(quaternion.z), Float(quaternion.w))
-        var rotationQuaternion = GLKQuaternionMakeWithAngleAndAxis(radians, axes[0], axes[1], axes[2])
+        let orientationQuat = GLKQuaternionMakeWithMatrix4(rotated)
+        let myVector = GLKVector3Make(Float(Center.instance.mapNorth.x),
+                                      Float(Center.instance.mapNorth.y),
+                                      0)
         
-        originalQuaternion = GLKQuaternionNormalize(originalQuaternion)
-        rotationQuaternion = GLKQuaternionNormalize(rotationQuaternion)
+        let result = GLKQuaternionRotateVector3(orientationQuat, myVector)
         
-        let rotatedQuaternion = GLKQuaternionMultiply(originalQuaternion, rotationQuaternion)
+        let filteredData = lowFilter(input: [result.x, result.y, result.z],
+                  previousValues: [orientationVector.x, orientationVector.y, orientationVector.z])
         
-        return rotatedQuaternion
+        orientationVector = Vector3D(x: filteredData[0], y: filteredData[1], z: filteredData[2])
+        orientationVector.normalize()
         
     }
     
     /**
         Low-pass filter to sensor data
     */
-    private func lowFilter(input: [Double], previousValues: [Double]?) -> [Double] {
-        if (nil == previousValues){
-            return input;
-        }
+    private func lowFilter(input: [Float], previousValues: [Double]) -> [Double] {
         
         var output: [Double] = [0, 0, 0]
         
         for i in 0..<3 {
-            output[i] = previousValues![i] + alpha * (input[i] - previousValues![i]);
+            output[i] = previousValues[i] + alpha * (Double(input[i]) - previousValues[i]);
         }
         
         return output;
