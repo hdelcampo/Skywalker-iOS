@@ -66,7 +66,7 @@ struct Vector2D: Vector {
     func angleWithSign(v: Vector2D) -> Double {
         let cos = self * v
         let det = x*v.y - v.x*y
-        var angle = -atan2(det, cos).toDegrees
+        let angle = -atan2(det, cos).toDegrees
         
         return angle
     }
