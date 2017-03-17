@@ -68,10 +68,6 @@ struct Vector2D: Vector {
         let det = x*v.y - v.x*y
         var angle = -atan2(det, cos).toDegrees
         
-        if (angle < 0) {
-            angle += 360
-        }
-        
         return angle
     }
     

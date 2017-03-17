@@ -76,13 +76,13 @@ class Vector2DTests: XCTestCase {
     func testAngleSign180() {
         let v = Vector2D(x: 0, y: -1)
         let v2 = Vector2D(x: 0, y: 1)
-        XCTAssertEqual(180, v.angleWithSign(v: v2))
+        XCTAssertEqual(-180, v.angleWithSign(v: v2))
     }
     
     func testAngleSign270() {
         let v = Vector2D(x: 1, y: 0)
         let v2 = Vector2D(x: 0, y: 1)
-        XCTAssertEqual(270, v.angleWithSign(v: v2))
+        XCTAssertEqual(-90, v.angleWithSign(v: v2))
     }
     
     //MARK: Module tests

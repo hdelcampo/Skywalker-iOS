@@ -24,6 +24,7 @@
 		C4583E311D9686D3001B1659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4583E301D9686D3001B1659 /* Assets.xcassets */; };
 		C4583E341D9686D3001B1659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4583E321D9686D3001B1659 /* LaunchScreen.storyboard */; };
 		C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4583E4B1D969073001B1659 /* CameraViewController.swift */; };
+		C45F114C1E7AA356007D43E9 /* Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45F114B1E7AA356007D43E9 /* Center.swift */; };
 		C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF01E793D2E005AA4EE /* Matrix.swift */; };
 		C468AEF31E794376005AA4EE /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF21E794376005AA4EE /* MatrixTests.swift */; };
 		C468AEF41E794730005AA4EE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF01E793D2E005AA4EE /* Matrix.swift */; };
@@ -74,6 +75,7 @@
 		C4583E3A1D9686D3001B1659 /* SkyWalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyWalkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4583E401D9686D3001B1659 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4583E4B1D969073001B1659 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C45F114B1E7AA356007D43E9 /* Center.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Center.swift; sourceTree = "<group>"; };
 		C468AEF01E793D2E005AA4EE /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		C468AEF21E794376005AA4EE /* MatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		C468AEF71E7960CC005AA4EE /* Vector2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2D.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				C468AEF71E7960CC005AA4EE /* Vector2D.swift */,
 				C44DB1E01DC65860000CAEED /* Vector3D.swift */,
 				C4583E2B1D9686D3001B1659 /* ViewController.swift */,
+				C45F114B1E7AA356007D43E9 /* Center.swift */,
 			);
 			path = SkyWalker;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45F114C1E7AA356007D43E9 /* Center.swift in Sources */,
 				C447C7621DA3FF500094B5CD /* PointOfInterest.swift in Sources */,
 				C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */,
 				C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */,
