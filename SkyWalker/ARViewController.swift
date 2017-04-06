@@ -18,30 +18,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkCameraPermission()
         thread.start()
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-    
-    private func checkCameraPermission() {
-        if (AVAuthorizationStatus.authorized ==
-            AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ) {
-            
-        } else {
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
-                                          completionHandler: { (granted : Bool) -> Void in
-                                            if (true == granted){
-                                                
-                                            } else {
-                                                
-                                            }
-            });
-
-        }
-        
     }
     
     /*

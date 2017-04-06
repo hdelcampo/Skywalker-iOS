@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="-1041" y="929"/>
         </scene>
-        <!--View Controller-->
+        <!--Entry View Controller-->
         <scene sceneID="uPM-ai-q6r">
             <objects>
-                <viewController id="Xyp-SD-rfk" sceneMemberID="viewController">
+                <viewController id="Xyp-SD-rfk" customClass="EntryViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8ij-H0-qWa"/>
                         <viewControllerLayoutGuide type="bottom" id="MiI-It-sD4"/>
