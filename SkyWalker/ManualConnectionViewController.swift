@@ -41,6 +41,16 @@ class ManualConnectionViewController: UIViewController {
             }
         }
     }
+    
+    /**
+        Demo mode click.
+    */
+    @IBAction func startDemo() {
+        PointOfInterest.points = PointOfInterest.getDemoPoints()
+        startAR()
+    }
+    
+    
     /**
         Called when connect button is clicked
         Retrieves a new token if possible from server
@@ -50,12 +60,6 @@ class ManualConnectionViewController: UIViewController {
         let url = uriField.text!
         let user = userField.text!
         let password = passwordField.text!
-        
-        if url == "demo" {
-            PointOfInterest.points = PointOfInterest.getDemoPoints()
-            startAR()
-            return
-        }
         
         guard let _ = URL(string: url) else {
             let alert = UIAlertController (title: "Error", message: "URL is invalid", preferredStyle: .alert)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xyp-SD-rfk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xyp-SD-rfk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="28" width="284" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="whw-hX-M58" id="fUJ-nj-b7Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="284" height="49"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="284" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1Z-3p-EO8">
@@ -511,6 +511,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMZ-Tk-RwN">
+                                <rect key="frame" x="16" y="362" width="84" height="30"/>
+                                <state key="normal" title="Demo mode"/>
+                                <connections>
+                                    <action selector="startDemo" destination="lZx-Fb-f7f" eventType="touchUpInside" id="XZt-Tj-hNA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -521,6 +528,7 @@
                             <constraint firstItem="DG7-CN-ORM" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leadingMargin" constant="94" id="DGp-zR-ewa"/>
                             <constraint firstItem="0d4-Ov-aai" firstAttribute="leading" secondItem="zji-O3-sc4" secondAttribute="trailing" constant="16" id="Ekl-ux-pEh"/>
                             <constraint firstItem="yOX-wq-hng" firstAttribute="leading" secondItem="nvc-ED-soa" secondAttribute="trailing" constant="16" id="Phe-Uq-x4p"/>
+                            <constraint firstItem="HMZ-Tk-RwN" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leadingMargin" id="TiD-1b-avq"/>
                             <constraint firstItem="gsp-hK-0kL" firstAttribute="centerY" secondItem="DG7-CN-ORM" secondAttribute="centerY" id="bg0-sd-7hF"/>
                             <constraint firstItem="zji-O3-sc4" firstAttribute="centerY" secondItem="0d4-Ov-aai" secondAttribute="centerY" id="cp5-VD-h9n"/>
                             <constraint firstItem="Lmo-hn-Zhf" firstAttribute="top" secondItem="fOU-An-40s" secondAttribute="bottom" constant="8" id="dkS-lC-dxn"/>
@@ -533,6 +541,7 @@
                             <constraint firstItem="DG7-CN-ORM" firstAttribute="trailing" secondItem="7R5-oF-Zbc" secondAttribute="trailingMargin" id="o31-cT-77P"/>
                             <constraint firstItem="DG7-CN-ORM" firstAttribute="leading" secondItem="gsp-hK-0kL" secondAttribute="trailing" constant="16" id="uAP-HF-3aC"/>
                             <constraint firstItem="fOU-An-40s" firstAttribute="top" secondItem="yOX-wq-hng" secondAttribute="bottom" constant="8" id="yvF-LY-Cz4"/>
+                            <constraint firstItem="HMZ-Tk-RwN" firstAttribute="centerY" secondItem="FZw-h5-MI0" secondAttribute="centerY" id="zuv-wg-cqD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Manual data" id="gR5-Kx-7Um"/>
