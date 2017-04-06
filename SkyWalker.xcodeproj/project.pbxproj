@@ -10,6 +10,8 @@
 		C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40033D81E5C59B200864F1C /* FilterTableViewController.swift */; };
 		C4304A201E5AE97600202AC6 /* ServerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */; };
 		C4304A221E5AF7A600202AC6 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A211E5AF7A600202AC6 /* Token.swift */; };
+		C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */; };
+		C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458D11E963A6F006B16EE /* EntryViewController.swift */; };
 		C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3B1D9D83F800EE90BF /* Camera.swift */; };
 		C4461E3E1D9D83F800EE90BF /* OrientationSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */; };
 		C447C7621DA3FF500094B5CD /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C447C7611DA3FF500094B5CD /* PointOfInterest.swift */; };
@@ -57,6 +59,8 @@
 		C40033D81E5C59B200864F1C /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerFacade.swift; sourceTree = "<group>"; };
 		C4304A211E5AF7A600202AC6 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconTransmitter.swift; sourceTree = "<group>"; };
+		C43458D11E963A6F006B16EE /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		C4461E3B1D9D83F800EE90BF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationSensor.swift; sourceTree = "<group>"; };
 		C447C7611DA3FF500094B5CD /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				C40033D81E5C59B200864F1C /* FilterTableViewController.swift */,
 				C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */,
 				C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */,
+				C43458D11E963A6F006B16EE /* EntryViewController.swift */,
 			);
 			name = presentation;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				C4461E3B1D9D83F800EE90BF /* Camera.swift */,
 				C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */,
 				C447C7611DA3FF500094B5CD /* PointOfInterest.swift */,
+				C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */,
 			);
 			name = business;
 			sourceTree = "<group>";
@@ -343,6 +349,8 @@
 				C468AEFB1E7964B6005AA4EE /* DoubleExtension.swift in Sources */,
 				C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */,
 				C49B18F01DC7910C00FDDC2E /* FilterCellData.swift in Sources */,
+				C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */,
+				C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */,
 				C468AEF81E7960CC005AA4EE /* Vector2D.swift in Sources */,
 				C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */,
 				C4304A201E5AE97600202AC6 /* ServerFacade.swift in Sources */,
