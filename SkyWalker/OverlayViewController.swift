@@ -191,7 +191,6 @@ class OverlayViewController: UIViewController {
         //Vertical
         let verticalTheta = -90*deviceZ
         
-        //print("Mid x: \(Double(view.bounds.size.width)) mid y: \(Double(view.bounds.size.height))")
         let a = horizontalTheta*Double(Float(view.bounds.width)/fovWidth)
         let x = Double(view.bounds.width/2) + a,
             y = Double(view.bounds.height/2) - verticalTheta*Double(Float(view.bounds.height)/fovHeight)

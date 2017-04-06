@@ -33,13 +33,6 @@ class OrientationSensor {
         }
     }
     
-    static let AXIS_X = 2;
-    static let AXIS_Y = 1;
-    static let AXIS_Z = 3;
-    static let AXIS_MINUS_X = AXIS_X | 0x80;
-    static let AXIS_MINUS_Y = AXIS_Y | 0x80;
-    static let AXIS_MINUS_Z = AXIS_Z | 0x80;
-    
     /**
         Orientation vector
     */
