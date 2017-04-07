@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ServerHandler {
+class ServerFacade {
     
     /*
      Possible errors
     */
     public enum ErrorType: Error {
-        case INVALID_USERNAME_OR_PASSWORD, NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
+        case INVALID_QR, INVALID_USERNAME_OR_PASSWORD, NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
     }
     
     /*
@@ -25,7 +25,7 @@ class ServerHandler {
     /*
         Singleton instance
     */
-    static let instance: ServerHandler! = ServerHandler()
+    static let instance: ServerFacade! = ServerFacade()
     
     /**
         Retrieves a new token
@@ -65,11 +65,11 @@ class ServerHandler {
                 if let httpResponse = response as? HTTPURLResponse {
             
                     if (httpResponse.statusCode != 200) {
-                        onError(ServerHandler.getError(statusCode: httpResponse.statusCode))
+                        onError(ServerFacade.getError(statusCode: httpResponse.statusCode))
                     } else {
                         let data = String(data: data!, encoding: String.Encoding.utf8)
                         let token = Token(URL: url, token: data!)
-                        ServerHandler.instance.token = token
+                        ServerFacade.instance.token = token
                         onSuccess(token)
                     }
             
@@ -114,7 +114,7 @@ class ServerHandler {
             if let httpResponse = response as? HTTPURLResponse {
                 
                 if (httpResponse.statusCode != 200) {
-                    onError(ServerHandler.getError(statusCode: httpResponse.statusCode))
+                    onError(ServerFacade.getError(statusCode: httpResponse.statusCode))
                 } else {
                     let jsons = try! JSONSerialization.jsonObject(with: data!, options: []) as! NSArray
                     var points = [PointOfInterest]()
@@ -172,7 +172,7 @@ class ServerHandler {
             if let httpResponse = response as? HTTPURLResponse {
                 
                 if (httpResponse.statusCode != 200) {
-                    onError(ServerHandler.getError(statusCode: httpResponse.statusCode))
+                    onError(ServerFacade.getError(statusCode: httpResponse.statusCode))
                 } else {
                     let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String, Any>
                     if nil == json["x"] {

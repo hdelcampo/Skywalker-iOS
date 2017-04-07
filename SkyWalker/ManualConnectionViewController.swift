@@ -74,7 +74,7 @@ class ManualConnectionViewController: UIViewController {
             self.retrieveTags()
         }
         
-        let onError: (ServerHandler.ErrorType) -> Void = {error in
+        let onError: (ServerFacade.ErrorType) -> Void = {error in
             OperationQueue.main.addOperation {
                 self.progressIndicator.stopAnimating()
                 self.connectButton.isEnabled = true
@@ -84,7 +84,7 @@ class ManualConnectionViewController: UIViewController {
             }
         }
 
-        ServerHandler.instance.getToken(url: url, username: user, password: password, onSuccess: onSuccess, onError: onError)
+        ServerFacade.instance.getToken(url: url, username: user, password: password, onSuccess: onSuccess, onError: onError)
         
     }
     
@@ -100,7 +100,7 @@ class ManualConnectionViewController: UIViewController {
             }
         }
         
-        let onError: (ServerHandler.ErrorType) -> Void = {error in
+        let onError: (ServerFacade.ErrorType) -> Void = {error in
             OperationQueue.main.addOperation {
                 self.progressIndicator.stopAnimating()
                 self.connectButton.isEnabled = true
@@ -110,7 +110,7 @@ class ManualConnectionViewController: UIViewController {
             }
         }
         
-        try! ServerHandler.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
+        try! ServerFacade.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
         
     }
     
