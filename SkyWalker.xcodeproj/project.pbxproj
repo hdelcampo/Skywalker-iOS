@@ -39,6 +39,7 @@
 		C468AF011E796A2A005AA4EE /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFA1E7964B6005AA4EE /* DoubleExtension.swift */; };
 		C47343A11DC667CC00475078 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C473439F1DC667CC00475078 /* Fabric.framework */; };
 		C47343A21DC667CC00475078 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47343A01DC667CC00475078 /* Crashlytics.framework */; };
+		C4809CAB1E97B038006520FE /* NewConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */; };
 		C49B18EA1DC75DD200FDDC2E /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */; };
 		C49B18ED1DC76B6900FDDC2E /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18EB1DC76B6900FDDC2E /* FilterTableViewCell.swift */; };
 		C49B18F01DC7910C00FDDC2E /* FilterCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */; };
@@ -88,6 +89,7 @@
 		C468AEFE1E796987005AA4EE /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		C473439F1DC667CC00475078 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C47343A01DC667CC00475078 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewConnectionViewController.swift; sourceTree = "<group>"; };
 		C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C49B18EB1DC76B6900FDDC2E /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCellData.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */,
 				C43458D11E963A6F006B16EE /* EntryViewController.swift */,
 				C443207A1E97901500B59C43 /* QRConnectionViewController.swift */,
+				C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */,
 			);
 			name = presentation;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */,
 				C49B18F01DC7910C00FDDC2E /* FilterCellData.swift in Sources */,
 				C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */,
+				C4809CAB1E97B038006520FE /* NewConnectionViewController.swift in Sources */,
 				C443207B1E97901500B59C43 /* QRConnectionViewController.swift in Sources */,
 				C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */,
 				C468AEF81E7960CC005AA4EE /* Vector2D.swift in Sources */,

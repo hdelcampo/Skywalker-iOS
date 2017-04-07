@@ -482,14 +482,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FZw-h5-MI0">
-                                <rect key="frame" x="240" y="367" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOU-An-40s">
                                 <rect key="frame" x="268" y="362" width="59" height="30"/>
                                 <state key="normal" title="Connect"/>
                                 <connections>
-                                    <action selector="newConnection" destination="lZx-Fb-f7f" eventType="touchUpInside" id="s3j-kv-wPG"/>
+                                    <action selector="connectClick" destination="lZx-Fb-f7f" eventType="touchUpInside" id="sMn-PL-I6e"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zji-O3-sc4">
@@ -549,8 +546,7 @@
                             <constraint firstItem="gsp-hK-0kL" firstAttribute="centerY" secondItem="DG7-CN-ORM" secondAttribute="centerY" id="bg0-sd-7hF"/>
                             <constraint firstItem="zji-O3-sc4" firstAttribute="centerY" secondItem="0d4-Ov-aai" secondAttribute="centerY" id="cp5-VD-h9n"/>
                             <constraint firstItem="Lmo-hn-Zhf" firstAttribute="top" secondItem="fOU-An-40s" secondAttribute="bottom" constant="8" id="dkS-lC-dxn"/>
-                            <constraint firstItem="fOU-An-40s" firstAttribute="centerY" secondItem="FZw-h5-MI0" secondAttribute="centerY" id="fvS-If-a7H"/>
-                            <constraint firstItem="fOU-An-40s" firstAttribute="leading" secondItem="FZw-h5-MI0" secondAttribute="trailing" constant="8" id="ilo-jk-DX3"/>
+                            <constraint firstItem="HMZ-Tk-RwN" firstAttribute="centerY" secondItem="fOU-An-40s" secondAttribute="centerY" id="lyv-lD-H4y"/>
                             <constraint firstItem="0d4-Ov-aai" firstAttribute="top" secondItem="DG7-CN-ORM" secondAttribute="bottom" constant="16" id="mmi-CM-9oB"/>
                             <constraint firstItem="0d4-Ov-aai" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leadingMargin" constant="94" id="n1e-lX-dxb"/>
                             <constraint firstItem="yOX-wq-hng" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leadingMargin" constant="94" id="nTd-0F-c24"/>
@@ -558,14 +554,12 @@
                             <constraint firstItem="DG7-CN-ORM" firstAttribute="trailing" secondItem="7R5-oF-Zbc" secondAttribute="trailingMargin" id="o31-cT-77P"/>
                             <constraint firstItem="DG7-CN-ORM" firstAttribute="leading" secondItem="gsp-hK-0kL" secondAttribute="trailing" constant="16" id="uAP-HF-3aC"/>
                             <constraint firstItem="fOU-An-40s" firstAttribute="top" secondItem="yOX-wq-hng" secondAttribute="bottom" constant="8" id="yvF-LY-Cz4"/>
-                            <constraint firstItem="HMZ-Tk-RwN" firstAttribute="centerY" secondItem="FZw-h5-MI0" secondAttribute="centerY" id="zuv-wg-cqD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Manual data" id="gR5-Kx-7Um"/>
                     <connections>
                         <outlet property="connectButton" destination="fOU-An-40s" id="ws9-hI-yob"/>
                         <outlet property="passwordField" destination="yOX-wq-hng" id="1Gx-Ce-6lZ"/>
-                        <outlet property="progressIndicator" destination="FZw-h5-MI0" id="3Ua-bm-bQP"/>
                         <outlet property="uriField" destination="DG7-CN-ORM" id="Skv-20-M1S"/>
                         <outlet property="userField" destination="0d4-Ov-aai" id="bbg-4I-0i3"/>
                     </connections>

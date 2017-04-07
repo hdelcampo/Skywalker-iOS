@@ -12,7 +12,7 @@ import AVFoundation
 /**
     QR Connection view controller.
  */
-class QRConnectionViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
+class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     @IBOutlet weak var cameraView: UIView!
     
@@ -88,7 +88,7 @@ class QRConnectionViewController: UIViewController, AVCaptureMetadataOutputObjec
         
     }
     
-    func show(error: ServerFacade.ErrorType) {
+    override func show(error: ServerFacade.ErrorType) {
         print(String(describing: error))
     }
 

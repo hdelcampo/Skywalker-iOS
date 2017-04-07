@@ -8,39 +8,12 @@
 
 import UIKit
 
-class ManualConnectionViewController: UIViewController {
+class ManualConnectionViewController: NewConnectionViewController {
 
     @IBOutlet weak var uriField: UITextField!
     @IBOutlet weak var userField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     @IBOutlet weak var connectButton: UIButton!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ManualConnectionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ManualConnectionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-        
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
     
     /**
         Demo mode click.
@@ -50,13 +23,7 @@ class ManualConnectionViewController: UIViewController {
         startAR()
     }
     
-    
-    /**
-        Called when connect button is clicked
-        Retrieves a new token if possible from server
-    */
-    @IBAction func newConnection () {
-        
+    @IBAction func connectClick() {
         let url = uriField.text!
         let user = userField.text!
         let password = passwordField.text!
@@ -67,63 +34,19 @@ class ManualConnectionViewController: UIViewController {
             return
         }
         
-        progressIndicator.startAnimating()
-        connectButton.isEnabled = false
-        
-        let onSuccess: (Token) -> Void = {_ in
-            self.retrieveTags()
-        }
-        
-        let onError: (ServerFacade.ErrorType) -> Void = {error in
-            OperationQueue.main.addOperation {
-                self.progressIndicator.stopAnimating()
-                self.connectButton.isEnabled = true
-                let alert = UIAlertController (title: "Error", message: String(describing: error), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-
-        ServerFacade.instance.getToken(url: url, username: user, password: password, onSuccess: onSuccess, onError: onError)
-        
+        newConnection(url: url, username: user, password: password)
     }
     
-    /*
-        Retrieves the avaliable tags from the server
-    */
-    private func retrieveTags () {
+    override func show(error: ServerFacade.ErrorType) {
         
-        let onSuccess: ([PointOfInterest]) -> Void = {points in
-            OperationQueue.main.addOperation {
-                PointOfInterest.points = points
-                self.startAR()
-            }
-        }
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in self.dismiss(animated: true, completion: nil)}))
+        indicator.removeFromSuperview()
         
-        let onError: (ServerFacade.ErrorType) -> Void = {error in
-            OperationQueue.main.addOperation {
-                self.progressIndicator.stopAnimating()
-                self.connectButton.isEnabled = true
-                let alert = UIAlertController (title: "Error", message: String(describing: error), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
-                self.present(alert, animated: true, completion: nil)
-            }
-        }
-        
-        try! ServerFacade.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
-        
-    }
-    
-    /*
-        Starts the Augmented Reality interface on a new view if caller is not the dialog
-    */
-    private func startAR () {
-        
-        if !(self.parent! is ConnectionDialogController) {
-            let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
-            self.present(ARView!, animated: true, completion: nil)
-        } else {
-            self.dismiss(animated: true, completion: nil)
+        switch error {
+        case .SERVER_ERROR:
+            alert.message = "A server error ocurred"
+        default:
+            alert.message = "An error ocurred during the connection"
         }
         
     }
