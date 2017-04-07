@@ -39,7 +39,7 @@ class ViewController: UIViewController {
                 let points = PointOfInterest.points
                 
                 for point in points! {
-                    try? ServerHandler.instance.getLastPosition(tag: point,
+                    try? ServerFacade.instance.getLastPosition(tag: point,
                                                                 onSuccess: {(_) in },
                                                                 onError: { (error) in print("Error ocurred during update: \(String(describing: error))" )})
                 }

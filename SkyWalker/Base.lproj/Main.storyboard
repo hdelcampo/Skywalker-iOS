@@ -280,7 +280,7 @@
         <!--QR Scan-->
         <scene sceneID="66a-Nt-SFn">
             <objects>
-                <viewController id="02N-O3-Bco" sceneMemberID="viewController">
+                <viewController id="02N-O3-Bco" customClass="QRConnectionViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yUL-yW-4hw"/>
                         <viewControllerLayoutGuide type="bottom" id="xsJ-tA-MPr"/>
@@ -289,21 +289,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filter" translatesAutoresizingMaskIntoConstraints="NO" id="Gem-kG-mJb">
-                                <rect key="frame" x="86" y="107.5" width="128" height="85"/>
-                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-j0-Bsm">
+                                <rect key="frame" x="0.0" y="85" width="300" height="130"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Luk-Jd-ERy"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aim your device at the QR code." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpp-MQ-5Sy">
+                                <rect key="frame" x="16" y="56" width="268" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Gem-kG-mJb" firstAttribute="centerY" secondItem="dwx-Pg-R1N" secondAttribute="centerY" id="Acw-hX-W8X"/>
-                            <constraint firstItem="Gem-kG-mJb" firstAttribute="centerX" secondItem="dwx-Pg-R1N" secondAttribute="centerX" id="CTQ-sf-90K"/>
+                            <constraint firstItem="xpp-MQ-5Sy" firstAttribute="trailing" secondItem="dwx-Pg-R1N" secondAttribute="trailingMargin" id="72b-ZM-maw"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="centerY" secondItem="dwx-Pg-R1N" secondAttribute="centerY" id="KGk-50-VSO"/>
+                            <constraint firstItem="xpp-MQ-5Sy" firstAttribute="leading" secondItem="dwx-Pg-R1N" secondAttribute="leadingMargin" id="MwP-qf-bKf"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="top" secondItem="xpp-MQ-5Sy" secondAttribute="bottom" constant="8" id="Oi9-Z6-VQd"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="leading" secondItem="dwx-Pg-R1N" secondAttribute="leading" id="QkZ-Yv-Xaf"/>
+                            <constraint firstAttribute="trailing" secondItem="ziG-j0-Bsm" secondAttribute="trailing" id="XxD-Uv-Xx8"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="QR Scan" id="3qw-to-IKl"/>
+                    <connections>
+                        <outlet property="cameraView" destination="ziG-j0-Bsm" id="Bwo-P4-bQl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pnw-w5-AeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3084" y="2122"/>
+            <point key="canvasLocation" x="3083.1999999999998" y="2121.1394302848576"/>
         </scene>
         <!--Connection Dialog Controller-->
         <scene sceneID="cH2-sc-HOE">
