@@ -25,13 +25,23 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     
     @IBOutlet weak var connectButton: UIButton!
     
+    @IBOutlet weak var errURL: UILabel!
+    @IBOutlet weak var errUsername: UILabel!
+    @IBOutlet weak var errPassword: UILabel!
+    
     // MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addCircleCorner(view: errURL)
+        addCircleCorner(view: errUsername)
+        addCircleCorner(view: errPassword)
+        
         toggleError(view: urlContainer, error: false)
         toggleError(view: userContainer, error: false)
         toggleError(view: passwordContainer, error: false)
+
         urlField.delegate = self
     }
     
@@ -101,6 +111,17 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
             alert.message = "An error ocurred during the connection"
         }
         
+    }
+    
+    /**
+        Adds a red circle border to the given view.
+        - Parameters:
+            - view: The view to modify.
+    */
+    private func addCircleCorner(view: UIView) {
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.cornerRadius = view.frame.size.width / 2
     }
     
     // MARK: UITextFieldDelegate funcs
