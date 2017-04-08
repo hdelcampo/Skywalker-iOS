@@ -87,7 +87,7 @@
             </objects>
             <point key="canvasLocation" x="-2295" y="929"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--Item-->
         <scene sceneID="rpb-Pz-j0X">
             <objects>
                 <viewController id="fyp-62-2Q9" customClass="CameraViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
@@ -104,6 +104,7 @@
                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="Gsz-KX-LMJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSv-mD-c2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -244,40 +245,6 @@
             </objects>
             <point key="canvasLocation" x="1693" y="665"/>
         </scene>
-        <!--New connection dialog controller-->
-        <scene sceneID="Adr-Ma-HMt">
-            <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="pga-yZ-Hj5" userLabel="New connection dialog controller" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Imt-o1-HvW"/>
-                        <viewControllerLayoutGuide type="bottom" id="ys6-Io-E0i"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="zq4-gW-J8a">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VXc-xS-9dH">
-                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="6nY-rW-KvE"/>
-                                    <constraint firstAttribute="width" constant="300" id="VWb-cv-YNX"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="npS-1w-Atm" kind="embed" id="ctX-lN-rM8"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="VXc-xS-9dH" firstAttribute="centerX" secondItem="zq4-gW-J8a" secondAttribute="centerX" id="vbL-HY-Bw4"/>
-                            <constraint firstItem="VXc-xS-9dH" firstAttribute="centerY" secondItem="zq4-gW-J8a" secondAttribute="centerY" id="ydR-Qa-XdC"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HfM-1m-I4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="933.60000000000002" y="1497.3013493253375"/>
-        </scene>
         <!--QR Scan-->
         <scene sceneID="66a-Nt-SFn">
             <objects>
@@ -287,34 +254,35 @@
                         <viewControllerLayoutGuide type="bottom" id="xsJ-tA-MPr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dwx-Pg-R1N">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-j0-Bsm">
-                                <rect key="frame" x="0.0" y="85" width="300" height="130"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="Luk-Jd-ERy"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aim your device at the QR code." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpp-MQ-5Sy">
-                                <rect key="frame" x="16" y="56" width="268" height="21"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="149"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziG-j0-Bsm">
+                                <rect key="frame" x="0.0" y="193" width="375" height="281"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ziG-j0-Bsm" secondAttribute="height" multiplier="4:3" id="0gi-k3-hgN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xpp-MQ-5Sy" firstAttribute="trailing" secondItem="dwx-Pg-R1N" secondAttribute="trailingMargin" id="72b-ZM-maw"/>
-                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="centerY" secondItem="dwx-Pg-R1N" secondAttribute="centerY" id="KGk-50-VSO"/>
-                            <constraint firstItem="xpp-MQ-5Sy" firstAttribute="leading" secondItem="dwx-Pg-R1N" secondAttribute="leadingMargin" id="MwP-qf-bKf"/>
-                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="top" secondItem="xpp-MQ-5Sy" secondAttribute="bottom" constant="8" id="Oi9-Z6-VQd"/>
-                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="leading" secondItem="dwx-Pg-R1N" secondAttribute="leading" id="QkZ-Yv-Xaf"/>
-                            <constraint firstAttribute="trailing" secondItem="ziG-j0-Bsm" secondAttribute="trailing" id="XxD-Uv-Xx8"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="centerX" secondItem="dwx-Pg-R1N" secondAttribute="centerX" id="2hJ-O6-u66"/>
+                            <constraint firstItem="xpp-MQ-5Sy" firstAttribute="leading" secondItem="dwx-Pg-R1N" secondAttribute="leading" id="2vM-au-Oiz"/>
+                            <constraint firstAttribute="trailing" secondItem="ziG-j0-Bsm" secondAttribute="trailing" id="HQG-I9-7mE"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="leading" secondItem="dwx-Pg-R1N" secondAttribute="leading" id="Lzf-ek-fwz"/>
+                            <constraint firstItem="xpp-MQ-5Sy" firstAttribute="top" secondItem="yUL-yW-4hw" secondAttribute="bottom" id="QVD-aw-viu"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="top" secondItem="xpp-MQ-5Sy" secondAttribute="bottom" id="RYf-Mo-XbZ"/>
+                            <constraint firstItem="ziG-j0-Bsm" firstAttribute="centerY" secondItem="dwx-Pg-R1N" secondAttribute="centerY" id="a3l-5F-giZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xpp-MQ-5Sy" secondAttribute="trailing" id="dNa-zb-Wjs"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="QR Scan" id="3qw-to-IKl"/>
+                    <tabBarItem key="tabBarItem" title="QR Scan" image="qr_tab" selectedImage="qr_tab_filled" id="3qw-to-IKl"/>
                     <connections>
                         <outlet property="cameraView" destination="ziG-j0-Bsm" id="Bwo-P4-bQl"/>
                     </connections>
@@ -367,7 +335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRs-L8-JaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2001" y="1497"/>
+            <point key="canvasLocation" x="2001" y="1316"/>
         </scene>
         <!--Overlay View Controller-->
         <scene sceneID="ZC8-c6-cLH">
@@ -444,7 +412,7 @@
                                 </constraints>
                                 <state key="normal" image="data_base"/>
                                 <connections>
-                                    <segue destination="pga-yZ-Hj5" kind="presentation" id="5mF-Cl-d0m"/>
+                                    <segue destination="npS-1w-Atm" kind="presentation" modalPresentationStyle="formSheet" id="wSM-lB-X6b"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -480,11 +448,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Lmo-hn-Zhf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7R5-oF-Zbc">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfB-Eu-2Kc">
-                                <rect key="frame" x="16" y="122" width="311" height="52"/>
+                                <rect key="frame" x="16" y="255.5" width="343" height="52"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="url_form_label" translatesAutoresizingMaskIntoConstraints="NO" id="uyg-ae-0mt">
                                         <rect key="frame" x="2" y="2" width="48" height="48"/>
@@ -493,19 +461,19 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="URL (Required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gHm-Iw-LiH">
-                                        <rect key="frame" x="54" y="0.0" width="203" height="52"/>
+                                        <rect key="frame" x="54" y="0.0" width="235" height="52"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
                                     </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not a valid URL." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSk-c0-H2g">
-                                        <rect key="frame" x="54" y="35.5" width="203" height="14.5"/>
+                                        <rect key="frame" x="54" y="35.5" width="235" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.1317220657" blue="0.16744194970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrong_input_form" translatesAutoresizingMaskIntoConstraints="NO" id="KaR-8W-Dg9">
-                                        <rect key="frame" x="261" y="2" width="48" height="48"/>
+                                        <rect key="frame" x="293" y="2" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="KaR-8W-Dg9" secondAttribute="height" multiplier="1:1" id="SgX-lb-DAU"/>
                                         </constraints>
@@ -528,7 +496,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpA-T9-Bxo">
-                                <rect key="frame" x="16" y="174" width="311" height="52"/>
+                                <rect key="frame" x="16" y="307.5" width="343" height="52"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username_form_label" translatesAutoresizingMaskIntoConstraints="NO" id="M58-3u-qNj">
                                         <rect key="frame" x="2" y="2" width="48" height="48"/>
@@ -537,19 +505,19 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKT-Xr-DGG">
-                                        <rect key="frame" x="54" y="0.0" width="203" height="52"/>
+                                        <rect key="frame" x="54" y="0.0" width="235" height="52"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
                                     </textField>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid password or username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbP-KX-JJE">
-                                        <rect key="frame" x="54" y="35.5" width="203" height="14.5"/>
+                                        <rect key="frame" x="54" y="35.5" width="235" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.1317220657" blue="0.16744194970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrong_input_form" translatesAutoresizingMaskIntoConstraints="NO" id="RF2-ga-99t">
-                                        <rect key="frame" x="261" y="2" width="48" height="48"/>
+                                        <rect key="frame" x="293" y="2" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="RF2-ga-99t" secondAttribute="height" multiplier="1:1" id="yiS-2e-IdL"/>
                                         </constraints>
@@ -573,7 +541,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcq-cW-WQF">
-                                <rect key="frame" x="16.5" y="226" width="311" height="52"/>
+                                <rect key="frame" x="16" y="359.5" width="343" height="52"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password_form_label" translatesAutoresizingMaskIntoConstraints="NO" id="eGX-rO-25z">
                                         <rect key="frame" x="2" y="2" width="48" height="48"/>
@@ -582,19 +550,19 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Kx-cT-mg2">
-                                        <rect key="frame" x="54" y="0.0" width="203" height="52"/>
+                                        <rect key="frame" x="54" y="0.0" width="235" height="52"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL"/>
                                     </textField>
                                     <imageView hidden="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wrong_input_form" translatesAutoresizingMaskIntoConstraints="NO" id="wP4-Qu-Ry4">
-                                        <rect key="frame" x="261" y="2" width="48" height="48"/>
+                                        <rect key="frame" x="293" y="2" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wP4-Qu-Ry4" secondAttribute="height" multiplier="1:1" id="FHe-Hg-cbF"/>
                                         </constraints>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid password or username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12J-dM-UAE">
-                                        <rect key="frame" x="54" y="35.5" width="203" height="14.5"/>
+                                        <rect key="frame" x="54" y="35.5" width="235" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="1" green="0.1317220657" blue="0.16744194970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -617,14 +585,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wv-Zl-Vym">
-                                <rect key="frame" x="268" y="294" width="59" height="30"/>
+                                <rect key="frame" x="300" y="427.5" width="59" height="30"/>
                                 <state key="normal" title="Connect"/>
                                 <connections>
                                     <action selector="connectClick" destination="lZx-Fb-f7f" eventType="touchUpInside" id="4KS-mY-CoF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHY-OS-bbv">
-                                <rect key="frame" x="16" y="294" width="84" height="30"/>
+                                <rect key="frame" x="16" y="427.5" width="84" height="30"/>
                                 <state key="normal" title="Demo mode"/>
                                 <connections>
                                     <action selector="startDemo" destination="lZx-Fb-f7f" eventType="touchUpInside" id="P8t-6l-sey"/>
@@ -651,7 +619,7 @@
                             <constraint firstItem="7wv-Zl-Vym" firstAttribute="top" secondItem="zcq-cW-WQF" secondAttribute="bottom" constant="16" id="zaD-Rd-VqM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Manual data" id="gR5-Kx-7Um"/>
+                    <tabBarItem key="tabBarItem" title="Manual data" image="manual_tab" selectedImage="manual_tab_filled" id="gR5-Kx-7Um"/>
                     <connections>
                         <outlet property="connectButton" destination="7wv-Zl-Vym" id="YK9-4D-mvs"/>
                         <outlet property="passwordContainer" destination="zcq-cW-WQF" id="GbN-eE-mPW"/>
@@ -670,12 +638,16 @@
     <resources>
         <image name="data_base" width="128" height="128"/>
         <image name="filter" width="128" height="85"/>
+        <image name="manual_tab" width="25" height="25"/>
+        <image name="manual_tab_filled" width="25" height="25"/>
         <image name="password_form_label" width="24" height="24"/>
+        <image name="qr_tab" width="25" height="25"/>
+        <image name="qr_tab_filled" width="25" height="25"/>
         <image name="url_form_label" width="24" height="24"/>
         <image name="username_form_label" width="24" height="24"/>
         <image name="wrong_input_form" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="LmM-k0-Rk3"/>
+        <segue reference="aEw-bh-1nt"/>
     </inferredMetricsTieBreakers>
 </document>

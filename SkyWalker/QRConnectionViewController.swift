@@ -16,8 +16,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
 
     @IBOutlet weak var cameraView: UIView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidLayoutSubviews() {
         startCameraPreviewWithQRDetection()
     }
     
@@ -37,10 +36,10 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue(label: "QR Detection queue"))
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
         
-        let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
-        videoPreviewLayer?.frame = cameraView.layer.bounds
-        cameraView.layer.addSublayer(videoPreviewLayer!)
+        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer?.frame = cameraView.layer.bounds
+        previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        cameraView.layer.addSublayer(previewLayer!)
         
         captureSession.startRunning()
         
