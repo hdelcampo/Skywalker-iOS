@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import GLKit
 
 extension Double {
-    var toDegrees: Double { return self * 180 / .pi }
-    var toRadians: Double { return self * .pi / 180 }
+    var toDegrees: Double { return Double(GLKMathRadiansToDegrees(Float(self))) }
+    var toRadians: Double { return Double(GLKMathDegreesToRadians(Float(self))) }
 }
