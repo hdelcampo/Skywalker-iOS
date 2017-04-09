@@ -10,10 +10,14 @@ import Foundation
 
 class Center {
     
-    private(set) var mapNorth: Vector2D
-    static let instance = Center()
+    let id: Int
     
-    init() {
+    private(set) var mapNorth: Vector2D
+    static var centers = [Center]()
+    var receivers: [MapPoint]?
+    
+    init(id: Int) {
+        self.id = id
         mapNorth = Vector2D(x: 1, y: 0)
     }
     

@@ -83,6 +83,67 @@ class ServerFacade {
         
     }
     
+    /**
+     Retrieves a center's receivers
+     */
+    func getCenterReceivers (center: Center,
+                             onSuccess: @escaping (_: [MapPoint]) -> Void,
+                             onError: @escaping (_: ErrorType) -> Void) throws {
+        
+        if (nil == token) {
+            throw ErrorType.NO_TOKEN_SET
+        }
+        
+        let realURL = token!.URL.appending("/api/centers/\(center.id)/rdhubs")
+        guard let URL = URL(string: realURL) else {
+            print ("Error \(realURL) is invalid")
+            return
+        }
+        
+        var request = URLRequest(url: URL)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            
+            guard error == nil else {
+                onError(.UNKNOWN)
+                return;
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                
+                if (httpResponse.statusCode != 200) {
+                    onError(ServerFacade.getError(statusCode: httpResponse.statusCode))
+                } else {
+                    let jsons = try! JSONSerialization.jsonObject(with: data!, options: []) as! NSArray
+                    var receivers = [MapPoint]()
+                    
+                    for json in jsons as! [Dictionary<String, Any>]{
+                        let id: Int = json["id"] as! Int
+                        let x: Double = json["id"] as! Double
+                        let y: Double = json["id"] as! Double
+                        let z: Int = json["id"] as! Int
+                        let receiver = MapPoint(id: id, x: x, y: y, z: z)
+                        receivers.append(receiver)
+                    }
+                    
+                    onSuccess(receivers)
+                }
+                
+            }
+            
+        }
+            
+        )
+        
+        task.resume()
+        
+    }
+
+    
     /*
         Retrieves the avaliable tags for the token in use
     */
@@ -180,7 +241,7 @@ class ServerFacade {
                     }
                     tag.x = json["x"] as! Double
                     tag.y = json["y"] as! Double
-                    tag.z = json["z"] as! Double
+                    tag.z = json["z"] as! Int
                     
                     onSuccess(tag)
                 }

@@ -37,7 +37,7 @@ class NewConnectionViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         
         let onSuccess: (Token) -> Void = {_ in
-            self.retrieveTags()
+            self.retrieveReceivers()
         }
         
         let onError: (ServerFacade.ErrorType) -> Void = {error in
@@ -51,7 +51,35 @@ class NewConnectionViewController: UIViewController {
     }
     
     /**
-        Retrieves the avaliable tags from the server.
+     Retrieves the avaliable receivers for a center.
+     */
+    private func retrieveReceivers () {
+        
+        Center.centers.append(Center(id: 0))
+        
+        DispatchQueue.main.sync {
+            alert.message = "Retrieving receivers..."
+        }
+        
+        let onSuccess: ([MapPoint]) -> Void = {receivers in
+            DispatchQueue.main.sync {
+                Center.centers[0].receivers = receivers
+                self.retrieveTags()
+            }
+        }
+        
+        let onError: (ServerFacade.ErrorType) -> Void = {error in
+            DispatchQueue.main.sync {
+                self.show(error: error)
+            }
+        }
+        
+        try! ServerFacade.instance.getCenterReceivers(center: Center.centers[0], onSuccess: onSuccess, onError: onError)
+        
+    }
+    
+    /**
+     Retrieves the avaliable tags from the server.
      */
     private func retrieveTags () {
         

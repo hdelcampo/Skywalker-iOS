@@ -33,19 +33,19 @@
 		C468AEF41E794730005AA4EE /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF01E793D2E005AA4EE /* Matrix.swift */; };
 		C468AEF81E7960CC005AA4EE /* Vector2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF71E7960CC005AA4EE /* Vector2D.swift */; };
 		C468AEF91E7960CC005AA4EE /* Vector2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEF71E7960CC005AA4EE /* Vector2D.swift */; };
-		C468AEFB1E7964B6005AA4EE /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFA1E7964B6005AA4EE /* DoubleExtension.swift */; };
 		C468AEFD1E796746005AA4EE /* Vector2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFC1E796746005AA4EE /* Vector2DTests.swift */; };
 		C468AEFF1E796987005AA4EE /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFE1E796987005AA4EE /* Vector.swift */; };
 		C468AF001E796A27005AA4EE /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFE1E796987005AA4EE /* Vector.swift */; };
-		C468AF011E796A2A005AA4EE /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFA1E7964B6005AA4EE /* DoubleExtension.swift */; };
 		C47343A11DC667CC00475078 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C473439F1DC667CC00475078 /* Fabric.framework */; };
 		C47343A21DC667CC00475078 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47343A01DC667CC00475078 /* Crashlytics.framework */; };
 		C4809CAB1E97B038006520FE /* NewConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */; };
+		C48A293F1E9A708B00EB9EEA /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A293E1E9A708B00EB9EEA /* MapPoint.swift */; };
 		C49B18EA1DC75DD200FDDC2E /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */; };
 		C49B18ED1DC76B6900FDDC2E /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18EB1DC76B6900FDDC2E /* FilterTableViewCell.swift */; };
 		C49B18F01DC7910C00FDDC2E /* FilterCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */; };
 		C49BE60B1DCA8C0A00A18522 /* ConnectionDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BE60A1DCA8C0A00A18522 /* ConnectionDialogController.swift */; };
 		C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */; };
+		C4E6295F1E9A7AD80010352B /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,17 +86,18 @@
 		C468AEF01E793D2E005AA4EE /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		C468AEF21E794376005AA4EE /* MatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		C468AEF71E7960CC005AA4EE /* Vector2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2D.swift; sourceTree = "<group>"; };
-		C468AEFA1E7964B6005AA4EE /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		C468AEFC1E796746005AA4EE /* Vector2DTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector2DTests.swift; sourceTree = "<group>"; };
 		C468AEFE1E796987005AA4EE /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		C473439F1DC667CC00475078 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C47343A01DC667CC00475078 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewConnectionViewController.swift; sourceTree = "<group>"; };
+		C48A293E1E9A708B00EB9EEA /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C49B18EB1DC76B6900FDDC2E /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		C49B18EF1DC7910C00FDDC2E /* FilterCellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCellData.swift; sourceTree = "<group>"; };
 		C49BE60A1DCA8C0A00A18522 /* ConnectionDialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionDialogController.swift; sourceTree = "<group>"; };
 		C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualConnectionViewController.swift; sourceTree = "<group>"; };
+		C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,12 +197,12 @@
 		C47E26F41E891B3100A8C730 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				C468AEFA1E7964B6005AA4EE /* DoubleExtension.swift */,
 				C468AEF01E793D2E005AA4EE /* Matrix.swift */,
 				C468AEFE1E796987005AA4EE /* Vector.swift */,
 				C468AEF71E7960CC005AA4EE /* Vector2D.swift */,
 				C44DB1E01DC65860000CAEED /* Vector3D.swift */,
 				C439BAF81E990D920014544D /* DataValidator.swift */,
+				C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -215,6 +216,7 @@
 				C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */,
 				C447C7611DA3FF500094B5CD /* PointOfInterest.swift */,
 				C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */,
+				C48A293E1E9A708B00EB9EEA /* MapPoint.swift */,
 			);
 			name = business;
 			sourceTree = "<group>";
@@ -344,6 +346,7 @@
 				C45F114C1E7AA356007D43E9 /* Center.swift in Sources */,
 				C447C7621DA3FF500094B5CD /* PointOfInterest.swift in Sources */,
 				C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */,
+				C4E6295F1E9A7AD80010352B /* DoubleExtension.swift in Sources */,
 				C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */,
 				C439BAF91E990D920014544D /* DataValidator.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ARViewController.swift in Sources */,
@@ -356,7 +359,6 @@
 				C468AEFF1E796987005AA4EE /* Vector.swift in Sources */,
 				C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */,
 				C4461E3E1D9D83F800EE90BF /* OrientationSensor.swift in Sources */,
-				C468AEFB1E7964B6005AA4EE /* DoubleExtension.swift in Sources */,
 				C4555C811D9AEDA600129C50 /* OverlayViewController.swift in Sources */,
 				C49B18F01DC7910C00FDDC2E /* FilterCellData.swift in Sources */,
 				C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */,
@@ -367,6 +369,7 @@
 				C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */,
 				C4304A201E5AE97600202AC6 /* ServerFacade.swift in Sources */,
 				C49B18ED1DC76B6900FDDC2E /* FilterTableViewCell.swift in Sources */,
+				C48A293F1E9A708B00EB9EEA /* MapPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +377,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C468AF011E796A2A005AA4EE /* DoubleExtension.swift in Sources */,
 				C468AEF41E794730005AA4EE /* Matrix.swift in Sources */,
 				C468AEF31E794376005AA4EE /* MatrixTests.swift in Sources */,
 				C44DB1E41DC65A98000CAEED /* Vector3DTests.swift in Sources */,

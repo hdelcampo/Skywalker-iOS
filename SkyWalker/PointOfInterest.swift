@@ -9,16 +9,12 @@
 /**
  A point to be shown on screen
  */
-class PointOfInterest: Equatable {
+class PointOfInterest: MapPoint {
     
-    //MARK: Properties
-    
-    var x: Double = 0,
-        y: Double = 0,
-        z: Double = 0
-    
-    let id : Int
+    // MARK: Properties
+
     let name: String
+    
     static var observer: OverlayViewController?
     static var points: [PointOfInterest]! {
         didSet {
@@ -30,9 +26,11 @@ class PointOfInterest: Equatable {
     
     let distance: Double = 50
     
+    // MARK: Functions
+    
     init(id: Int, name: String) {
-        self.id = id
         self.name = name
+        super.init(id: id, x: -1, y: -1, z: -1)
     }
     
     /**
@@ -62,8 +60,6 @@ class PointOfInterest: Equatable {
         
     }
     
-    static func ==(lhs: PointOfInterest, rhs: PointOfInterest) -> Bool {
-        return lhs.id == rhs.id
-    }
+
     
 }
