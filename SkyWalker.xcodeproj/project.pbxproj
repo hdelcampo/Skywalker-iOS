@@ -167,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */,
-				C4304A211E5AF7A600202AC6 /* Token.swift */,
 			);
 			name = persistence;
 			sourceTree = "<group>";
@@ -210,6 +209,7 @@
 		C47E26F51E891B5200A8C730 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				C4304A211E5AF7A600202AC6 /* Token.swift */,
 				C45F114B1E7AA356007D43E9 /* Center.swift */,
 				C4461E3B1D9D83F800EE90BF /* Camera.swift */,
 				C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */,
