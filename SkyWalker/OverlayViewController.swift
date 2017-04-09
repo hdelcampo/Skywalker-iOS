@@ -34,6 +34,7 @@ class OverlayViewController: UIViewController {
     
     var points : [PointOfInterest] = []
     var initialLayers : [CALayer] = []
+    var mySelf: Vector2D = Vector2D(x: 0.5, y: 0.5)
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -52,15 +53,22 @@ class OverlayViewController: UIViewController {
         // Remove all but debug info
         self.view.layer.sublayers?.forEach( { if !(self.initialLayers.contains($0)) { $0.removeFromSuperlayer() } })
         
+        let orientationVector = orientationSensor.orientationVector
         
-        self.azimuthLabel.text = String(format: "X %.6f", self.orientationSensor.x)
-        self.pitchLabel.text = String(format: "Y %.6f", self.orientationSensor.y)
-        self.rollLabel.text = String(format: "Z %.6f", self.orientationSensor.z)
+        azimuthLabel.text = String(format: "X %.6f", orientationVector.x)
+        pitchLabel.text = String(format: "Y %.6f", orientationVector.y)
+        rollLabel.text = String(format: "Z %.6f", orientationVector.z)
+        
         for point in self.points {
-            if self.inSight(point: point) {
-                self.draw(point: point)
+            
+            var vectorToPoint = Vector2D(x: point.x - mySelf.x,
+                                         y: point.y - mySelf.y)
+            vectorToPoint.normalize()
+            
+            if inSight(vectorToPoint: vectorToPoint, orientationVector: orientationVector) {
+                draw(point: point, vectorToPoint: vectorToPoint, orientationVector: orientationVector)
             } else {
-                self.drawIndicator(for: point)
+                drawIndicator(point: point, vectorToPoint: vectorToPoint, orientationVector: orientationVector)
             }
         }
             
@@ -89,45 +97,41 @@ class OverlayViewController: UIViewController {
     /**
         Checks if a given point is in sight of camera's image.
     */
-    private func inSight(point: PointOfInterest) -> Bool {
+    private func inSight(vectorToPoint: Vector2D, orientationVector: Vector3D) -> Bool {
+        
         let fovWidth = Camera.instance.horizontalFOV,
             fovHeight = Camera.instance.verticalFOV
         
         // Horizontal
-        var pointHorizontalVector = Vector2D(x: point.x, y: point.y)
-        pointHorizontalVector.normalize()
+        var orientationOnMap = Vector2D(x: orientationVector.x, y: orientationVector.y)
+        orientationOnMap.normalize()
         
-        let orientationOnMap = Vector2D(x: orientationSensor.x, y: orientationSensor.y)
+        let horizontalTheta = orientationOnMap.angle(v: vectorToPoint)
         
         //Vertical
-        let verticalTheta = -90*orientationSensor.z
+        let verticalTheta = abs(-90*orientationVector.z)
         
-        return (orientationOnMap.angle(v: pointHorizontalVector) <= Double(fovWidth/2) &&
-            abs(verticalTheta) <= Double(fovHeight/2))
+        return (horizontalTheta <= Double(fovWidth/2) &&
+                verticalTheta <= Double(fovHeight/2))
+        
     }
     
     /**
      Draws an indicator for the given point indicating heading direction
      */
-    private func drawIndicator(for point: PointOfInterest) {
+    private func drawIndicator(point: PointOfInterest, vectorToPoint: Vector2D, orientationVector: Vector3D) {
         
         
         // Horizontal
-        var pointHorizontalVector = Vector2D(x: point.x, y: point.y)
-        pointHorizontalVector.normalize()
-        
-        let orientationOnMap = Vector2D(x: orientationSensor.x, y: orientationSensor.y)
-        var x = orientationOnMap.angleWithSign(v: pointHorizontalVector)/180
+        let orientationOnMap = Vector2D(x: orientationVector.x, y: orientationVector.y)
+        var x = orientationOnMap.angleWithSign(v: vectorToPoint)/180
         
         //Vertical
-        var y = orientationSensor.z
+        var y = orientationVector.z
         
         let angle = Vector3D.getAngle(x: x, y: y)
         
-        let height = Double(view.bounds.height)
-        let width = Double(view.bounds.width)
-        
-        /**
+        /*
          * So once we get angle, we must remap it to coordinates. There are 2 kinds:
          *  -Left screen and down screen, they go in reverse coordinates system
          *  -Up and right screen are "normal" cases. However, right screen is special due to [0,360) angles
@@ -136,6 +140,9 @@ class OverlayViewController: UIViewController {
          * size of the "rect", size of rect is size of height or weight subtracting twice the margin.
          */
         var correctedAngle = 0.0
+        
+        let height = Double(view.bounds.height)
+        let width = Double(view.bounds.width)
         
         if (0 <= angle && angle <= 45 ||
             315 <= angle && angle <= 360) {
@@ -172,27 +179,18 @@ class OverlayViewController: UIViewController {
     /**
         Draws a given point at actual image's position
     */
-    private func draw(point: PointOfInterest) {
+    private func draw(point: PointOfInterest, vectorToPoint: Vector2D, orientationVector: Vector3D) {
         let fovWidth = Camera.instance.horizontalFOV,
             fovHeight = Camera.instance.verticalFOV
         
-        let deviceX = orientationSensor.x,
-            deviceY = orientationSensor.y,
-            deviceZ = orientationSensor.z
-        
         // Horizontal
-        var pointHorizontalVector = Vector2D(x: point.x, y: point.y)
-        pointHorizontalVector.normalize()
-        
-        let orientationOnMap = Vector2D(x: deviceX, y: deviceY)
-        let horizontalTheta = orientationOnMap.angleWithSign(v: pointHorizontalVector)
-        print(horizontalTheta)
+        let orientationOnMap = Vector2D(x: orientationVector.x, y: orientationVector.y)
+        let horizontalTheta = orientationOnMap.angleWithSign(v: vectorToPoint)
         
         //Vertical
-        let verticalTheta = -90*deviceZ
+        let verticalTheta = -90*orientationVector.z
         
-        let a = horizontalTheta*Double(Float(view.bounds.width)/fovWidth)
-        let x = Double(view.bounds.width/2) + a,
+        let x = Double(view.bounds.width/2) + horizontalTheta*Double(Float(view.bounds.width)/fovWidth),
             y = Double(view.bounds.height/2) - verticalTheta*Double(Float(view.bounds.height)/fovHeight)
         
         draw(text: [point.name, String(point.distance)], to: view, x: x + Double(iconSize)*2, y: y + Double(iconSize))

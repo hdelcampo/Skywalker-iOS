@@ -36,10 +36,11 @@ class OrientationSensor {
     /**
         Orientation vector
     */
-    private var orientationVector: Vector3D = Vector3D(x: 1, y: 0, z: 0)
+    private(set) var orientationVector: Vector3D = Vector3D(x: 1, y: 0, z: 0)
     
     let motionManager = CMMotionManager()
     let alpha = 0.25
+    let deviceReference = Vector3D(x: 1, y: 0, z: 0)
     
     //MARK: Functions
     
@@ -75,8 +76,8 @@ class OrientationSensor {
         let rotated = GLKMatrix4RotateY(rMatrix, GLKMathDegreesToRadians(90))
         
         let orientationQuat = GLKQuaternionMakeWithMatrix4(rotated)
-        let myVector = GLKVector3Make(Float(Center.instance.mapNorth.x),
-                                      Float(Center.instance.mapNorth.y),
+        let myVector = GLKVector3Make(Float(deviceReference.x),
+                                      Float(deviceReference.y),
                                       0)
         
         let result = GLKQuaternionRotateVector3(orientationQuat, myVector)
