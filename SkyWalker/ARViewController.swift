@@ -9,7 +9,15 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController {
+class ARViewController: UIViewController {
+    
+    //MARK: Controls properties
+    
+    private var areControlsHidden = true
+    
+    @IBOutlet weak var topBar: UIView!
+    @IBOutlet weak var bottomBar: UIToolbar!
+    @IBOutlet weak var buildLabel: UILabel!
     
     /*
         Thread that handles tags position updating
@@ -18,12 +26,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBuildStamp()
         thread.start()
     }
     
     override var prefersStatusBarHidden: Bool {
-        return true
+        return areControlsHidden
     }
+    
+    @IBAction func toggleControls(_ sender: UITapGestureRecognizer) {
+        areControlsHidden = !areControlsHidden
+        setNeedsStatusBarAppearanceUpdate()
+        bottomBar.isHidden = areControlsHidden
+        topBar.isHidden = areControlsHidden
+    }
+    
+    /**
+     Sets the build stamp to the UI
+     */
+    private func setBuildStamp () {
+        let dictionary = Bundle.main.infoDictionary!
+        let build = dictionary["CFBundleVersion"] as! String
+        buildLabel.text = "Build: \(build)"
+    }
+    
     
     /*
         Thread class to handle tags updating

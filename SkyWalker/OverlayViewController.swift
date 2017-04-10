@@ -10,12 +10,11 @@ import UIKit
 
 class OverlayViewController: UIViewController {
     
-    //MARK: Properties
+    //MARK: Outlets
     
     @IBOutlet weak var rollLabel: UITextField!
     @IBOutlet weak var pitchLabel: UITextField!
     @IBOutlet weak var azimuthLabel: UITextField!
-    @IBOutlet weak var buildLabel: UILabel!
     
     let orientationSensor = OrientationSensor()
     
@@ -39,7 +38,6 @@ class OverlayViewController: UIViewController {
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBuildStamp()
         initialLayers = self.view.layer.sublayers!
         points = PointOfInterest.points!
         PointOfInterest.observer = self
@@ -83,15 +81,6 @@ class OverlayViewController: UIViewController {
             svc.caller = self
         }
         
-    }
-    
-    /**
-        Sets the build stamp to the UI
-    */
-    private func setBuildStamp () {
-        let dictionary = Bundle.main.infoDictionary!
-        let build = dictionary["CFBundleVersion"] as! String
-        buildLabel.text = "(Build: \(build))"
     }
     
     /**
