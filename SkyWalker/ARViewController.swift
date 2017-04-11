@@ -17,7 +17,6 @@ class ARViewController: UIViewController {
     
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var bottomBar: UIToolbar!
-    @IBOutlet weak var buildLabel: UILabel!
     
     /*
         Thread that handles tags position updating
@@ -26,7 +25,6 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBuildStamp()
         thread.start()
     }
     
@@ -41,15 +39,13 @@ class ARViewController: UIViewController {
         topBar.isHidden = areControlsHidden
     }
     
-    /**
-     Sets the build stamp to the UI
-     */
-    private func setBuildStamp () {
-        let dictionary = Bundle.main.infoDictionary!
-        let build = dictionary["CFBundleVersion"] as! String
-        buildLabel.text = "Build: \(build)"
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let controller = segue.destination as? InformationViewController {
+            controller.popoverPresentationController?.delegate = controller
+        }
+        
     }
-    
     
     /*
         Thread class to handle tags updating

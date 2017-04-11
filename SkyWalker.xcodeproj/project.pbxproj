@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40033D81E5C59B200864F1C /* FilterTableViewController.swift */; };
+		C41A4DA61E9CEACF00D0FF29 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A4DA51E9CEACF00D0FF29 /* InformationViewController.swift */; };
 		C4304A201E5AE97600202AC6 /* ServerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */; };
 		C4304A221E5AF7A600202AC6 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A211E5AF7A600202AC6 /* Token.swift */; };
 		C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		C40033D81E5C59B200864F1C /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
+		C41A4DA51E9CEACF00D0FF29 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerFacade.swift; sourceTree = "<group>"; };
 		C4304A211E5AF7A600202AC6 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconTransmitter.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				C43458D11E963A6F006B16EE /* EntryViewController.swift */,
 				C443207A1E97901500B59C43 /* QRConnectionViewController.swift */,
 				C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */,
+				C41A4DA51E9CEACF00D0FF29 /* InformationViewController.swift */,
 			);
 			name = presentation;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				C443207B1E97901500B59C43 /* QRConnectionViewController.swift in Sources */,
 				C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */,
 				C468AEF81E7960CC005AA4EE /* Vector2D.swift in Sources */,
+				C41A4DA61E9CEACF00D0FF29 /* InformationViewController.swift in Sources */,
 				C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */,
 				C4304A201E5AE97600202AC6 /* ServerFacade.swift in Sources */,
 				C49B18ED1DC76B6900FDDC2E /* FilterTableViewCell.swift in Sources */,
