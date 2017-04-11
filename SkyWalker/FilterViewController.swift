@@ -14,7 +14,7 @@ import UIKit
 class FilterViewController: UIViewController {
     
     //MARK: Properties
-    var caller: OverlayViewController?
+    var caller: ARViewController!
     var allPoints = [PointOfInterest]()
     var usedPoints = [PointOfInterest]()
     var tableViewController : FilterTableViewController!
@@ -22,8 +22,8 @@ class FilterViewController: UIViewController {
     // MARK: Overrides
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if (segue.identifier == "filterTableViewController") {
-            tableViewController = segue.destination as! FilterTableViewController
+        if let controller = segue.destination as? FilterTableViewController {
+            tableViewController = controller
             tableViewController.loadData(allPoints: allPoints, usedPoints: usedPoints)
         }
         
@@ -50,7 +50,7 @@ class FilterViewController: UIViewController {
             enabledPoints.append(allPoints[index])
         }
         
-        caller?.points = enabledPoints
+        caller.show(points: enabledPoints)
         dismiss(animated: true, completion: nil)
         
     }
@@ -59,18 +59,14 @@ class FilterViewController: UIViewController {
         Select alls elements in the points list
     */
     @IBAction func selectAll() {
-        
         tableViewController.selectAll()
-        
     }
     
     /**
         Unselects all elements in the points list
     */
     @IBAction func unselectAll() {
-        
         tableViewController.unselectAll()
-        
     }
 
 }

@@ -11,6 +11,10 @@ import AVFoundation
 
 class ARViewController: UIViewController {
     
+    //MARK: SubView controllers
+    
+    private var overlayViewController: OverlayViewController!
+    
     //MARK: Controls properties
     
     private var areControlsHidden = true
@@ -43,8 +47,23 @@ class ARViewController: UIViewController {
         
         if let controller = segue.destination as? InformationViewController {
             controller.popoverPresentationController?.delegate = controller
+        } else if let controller = segue.destination as? FilterViewController {
+            controller.allPoints = PointOfInterest.points!
+            controller.usedPoints = overlayViewController.points
+            controller.caller = self
+        } else if let controller = segue.destination as? OverlayViewController {
+            overlayViewController = controller
         }
         
+    }
+    
+    /**
+        Indicates what points should be drawn.
+        - Parameters:
+            - points: The list of points to show.
+    */
+    func show(points: [PointOfInterest]) {
+        overlayViewController.points = points
     }
     
     /*

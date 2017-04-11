@@ -72,17 +72,6 @@ class OverlayViewController: UIViewController {
             
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if ("filterSegue" == segue.identifier) {
-            let svc = segue.destination as! FilterViewController
-            svc.allPoints = PointOfInterest.points!
-            svc.usedPoints = self.points
-            svc.caller = self
-        }
-        
-    }
-    
     /**
         Checks if a given point is in sight of camera's image.
     */
