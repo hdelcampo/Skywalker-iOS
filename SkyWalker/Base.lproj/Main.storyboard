@@ -342,11 +342,11 @@
             </objects>
             <point key="canvasLocation" x="3083.1999999999998" y="2121.1394302848576"/>
         </scene>
-        <!--Connection Dialog Controller-->
+        <!--Start a new connection-->
         <scene sceneID="cH2-sc-HOE">
             <objects>
                 <tabBarController modalPresentationStyle="overCurrentContext" id="VF6-98-oXY" customClass="ConnectionDialogController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="jre-LR-X9e">
+                    <navigationItem key="navigationItem" title="Start a new connection" id="jre-LR-X9e">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5rm-OP-9ss">
                             <connections>
                                 <action selector="cancel:" destination="VF6-98-oXY" id="pqh-tI-fMq"/>
