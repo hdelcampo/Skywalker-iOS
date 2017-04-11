@@ -25,6 +25,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     */
     private func startCameraPreviewWithQRDetection() {
         
+        
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         let input: AnyObject! = try? AVCaptureDeviceInput.init(device: captureDevice)
         let captureSession = AVCaptureSession()
@@ -41,7 +42,11 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         cameraView.layer.addSublayer(previewLayer!)
         
-        captureSession.startRunning()
+        DispatchQueue.global(qos: .default).async {_ in
+
+            captureSession.startRunning()
+            
+        }
         
     }
     
