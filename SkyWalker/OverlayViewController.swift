@@ -12,9 +12,9 @@ class OverlayViewController: UIViewController {
     
     //MARK: Outlets
     
-    @IBOutlet weak var rollLabel: UITextField!
-    @IBOutlet weak var pitchLabel: UITextField!
-    @IBOutlet weak var azimuthLabel: UITextField!
+    @IBOutlet weak var xLabel: UILabel!
+    @IBOutlet weak var yLabel: UILabel!
+    @IBOutlet weak var zLabel: UILabel!
     
     let orientationSensor = OrientationSensor()
     
@@ -53,9 +53,9 @@ class OverlayViewController: UIViewController {
         
         let orientationVector = orientationSensor.orientationVector
         
-        azimuthLabel.text = String(format: "X %.6f", orientationVector.x)
-        pitchLabel.text = String(format: "Y %.6f", orientationVector.y)
-        rollLabel.text = String(format: "Z %.6f", orientationVector.z)
+        xLabel.text = String(format: "X %.6f", orientationVector.x)
+        yLabel.text = String(format: "Y %.6f", orientationVector.y)
+        zLabel.text = String(format: "Z %.6f", orientationVector.z)
         
         for point in self.points {
             

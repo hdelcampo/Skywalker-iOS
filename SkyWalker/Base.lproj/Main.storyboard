@@ -475,36 +475,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-By-yS5">
-                                <rect key="frame" x="16" y="296" width="343" height="75"/>
+                                <rect key="frame" x="16" y="293.5" width="343" height="80"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pitch" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iv5-qG-Jdr">
-                                        <rect key="frame" x="0.0" y="33" width="343" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azimuth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-Ln-C4R">
-                                        <rect key="frame" x="0.0" y="8" width="343" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Roll" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ahp-tp-CJW">
-                                        <rect key="frame" x="0.0" y="58" width="343" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdD-bx-FS9">
+                                        <rect key="frame" x="0.0" y="-0.5" width="11.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSe-NU-58s">
+                                        <rect key="frame" x="0.0" y="28.5" width="11" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Z" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dn-uw-cwq">
+                                        <rect key="frame" x="0.0" y="58" width="11" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="top" secondItem="Iv5-qG-Jdr" secondAttribute="bottom" constant="8" id="Lus-QY-Afm"/>
-                                    <constraint firstAttribute="height" constant="75" id="Vqu-ty-lrm"/>
-                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="Whc-b4-i9R"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ahp-tp-CJW" secondAttribute="trailing" id="a1g-en-fnk"/>
-                                    <constraint firstAttribute="trailing" secondItem="Kyn-Ln-C4R" secondAttribute="trailing" id="gxU-vd-lbw"/>
-                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="lp8-Uv-nJX"/>
-                                    <constraint firstItem="Kyn-Ln-C4R" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" constant="8" id="t9z-9e-hb2"/>
-                                    <constraint firstItem="Iv5-qG-Jdr" firstAttribute="top" secondItem="Kyn-Ln-C4R" secondAttribute="bottom" constant="8" id="tkQ-YT-AK4"/>
-                                    <constraint firstAttribute="trailing" secondItem="Iv5-qG-Jdr" secondAttribute="trailing" id="toc-uA-NPD"/>
-                                    <constraint firstItem="Ahp-tp-CJW" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="tss-Zj-aTC"/>
+                                    <constraint firstItem="VdD-bx-FS9" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="KC9-2d-mCa"/>
+                                    <constraint firstAttribute="height" constant="80" id="Vqu-ty-lrm"/>
+                                    <constraint firstItem="bSe-NU-58s" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="cyo-RP-l13"/>
+                                    <constraint firstItem="5dn-uw-cwq" firstAttribute="top" secondItem="bSe-NU-58s" secondAttribute="bottom" constant="8" id="dak-XB-54P"/>
+                                    <constraint firstItem="VdD-bx-FS9" firstAttribute="top" secondItem="Ac0-By-yS5" secondAttribute="top" id="ngW-GR-t38"/>
+                                    <constraint firstItem="5dn-uw-cwq" firstAttribute="leading" secondItem="Ac0-By-yS5" secondAttribute="leading" id="pYI-np-YdT"/>
+                                    <constraint firstItem="bSe-NU-58s" firstAttribute="top" secondItem="VdD-bx-FS9" secondAttribute="bottom" constant="8" id="s7A-iJ-42o"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -517,9 +517,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="AzimuthLabel" destination="Kyn-Ln-C4R" id="MsR-bd-byS"/>
-                        <outlet property="pitchLabel" destination="Iv5-qG-Jdr" id="Ruy-1Z-D0O"/>
-                        <outlet property="rollLabel" destination="Ahp-tp-CJW" id="flX-vl-IP5"/>
+                        <outlet property="xLabel" destination="VdD-bx-FS9" id="P7V-VC-cnk"/>
+                        <outlet property="yLabel" destination="bSe-NU-58s" id="Ir6-Ya-Agk"/>
+                        <outlet property="zLabel" destination="5dn-uw-cwq" id="Oxp-OS-uCQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GhY-3G-A4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
