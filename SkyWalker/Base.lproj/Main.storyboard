@@ -410,7 +410,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build: 17" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuH-m5-K98">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build: 17" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuH-m5-K98">
                                 <rect key="frame" x="16" y="127" width="64" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -439,7 +439,7 @@
                             <constraint firstItem="JMr-iW-rzi" firstAttribute="top" secondItem="Hsu-o1-gyJ" secondAttribute="bottom" constant="8" id="xKf-Ov-w46"/>
                         </constraints>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="300" height="150"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="185"/>
                     <connections>
                         <outlet property="buildLabel" destination="zuH-m5-K98" id="dxj-oy-LgA"/>
                     </connections>

@@ -22,8 +22,9 @@ class InformationViewController: UIViewController, UIPopoverPresentationControll
      */
     private func setBuildStamp () {
         let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
         let build = dictionary["CFBundleVersion"] as! String
-        buildLabel.text = "Build: \(build)"
+        buildLabel.text = "Version \(version)\nBuild \(build)"
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
