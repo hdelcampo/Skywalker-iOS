@@ -123,9 +123,9 @@ class ServerFacade {
                     
                     for json in jsons as! [Dictionary<String, Any>]{
                         let id: Int = json["id"] as! Int
-                        let x: Double = json["id"] as! Double
-                        let y: Double = json["id"] as! Double
-                        let z: Int = json["id"] as! Int
+                        let x: Double = json["x"] as! Double
+                        let y: Double = json["y"] as! Double
+                        let z: Int = json["z"] as! Int
                         let receiver = MapPoint(id: id, x: x, y: y, z: z)
                         receivers.append(receiver)
                     }
