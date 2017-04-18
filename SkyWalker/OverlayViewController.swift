@@ -50,7 +50,7 @@ class OverlayViewController: UIViewController {
         orientationSensor.registerEvents()
         thread.points = points
         thread.start()
-        /*Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)*/
+        Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
         
     }
     
