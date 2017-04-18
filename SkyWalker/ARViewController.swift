@@ -32,9 +32,13 @@ class ARViewController: UIViewController {
     
     @IBAction func toggleControls(_ sender: UITapGestureRecognizer) {
         areControlsHidden = !areControlsHidden
-        setNeedsStatusBarAppearanceUpdate()
-        bottomBar.isHidden = areControlsHidden
-        topBar.isHidden = areControlsHidden
+        
+        let ANIMATION_TIME = 0.5
+        
+        UIView.transition(with: view, duration: ANIMATION_TIME, options: .transitionCrossDissolve,
+                          animations: {self.bottomBar.isHidden = self.areControlsHidden; self.topBar.isHidden = self.areControlsHidden},
+                          completion: {(_) in self.setNeedsStatusBarAppearanceUpdate()})
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
