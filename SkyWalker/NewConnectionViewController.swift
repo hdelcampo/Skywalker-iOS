@@ -58,14 +58,12 @@ class NewConnectionViewController: UIViewController {
         Center.centers.append(Center(id: 0))
         
         DispatchQueue.main.sync {
-            alert.message = "Retrieving receivers..."
+            self.alert.message = "Retrieving receivers..."
         }
         
         let onSuccess: ([MapPoint]) -> Void = {receivers in
-            DispatchQueue.main.sync {
-                Center.centers[0].receivers = receivers
-                self.retrieveTags()
-            }
+            Center.centers[0].receivers = receivers
+            self.retrieveTags()
         }
         
         let onError: (ServerFacade.ErrorType) -> Void = {error in
@@ -84,12 +82,13 @@ class NewConnectionViewController: UIViewController {
     private func retrieveTags () {
         
         DispatchQueue.main.sync {
-            alert.message = "Retrieving tags..."
+            self.alert.message = "Retrieving tags..."
         }
         
         let onSuccess: ([PointOfInterest]) -> Void = {points in
             DispatchQueue.main.sync {
                 PointOfInterest.points = points
+                self.alert.dismiss(animated: true, completion: nil)
                 self.startAR()
             }
         }
