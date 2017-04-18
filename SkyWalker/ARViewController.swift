@@ -45,6 +45,7 @@ class ARViewController: UIViewController {
         
         if let controller = segue.destination as? InformationViewController {
             controller.popoverPresentationController?.delegate = controller
+            controller.debugController = overlayViewController
         } else if let controller = segue.destination as? FilterViewController {
             controller.allPoints = PointOfInterest.points!
             controller.usedPoints = overlayViewController.points

@@ -16,6 +16,8 @@ class OverlayViewController: UIViewController {
     @IBOutlet weak var yLabel: UILabel!
     @IBOutlet weak var zLabel: UILabel!
     
+    @IBOutlet weak var debugView: UIView!
+    
     let orientationSensor = OrientationSensor()
     
     //MARK: Indicator properties
@@ -48,7 +50,7 @@ class OverlayViewController: UIViewController {
         orientationSensor.registerEvents()
         thread.points = points
         thread.start()
-        Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
+        /*Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)*/
         
     }
     

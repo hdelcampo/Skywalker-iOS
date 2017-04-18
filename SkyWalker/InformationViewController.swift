@@ -11,6 +11,9 @@ import UIKit
 class InformationViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var buildLabel: UILabel!
+    @IBOutlet weak var switcher: UISwitch!
+    
+    var debugController: OverlayViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +28,16 @@ class InformationViewController: UIViewController, UIPopoverPresentationControll
         let version = dictionary["CFBundleShortVersionString"] as! String
         let build = dictionary["CFBundleVersion"] as! String
         buildLabel.text = "Version \(version)\nBuild \(build)"
+        switcher.isOn = debugController.debugView.isHidden
+        
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+    
+    @IBAction func toggleDebug(_ sender: UISwitch) {
+        debugController.debugView.isHidden = sender.isOn
     }
     
 }
