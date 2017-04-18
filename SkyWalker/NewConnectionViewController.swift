@@ -37,7 +37,7 @@ class NewConnectionViewController: UIViewController {
         present(alert, animated: true, completion: nil)
         
         let onSuccess: (Token) -> Void = {_ in
-            self.retrieveReceivers()
+            self.registerAsBeacon(username: username!)
         }
         
         let onError: (ServerFacade.ErrorType) -> Void = {error in
@@ -101,6 +101,29 @@ class NewConnectionViewController: UIViewController {
         
         try! ServerFacade.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
         
+    }
+    
+    private func registerAsBeacon(username: String) {
+        
+        DispatchQueue.main.sync {
+            self.alert.message = "Registering as Beacon..."
+        }
+        
+        let onSuccess: (IBeaconFrame) -> Void = {frame in
+            IBeaconTransmitter.instance.configure(frame: frame)
+            PointOfInterest.mySelf = PointOfInterest(id: Int(frame.minor), name: username)
+            self.retrieveReceivers()
+        }
+        
+        let onError: (ServerFacade.ErrorType) -> Void = {error in
+            DispatchQueue.main.sync {
+                self.show(error: error)
+            }
+        }
+        
+        try! ServerFacade.instance.registerAsBeacon(username: username,
+                                                    onSuccess: onSuccess,
+                                                    onError: onError)
     }
     
     /**

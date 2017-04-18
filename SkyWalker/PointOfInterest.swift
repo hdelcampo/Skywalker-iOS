@@ -24,6 +24,8 @@ class PointOfInterest: MapPoint {
         }
     }
     
+    static var mySelf: PointOfInterest!
+    
     let distance: Double = 50
     
     // MARK: Functions
@@ -38,6 +40,10 @@ class PointOfInterest: MapPoint {
         - Returns: A list of demostration points.
     */
     static func getDemoPoints() -> [PointOfInterest] {
+        
+        mySelf = PointOfInterest(id: 999, name: "Yo")
+        mySelf.x = 0.5
+        mySelf.y = 0.5
         
         var points: [PointOfInterest] = []
         points.append(PointOfInterest(id: 0, name: "Dani"))

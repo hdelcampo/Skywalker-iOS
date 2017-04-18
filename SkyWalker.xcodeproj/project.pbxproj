@@ -14,6 +14,7 @@
 		C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */; };
 		C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458D11E963A6F006B16EE /* EntryViewController.swift */; };
 		C439BAF91E990D920014544D /* DataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439BAF81E990D920014544D /* DataValidator.swift */; };
+		C439F2071EA604DE00CFC6D9 /* IBeaconFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */; };
 		C443207B1E97901500B59C43 /* QRConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443207A1E97901500B59C43 /* QRConnectionViewController.swift */; };
 		C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3B1D9D83F800EE90BF /* Camera.swift */; };
 		C4461E3E1D9D83F800EE90BF /* OrientationSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */; };
@@ -67,6 +68,7 @@
 		C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconTransmitter.swift; sourceTree = "<group>"; };
 		C43458D11E963A6F006B16EE /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		C439BAF81E990D920014544D /* DataValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidator.swift; sourceTree = "<group>"; };
+		C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconFrame.swift; sourceTree = "<group>"; };
 		C443207A1E97901500B59C43 /* QRConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRConnectionViewController.swift; sourceTree = "<group>"; };
 		C4461E3B1D9D83F800EE90BF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		C4461E3C1D9D83F800EE90BF /* OrientationSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationSensor.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				C447C7611DA3FF500094B5CD /* PointOfInterest.swift */,
 				C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */,
 				C48A293E1E9A708B00EB9EEA /* MapPoint.swift */,
+				C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */,
 			);
 			name = business;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				C49BE60D1DCA943300A18522 /* ManualConnectionViewController.swift in Sources */,
 				C4E6295F1E9A7AD80010352B /* DoubleExtension.swift in Sources */,
 				C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */,
+				C439F2071EA604DE00CFC6D9 /* IBeaconFrame.swift in Sources */,
 				C439BAF91E990D920014544D /* DataValidator.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ARViewController.swift in Sources */,
 				C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */,

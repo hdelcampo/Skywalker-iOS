@@ -12,7 +12,7 @@ import CoreLocation
 /**
     Beacon tranmission handler class.
  */
-class IBeaconTransmitter {
+class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     
     // MARK: Properties
     
@@ -29,37 +29,54 @@ class IBeaconTransmitter {
     /**
         Serial background queue for all emissions.
     */
-    private static let queue = DispatchQueue(label: "Bluetooth queue")
+    private let queue: DispatchQueue
     
     /**
         Region ID.
     */
     private let id = "es.rdnest.xtremeloc"
     
+    /**
+        Singleton instance
+    */
+    static let instance = IBeaconTransmitter()
+    
     // MARK: Init
     
     /**
-        Creates a new beacon transmitter with the given values.
-        Notice that operations will be placed on a background serial queue.
+        Creates a new iBeacon transmitter, operations will be placed on a background serial queue.
+    */
+    override init() {
+        queue = DispatchQueue(label: "Bluetooth queue")
+        super.init()
+        peripheralManager = CBPeripheralManager(delegate: self, queue: queue)
+    }
+    
+    // MARK: Functions
+    
+    /**
+        Set ups a new beacon transmitter with the given values.
+        When bluetooth is available, transmission will begin.
         - Parameters:
             - uuid: The UUID.
             - major: The major.
             - minor: The minor.
             - txPower: The measured TX Power, can be nil to use device's default value.
     */
-    init(uuid: UUID, major: CLBeaconMajorValue, minor: CLBeaconMinorValue, txPower: NSNumber?) {
-        let localBeacon = CLBeaconRegion(proximityUUID: uuid, major: major, minor: minor, identifier: id)
+    func configure(frame: IBeaconFrame, txPower: NSNumber? = nil) {
+        let localBeacon = CLBeaconRegion(proximityUUID: frame.uuid, major: frame.major, minor: frame.minor, identifier: id)
         beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: txPower)
-        peripheralManager = CBPeripheralManager(delegate: nil, queue: IBeaconTransmitter.queue)
     }
     
-    // MARK: Functions
-
-    /**
-        Starts the iBeacon transmission.
-    */
-    func startTransmission() {
-        peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        switch (peripheral.state) {
+        case .poweredOn:
+            print ("Comenzando...")
+            peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
+            print ("Comenzado!")
+        default:
+            print("iBeacon event")
+        }
     }
     
     /**
