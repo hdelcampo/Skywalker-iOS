@@ -22,14 +22,8 @@ class ARViewController: UIViewController {
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var bottomBar: UIToolbar!
     
-    /*
-        Thread that handles tags position updating
-    */
-    let thread: TagsUpdaterThread = TagsUpdaterThread()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        thread.start()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -66,32 +60,5 @@ class ARViewController: UIViewController {
         overlayViewController.points = points
     }
     
-    /*
-        Thread class to handle tags updating
-    */
-    class TagsUpdaterThread: Thread {
-        
-        let updateRate: UInt32 = 1 //seconds
-        
-        override func main() {
-            
-            while(self.isExecuting) {
-                
-                let points = PointOfInterest.points
-                
-                for point in points! {
-                    try? ServerFacade.instance.getLastPosition(tag: point,
-                                                                onSuccess: {(_) in },
-                                                                onError: { (error) in print("Error ocurred during update: \(String(describing: error))" )})
-                }
-                
-                sleep(updateRate)
-                
-            }
-            
-        }
-        
-    }
-
 }
 

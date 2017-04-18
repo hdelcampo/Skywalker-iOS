@@ -15,14 +15,7 @@ class PointOfInterest: MapPoint {
 
     let name: String
     
-    static var observer: OverlayViewController?
-    static var points: [PointOfInterest]! {
-        didSet {
-            if (nil != observer){
-                observer!.points = self.points
-            }
-        }
-    }
+    static var points: [PointOfInterest]!
     
     static var mySelf: PointOfInterest!
     

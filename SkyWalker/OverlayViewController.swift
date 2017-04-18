@@ -35,13 +35,19 @@ class OverlayViewController: UIViewController {
     var initialLayers : [CALayer] = []
     var mySelf: Vector2D = Vector2D(x: 0.5, y: 0.5)
     
+    /*
+     Thread that handles tags position updating
+     */
+    let thread: TagsUpdaterThread = TagsUpdaterThread()
+    
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         initialLayers = self.view.layer.sublayers!
         points = PointOfInterest.points!
-        PointOfInterest.observer = self
         orientationSensor.registerEvents()
+        thread.points = points
+        thread.start()
         Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
         
     }
@@ -211,4 +217,41 @@ class OverlayViewController: UIViewController {
         
     }
 
+    /*
+     Thread class to handle tags updating
+     */
+    class TagsUpdaterThread: Thread {
+        
+        var points: [PointOfInterest] = []
+        
+        let updateRate: UInt32 = 1000 * 1000   //ms * ns
+        
+        override func main() {
+            
+            while(self.isExecuting) {
+                
+                let onSuccess: (PointOfInterest) -> Void = { tag in
+                    for point in self.points {
+                        if (point == tag) {
+                            point.x = tag.x
+                            point.y = tag.y
+                            point.z = tag.z
+                        }
+                    }
+                }
+                
+                for point in points {
+                    try? ServerFacade.instance.getLastPosition(tag: point,
+                                                               onSuccess: onSuccess,
+                                                               onError: { (error) in print("Error ocurred during update: \(String(describing: error))" )})
+                }
+                
+                usleep(updateRate)
+                
+            }
+            
+        }
+        
+    }
+    
 }

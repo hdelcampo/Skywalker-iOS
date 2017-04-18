@@ -304,11 +304,14 @@ class ServerFacade {
                     if nil == json["x"] {
                         return
                     }
-                    tag.x = json["x"] as! Double
-                    tag.y = json["y"] as! Double
-                    tag.z = json["z"] as! Int
                     
-                    onSuccess(tag)
+                    let newPosition = PointOfInterest(id: tag.id, name: tag.name)
+                    
+                    newPosition.x = json["x"] as! Double
+                    newPosition.y = json["y"] as! Double
+                    newPosition.z = json["z"] as! Int
+                    
+                    onSuccess(newPosition)
                 }
                 
             }
