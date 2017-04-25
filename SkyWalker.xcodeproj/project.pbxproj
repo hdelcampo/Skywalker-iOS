@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40033D81E5C59B200864F1C /* FilterTableViewController.swift */; };
 		C41A4DA61E9CEACF00D0FF29 /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A4DA51E9CEACF00D0FF29 /* InformationViewController.swift */; };
+		C4241F3E1EAF63900042F7D1 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4241F3D1EAF63900042F7D1 /* OnBoardingViewController.swift */; };
 		C4304A201E5AE97600202AC6 /* ServerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */; };
 		C4304A221E5AF7A600202AC6 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A211E5AF7A600202AC6 /* Token.swift */; };
 		C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */; };
-		C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458D11E963A6F006B16EE /* EntryViewController.swift */; };
+		C43458D21E963A6F006B16EE /* OnBoardingPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458D11E963A6F006B16EE /* OnBoardingPagerViewController.swift */; };
 		C439BAF91E990D920014544D /* DataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439BAF81E990D920014544D /* DataValidator.swift */; };
 		C439F2071EA604DE00CFC6D9 /* IBeaconFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */; };
 		C443207B1E97901500B59C43 /* QRConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443207A1E97901500B59C43 /* QRConnectionViewController.swift */; };
@@ -63,10 +64,11 @@
 /* Begin PBXFileReference section */
 		C40033D81E5C59B200864F1C /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		C41A4DA51E9CEACF00D0FF29 /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		C4241F3D1EAF63900042F7D1 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		C4304A1F1E5AE97600202AC6 /* ServerFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerFacade.swift; sourceTree = "<group>"; };
 		C4304A211E5AF7A600202AC6 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconTransmitter.swift; sourceTree = "<group>"; };
-		C43458D11E963A6F006B16EE /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		C43458D11E963A6F006B16EE /* OnBoardingPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingPagerViewController.swift; sourceTree = "<group>"; };
 		C439BAF81E990D920014544D /* DataValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidator.swift; sourceTree = "<group>"; };
 		C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconFrame.swift; sourceTree = "<group>"; };
 		C443207A1E97901500B59C43 /* QRConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRConnectionViewController.swift; sourceTree = "<group>"; };
@@ -191,10 +193,11 @@
 				C40033D81E5C59B200864F1C /* FilterTableViewController.swift */,
 				C49B18E91DC75DD200FDDC2E /* FilterViewController.swift */,
 				C49BE60C1DCA943300A18522 /* ManualConnectionViewController.swift */,
-				C43458D11E963A6F006B16EE /* EntryViewController.swift */,
+				C43458D11E963A6F006B16EE /* OnBoardingPagerViewController.swift */,
 				C443207A1E97901500B59C43 /* QRConnectionViewController.swift */,
 				C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */,
 				C41A4DA51E9CEACF00D0FF29 /* InformationViewController.swift */,
+				C4241F3D1EAF63900042F7D1 /* OnBoardingViewController.swift */,
 			);
 			name = presentation;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				C439BAF91E990D920014544D /* DataValidator.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ARViewController.swift in Sources */,
 				C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */,
+				C4241F3E1EAF63900042F7D1 /* OnBoardingViewController.swift in Sources */,
 				C49BE60B1DCA8C0A00A18522 /* ConnectionDialogController.swift in Sources */,
 				C49B18EA1DC75DD200FDDC2E /* FilterViewController.swift in Sources */,
 				C44DB1E11DC65860000CAEED /* Vector3D.swift in Sources */,
@@ -371,7 +375,7 @@
 				C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */,
 				C4809CAB1E97B038006520FE /* NewConnectionViewController.swift in Sources */,
 				C443207B1E97901500B59C43 /* QRConnectionViewController.swift in Sources */,
-				C43458D21E963A6F006B16EE /* EntryViewController.swift in Sources */,
+				C43458D21E963A6F006B16EE /* OnBoardingPagerViewController.swift in Sources */,
 				C468AEF81E7960CC005AA4EE /* Vector2D.swift in Sources */,
 				C41A4DA61E9CEACF00D0FF29 /* InformationViewController.swift in Sources */,
 				C40033D91E5C59B200864F1C /* FilterTableViewController.swift in Sources */,
