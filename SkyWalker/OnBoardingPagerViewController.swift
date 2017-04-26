@@ -19,7 +19,7 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
         dataSource = self
         delegate = self
         
-        pagerDelegate?.pageViewController(self, didUpdatePageCount: orderedViewControllers.count)
+        pagerDelegate?.updatePageControlCount(self, didUpdatePageCount: orderedViewControllers.count)
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
@@ -94,8 +94,28 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
                             transitionCompleted completed: Bool) {
         if let firstViewController = viewControllers?.first,
             let index = orderedViewControllers.index(of: firstViewController) {
-            pagerDelegate?.pageViewController(self, didUpdatePageIndex: index)
+            pagerDelegate?.updatePageControlIndex(self, didUpdatePageIndex: index)
         }
+    }
+    
+    
+    /*
+        Handler for page controller events
+        - Parameters:
+            - index: the new page index
+    */
+    func pagerControlValueChanged(index: Int) {
+        
+        var direction: UIPageViewControllerNavigationDirection
+        
+        if (orderedViewControllers.index(of: viewControllers!.first!)! - index < 0) {
+            direction = .forward
+        } else {
+            direction = .reverse
+        }
+        
+        setViewControllers([orderedViewControllers[index]], direction: direction, animated: true, completion: nil)
+        
     }
     
     /**
@@ -127,7 +147,7 @@ protocol OnBoardingPagerViewControllerDelegate {
      - parameter tutorialPageViewController: the TutorialPageViewController instance
      - parameter count: the total number of pages.
      */
-    func pageViewController(_ viewController: OnBoardingPagerViewController,
+    func updatePageControlCount(_ viewController: OnBoardingPagerViewController,
                                     didUpdatePageCount count: Int)
     
     /**
@@ -136,7 +156,7 @@ protocol OnBoardingPagerViewControllerDelegate {
      - parameter tutorialPageViewController: the TutorialPageViewController instance
      - parameter index: the index of the currently visible page.
      */
-    func pageViewController(_ viewController: OnBoardingPagerViewController,
+    func updatePageControlIndex(_ viewController: OnBoardingPagerViewController,
                                     didUpdatePageIndex index: Int)
     
 }

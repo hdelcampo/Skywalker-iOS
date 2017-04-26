@@ -14,25 +14,32 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var loginButton: UIButton!
     
+    var pageViewController: OnBoardingPagerViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.borderColor = loginButton.tintColor.cgColor
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let tutorialPageViewController = segue.destination as? OnBoardingPagerViewController {
-            tutorialPageViewController.pagerDelegate = self
+        if let controller = segue.destination as? OnBoardingPagerViewController {
+            pageViewController = controller
+            pageViewController!.pagerDelegate = self
         }
     }
     
-    func pageViewController(_ viewController: OnBoardingPagerViewController,
+    func updatePageControlCount(_ viewController: OnBoardingPagerViewController,
                                     didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
     }
     
-    func pageViewController(_ viewController: OnBoardingPagerViewController,
+    func updatePageControlIndex(_ viewController: OnBoardingPagerViewController,
                                     didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
     }
 
+    @IBAction func pageControlValueChanged(_ sender: UIPageControl) {
+        pageViewController?.pagerControlValueChanged(index: sender.currentPage)
+    }
+    
 }
