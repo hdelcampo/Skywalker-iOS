@@ -17,7 +17,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="AQk-AY-OFe" customClass="OnBoardingPagerViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFm-yo-8aA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3727" y="1243"/>
+            <point key="canvasLocation" x="-3729" y="1252"/>
         </scene>
         <!--On Boarding View Controller-->
         <scene sceneID="I3L-cF-M9q">
@@ -370,7 +370,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="454-pP-wAz">
-                                            <rect key="frame" x="263" y="9.5" width="51" height="31"/>
+                                            <rect key="frame" x="318" y="9.5" width="51" height="31"/>
                                             <connections>
                                                 <action selector="onSwitchChange" destination="whw-hX-M58" eventType="valueChanged" id="zY5-JD-geP"/>
                                             </connections>
@@ -468,8 +468,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="02N-O3-Bco" kind="relationship" relationship="viewControllers" id="nWd-6q-tfD"/>
-                        <segue destination="lZx-Fb-f7f" kind="relationship" relationship="viewControllers" id="aEw-bh-1nt"/>
+                        <segue destination="lZx-Fb-f7f" kind="relationship" relationship="viewControllers" id="4Bd-Q1-f1O"/>
+                        <segue destination="02N-O3-Bco" kind="relationship" relationship="viewControllers" id="Q0c-TR-FN3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jq-Kb-VlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
