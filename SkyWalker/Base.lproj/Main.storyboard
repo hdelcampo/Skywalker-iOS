@@ -216,7 +216,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Nsn-M9-bK0"/>
-                                    <barButtonItem title="New connection" id="Y1d-FN-hdc"/>
+                                    <barButtonItem title="Log out" id="Y1d-FN-hdc">
+                                        <connections>
+                                            <action selector="logout:" destination="BYZ-38-t0r" id="7nl-Xy-0V8"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

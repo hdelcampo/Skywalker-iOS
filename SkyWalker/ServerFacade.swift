@@ -324,7 +324,14 @@ class ServerFacade {
         
     }
     
-    /**
+    /*
+        Clears the current connection.
+    */
+    func clear () {
+        token = nil
+    }
+    
+    /*
         Retrieves actual server error
         - parameters:
             - statusCode: http status code

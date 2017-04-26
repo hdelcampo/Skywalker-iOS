@@ -57,6 +57,15 @@ class ARViewController: UIViewController {
     }
     
     /**
+        Log outs and finishes current view
+    */
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        ServerFacade.instance.clear()
+        dismiss(animated: true, completion: ({ _ in
+            self.present(self.storyboard!.instantiateViewController(withIdentifier: "loginView"), animated: true, completion: nil)}))
+    }
+    
+    /**
         Indicates what points should be drawn.
         - Parameters:
             - points: The list of points to show.
