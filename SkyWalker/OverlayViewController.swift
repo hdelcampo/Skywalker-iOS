@@ -184,7 +184,7 @@ class OverlayViewController: UIViewController {
         let x = Double(view.bounds.width/2) + horizontalTheta*Double(Float(view.bounds.width)/fovWidth),
             y = Double(view.bounds.height/2) - verticalTheta*Double(Float(view.bounds.height)/fovHeight)
         
-        draw(text: [point.name, String(point.distance)], to: view, x: x + Double(iconSize)*2, y: y + Double(iconSize))
+        draw(text: [point.name, String(point.distance)], to: view, x: x + 40, y: y + 40)
         draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
         
     }
