@@ -103,7 +103,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
@@ -162,7 +162,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
                 
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
@@ -220,7 +220,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
         
         do {
             let params: [String: String] = ["name" : username]
@@ -285,7 +285,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in

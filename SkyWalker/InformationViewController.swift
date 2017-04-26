@@ -10,6 +10,7 @@ import UIKit
 
 class InformationViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
+    @IBOutlet weak var serverLabel: UILabel!
     @IBOutlet weak var buildLabel: UILabel!
     @IBOutlet weak var switcher: UISwitch!
     
@@ -17,6 +18,7 @@ class InformationViewController: UIViewController, UIPopoverPresentationControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        serverLabel.text = ServerFacade.instance.token?.URL
         setBuildStamp()
     }
 

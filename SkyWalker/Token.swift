@@ -15,7 +15,7 @@ import Foundation
 class Token {
     
     let URL : String
-    let token : String
+    let token : String?
     
     /**
         Unique constructor.
@@ -23,7 +23,7 @@ class Token {
             - URL: URL of the server.
             - token: token of the connection.
     */
-    init (URL : String, token : String) {
+    init (URL : String, token : String?) {
         self.URL = URL
         self.token = token
     }

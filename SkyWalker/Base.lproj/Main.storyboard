@@ -509,50 +509,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Server status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsu-o1-gyJ">
-                                <rect key="frame" x="16" y="28" width="101.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsu-o1-gyJ">
+                                <rect key="frame" x="16" y="28" width="63.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfu-Dx-FcY">
-                                <rect key="frame" x="274.5" y="28" width="84.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://www.xtremeloc.rdnest.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMr-iW-rzi">
-                                <rect key="frame" x="16" y="57" width="223.5" height="17"/>
+                                <rect key="frame" x="16" y="58.5" width="223.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iBeacon status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kc-G7-nrD">
-                                <rect key="frame" x="16" y="90" width="113" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build: 17" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuH-m5-K98">
-                                <rect key="frame" x="16" y="127" width="64" height="21"/>
+                                <rect key="frame" x="16" y="91.5" width="64" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWP-Ub-zun">
-                                <rect key="frame" x="274.5" y="90" width="84.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rpO-nV-63J">
-                                <rect key="frame" x="310" y="159" width="51" height="31"/>
+                                <rect key="frame" x="310" y="123" width="51" height="31"/>
                                 <connections>
                                     <action selector="toggleDebug:" destination="Mfq-9b-irG" eventType="valueChanged" id="CgJ-b5-mEG"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide debug info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3G-EB-V3I">
-                                <rect key="frame" x="16" y="164" width="122" height="21"/>
+                                <rect key="frame" x="16" y="128" width="122" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -562,25 +544,20 @@
                         <constraints>
                             <constraint firstItem="rpO-nV-63J" firstAttribute="centerY" secondItem="G3G-EB-V3I" secondAttribute="centerY" id="7wv-2R-L95"/>
                             <constraint firstItem="G3G-EB-V3I" firstAttribute="top" secondItem="zuH-m5-K98" secondAttribute="bottom" constant="16" id="8b5-ti-t0V"/>
-                            <constraint firstItem="Zfu-Dx-FcY" firstAttribute="trailing" secondItem="rwl-z9-lSQ" secondAttribute="trailingMargin" id="FwF-Hr-rIH"/>
-                            <constraint firstItem="Zfu-Dx-FcY" firstAttribute="top" secondItem="Oy3-gd-Oxm" secondAttribute="bottom" constant="8" id="L2c-dI-2Ec"/>
                             <constraint firstItem="zuH-m5-K98" firstAttribute="leading" secondItem="rwl-z9-lSQ" secondAttribute="leadingMargin" id="LAc-50-GUv"/>
-                            <constraint firstItem="fWP-Ub-zun" firstAttribute="centerY" secondItem="1Kc-G7-nrD" secondAttribute="centerY" id="NPo-ei-CwM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fWP-Ub-zun" secondAttribute="trailing" id="V0v-wy-7b9"/>
+                            <constraint firstItem="zuH-m5-K98" firstAttribute="top" secondItem="JMr-iW-rzi" secondAttribute="bottom" constant="16" id="Oej-SY-Wel"/>
                             <constraint firstItem="Hsu-o1-gyJ" firstAttribute="top" secondItem="Oy3-gd-Oxm" secondAttribute="bottom" constant="8" id="ahP-La-3rz"/>
-                            <constraint firstItem="zuH-m5-K98" firstAttribute="top" secondItem="1Kc-G7-nrD" secondAttribute="bottom" constant="16" id="eL6-SL-eZj"/>
                             <constraint firstItem="rpO-nV-63J" firstAttribute="trailing" secondItem="rwl-z9-lSQ" secondAttribute="trailingMargin" id="ehf-gz-6QJ"/>
-                            <constraint firstItem="1Kc-G7-nrD" firstAttribute="top" secondItem="JMr-iW-rzi" secondAttribute="bottom" constant="16" id="h37-7S-bsl"/>
-                            <constraint firstItem="1Kc-G7-nrD" firstAttribute="leading" secondItem="rwl-z9-lSQ" secondAttribute="leadingMargin" id="oG3-n3-8WJ"/>
                             <constraint firstItem="G3G-EB-V3I" firstAttribute="leading" secondItem="rwl-z9-lSQ" secondAttribute="leadingMargin" id="r83-zH-tKa"/>
                             <constraint firstItem="Hsu-o1-gyJ" firstAttribute="leading" secondItem="rwl-z9-lSQ" secondAttribute="leadingMargin" id="sVd-Xn-Iq7"/>
                             <constraint firstItem="JMr-iW-rzi" firstAttribute="leading" secondItem="rwl-z9-lSQ" secondAttribute="leadingMargin" id="uLe-KS-vW4"/>
-                            <constraint firstItem="JMr-iW-rzi" firstAttribute="top" secondItem="Hsu-o1-gyJ" secondAttribute="bottom" constant="8" id="xKf-Ov-w46"/>
+                            <constraint firstItem="JMr-iW-rzi" firstAttribute="top" secondItem="Hsu-o1-gyJ" secondAttribute="bottom" constant="4" id="xKf-Ov-w46"/>
                         </constraints>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="300" height="200"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="175"/>
                     <connections>
                         <outlet property="buildLabel" destination="zuH-m5-K98" id="dxj-oy-LgA"/>
+                        <outlet property="serverLabel" destination="JMr-iW-rzi" id="5lf-4d-To4"/>
                         <outlet property="switcher" destination="rpO-nV-63J" id="UBY-5m-sbL"/>
                     </connections>
                 </viewController>
