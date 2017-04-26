@@ -24,8 +24,9 @@ class OverlayViewController: UIViewController {
     let margin = 0.9
     
     //MARK: Icon properties
-    let outOfSightIconPath = "arrow_right.png"
-    let inSightIconPath = "arrow_down.png"
+    let outOfSightIconPath = "out_of_sight_icon.png"
+    let outOfSightIconAngleOffset = 90
+    let inSightIconPath = "in_sight_icon.png"
     let iconSize = 35
 
     //MARK: Text properties
@@ -159,7 +160,7 @@ class OverlayViewController: UIViewController {
         }
         
         draw(text: [point.name], to: view, x: x, y: y)
-        draw(icon: outOfSightIconPath, to: view, x: x, y: y, angle: angle)
+        draw(icon: outOfSightIconPath, to: view, x: x, y: y, angle: angle + outOfSightIconAngleOffset)
     }
     
     /**
