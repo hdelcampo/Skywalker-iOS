@@ -51,7 +51,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="npS-1w-Atm" kind="show" id="p9S-BX-Bqk"/>
+                                    <action selector="loginClick" destination="NCR-cr-K2G" eventType="touchUpInside" id="1TD-nT-LDd"/>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Y0d-cP-YaO">
@@ -470,12 +470,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Jq-Kb-VlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3727" y="3387"/>
+            <point key="canvasLocation" x="-4887" y="3403"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Win-PE-mOu">
             <objects>
-                <navigationController modalPresentationStyle="overCurrentContext" id="npS-1w-Atm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginView" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="npS-1w-Atm" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="203-V1-b8l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -491,7 +491,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KRs-L8-JaN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3727" y="2449"/>
+            <point key="canvasLocation" x="-4887" y="2376"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="XlF-1D-mDy">

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
@@ -23,10 +22,6 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
         
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
-        }
-        
-        if (!hasCameraPermission()) {
-            requestCameraPermission()
         }
         
     }
@@ -116,25 +111,6 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
         
         setViewControllers([orderedViewControllers[index]], direction: direction, animated: true, completion: nil)
         
-    }
-    
-    /**
-        Checks whether user has granted camera permissions.
-     
-        - Returns: True if permissions are granted, false otherwise.
-    */
-    private func hasCameraPermission() -> Bool {
-        return (.authorized ==
-            AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo))
-    }
-    
-    private func requestCameraPermission () {
-        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
-                                      completionHandler: { (granted : Bool) -> Void in
-                                        if (!granted) {
-                                            self.requestCameraPermission()
-                                        }
-        })
     }
 
 }
