@@ -61,8 +61,7 @@ class ARViewController: UIViewController {
     */
     @IBAction func logout(_ sender: UIBarButtonItem) {
         ServerFacade.instance.clear()
-        dismiss(animated: true, completion: ({ _ in
-            self.present(self.storyboard!.instantiateViewController(withIdentifier: "loginView"), animated: true, completion: nil)}))
+        dismiss(animated: true, completion: nil)
     }
     
     /**

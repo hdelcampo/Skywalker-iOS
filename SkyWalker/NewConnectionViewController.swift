@@ -127,16 +127,12 @@ class NewConnectionViewController: UIViewController {
     }
     
     /**
-        Starts the Augmented Reality interface on a new view if caller is not the dialog.
+        Starts the Augmented Reality interface.
      */
     func startAR () {
                 
-        if !(self.parent! is ConnectionDialogController) {
-            let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
-            self.present(ARView!, animated: true, completion: nil)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
+        let ARView = self.storyboard?.instantiateViewController(withIdentifier: "AugmentedRealityView")
+        self.present(ARView!, animated: true, completion: nil)
         
     }
     
