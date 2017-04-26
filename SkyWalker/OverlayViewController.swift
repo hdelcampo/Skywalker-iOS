@@ -25,7 +25,7 @@ class OverlayViewController: UIViewController {
     
     //MARK: Icon properties
     let outOfSightIconPath = "out_of_sight_icon.png"
-    let outOfSightIconAngleOffset = 90
+    let outOfSightIconAngleOffset: Double = 90
     let inSightIconPath = "in_sight_icon.png"
     let iconSize = 35
 
