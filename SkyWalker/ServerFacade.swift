@@ -18,6 +18,20 @@ class ServerFacade {
     }
     
     /*
+        Computed property to indicate whether connection is in demo mode or not
+    */
+    var isDemo: Bool {
+        get {
+            return token?.URL == "Demo mode"
+        }
+        
+        set(state) {
+            if (state) {
+              token = Token(URL: "Demo mode", token: nil)
+            }
+        }
+    }
+    /*
         Connection token
     */
     var token: Token?

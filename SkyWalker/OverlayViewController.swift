@@ -51,8 +51,10 @@ class OverlayViewController: UIViewController {
         initialLayers = self.view.layer.sublayers!
         points = PointOfInterest.points!
         orientationSensor.registerEvents()
-        thread.points = points
-        thread.start()
+        if (!ServerFacade.instance.isDemo) {
+            thread.points = points
+            thread.start()
+        }
         Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
         
     }
