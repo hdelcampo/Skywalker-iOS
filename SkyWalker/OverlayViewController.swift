@@ -27,11 +27,13 @@ class OverlayViewController: UIViewController {
     let outOfSightIconPath = "out_of_sight_icon.png"
     let outOfSightIconAngleOffset: Double = 90
     let inSightIconPath = "in_sight_icon.png"
-    let iconSize = 35
+    let iconSize = 60
 
     //MARK: Text properties
-    let textSize = 12
+    let textSize = CGFloat(24)
     let textColor = UIColor.white.cgColor
+    let strokeColor = UIColor.black.cgColor
+    let strokeSize = 2
     let textSeparator = "\n"
     
     var points : [PointOfInterest] = []
@@ -192,12 +194,19 @@ class OverlayViewController: UIViewController {
         
         let textLayer = CATextLayer()
         let text = text.joined(separator: textSeparator)
+
+        let attrText = NSAttributedString(string: text,
+                                      attributes:
+            [NSForegroundColorAttributeName: textColor,
+             NSStrokeColorAttributeName: strokeColor,
+             NSStrokeWidthAttributeName: -strokeSize,
+             NSFontAttributeName: UIFont.systemFont(ofSize: textSize)])
         
-        textLayer.string = text
-        textLayer.fontSize = CGFloat(textSize)
+        textLayer.string = attrText
         textLayer.contentsScale = UIScreen.main.scale
-        textLayer.foregroundColor = textColor
         textLayer.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let size = attrText.size()
+        textLayer.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         textLayer.position = CGPoint(x: x, y: y)
         
         to.layer.addSublayer(textLayer)
