@@ -90,16 +90,15 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     */
     private func toggleError(view: UIView, error: Bool, errorMsg: String = "") {
         
+        view.layer.cornerRadius = 4
+        view.layer.borderColor = UIColor.red.cgColor
+        
         if !error {
-            view.layer.borderWidth = 1
-            view.layer.cornerRadius = 2
-            view.layer.borderColor = UIColor.darkGray.cgColor
+            view.layer.borderWidth = 0
             view.viewWithTag(1)?.isHidden = true
             view.viewWithTag(2)?.isHidden = true
         } else {
             view.layer.borderWidth = 1
-            view.layer.cornerRadius = 2
-            view.layer.borderColor = UIColor.red.cgColor
             view.viewWithTag(1)?.isHidden = false
             view.viewWithTag(2)?.isHidden = false
             (view.viewWithTag(2) as! UILabel).text = errorMsg
