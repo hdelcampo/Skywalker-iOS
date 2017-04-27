@@ -34,6 +34,10 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        urlField.delegate = self
+        userField.delegate = self
+        passwordField.delegate = self
+        
         addCircleCorner(view: errURL)
         addCircleCorner(view: errUsername)
         addCircleCorner(view: errPassword)
@@ -42,7 +46,11 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         toggleError(view: userContainer, error: false)
         toggleError(view: passwordContainer, error: false)
 
-        urlField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     /**
