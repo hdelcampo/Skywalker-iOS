@@ -27,7 +27,7 @@ class OverlayViewController: UIViewController {
     let outOfSightIconPath = "out_of_sight_icon.png"
     let outOfSightIconAngleOffset: Double = 90
     let inSightIconPath = "in_sight_icon.png"
-    let iconSize = 60
+    let iconSize = 60.0
 
     //MARK: Text properties
     let textSize = CGFloat(24)
@@ -166,7 +166,7 @@ class OverlayViewController: UIViewController {
             y = height*(1-margin);
         }
         
-        draw(text: [point.name], to: view, x: x, y: y)
+        draw(text: [point.name], to: view, x: x + iconSize/6, y: y+iconSize/4)
         draw(icon: outOfSightIconPath, to: view, x: x, y: y, angle: angle + outOfSightIconAngleOffset)
     }
     
@@ -198,7 +198,7 @@ class OverlayViewController: UIViewController {
             floorLabel = " \(floorDelta)f \u{25BC}"
         }
         
-        draw(text: [point.name, "\(vectorToPoint.module() * Center.centers[0].scale)m" + floorLabel ], to: view, x: x + 40, y: y + 40)
+        draw(text: [point.name, "\(vectorToPoint.module() * Center.centers[0].scale)m" + floorLabel ], to: view, x: x + iconSize/3, y: y + iconSize/4)
         draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
         
     }
@@ -224,6 +224,7 @@ class OverlayViewController: UIViewController {
         let size = attrText.size()
         textLayer.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         textLayer.position = CGPoint(x: x, y: y)
+        textLayer.anchorPoint = CGPoint(x: 0, y: 0.5)
         
         to.layer.addSublayer(textLayer)
         
