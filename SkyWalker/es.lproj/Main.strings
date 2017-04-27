@@ -1,0 +1,117 @@
+
+/* Class = "UILabel"; text = "Usuario o contraseña incorrectas"; ObjectID = "12J-dM-UAE"; */
+"12J-dM-UAE.text" = "Usuario o contraseña incorrectas";
+
+/* Class = "UITabBarItem"; title = "Código QR"; ObjectID = "3qw-to-IKl"; */
+"3qw-to-IKl.title" = "Código QR";
+
+/* Class = "UILabel"; text = "Esta App funciona tanto en edificios como al aire libre. Simplemente necesitas un entorno con XtremeLoc."; ObjectID = "4GO-vh-xtZ"; */
+"4GO-vh-xtZ.text" = "Esta App funciona tanto en edificios como al aire libre. Simplemente necesitas un entorno con XtremeLoc.";
+
+/* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "4Kx-cT-mg2"; */
+"4Kx-cT-mg2.placeholder" = "Contraseña";
+
+/* Class = "UIButton"; normalTitle = "Iniciar sesión"; ObjectID = "5S5-4T-9Tt"; */
+"5S5-4T-9Tt.normalTitle" = "Iniciar sesión";
+
+/* Class = "UILabel"; text = "Más allá del GPS"; ObjectID = "5SN-dJ-Aqg"; */
+"5SN-dJ-Aqg.text" = "Más allá del GPS";
+
+/* Class = "UILabel"; text = "Z"; ObjectID = "5dn-uw-cwq"; */
+"5dn-uw-cwq.text" = "Z";
+
+/* Class = "UIButton"; normalTitle = "Conectar"; ObjectID = "7wv-Zl-Vym"; */
+"7wv-Zl-Vym.normalTitle" = "Conectar";
+
+/* Class = "UINavigationItem"; title = "Seleccionar elementos a mostrar"; ObjectID = "80C-9Z-3gF"; */
+"80C-9Z-3gF.title" = "Seleccionar elementos a mostrar";
+
+/* Class = "UILabel"; text = "!"; ObjectID = "An4-45-JPS"; */
+"An4-45-JPS.text" = "!";
+
+/* Class = "UILabel"; text = "Navegación de nueva generación"; ObjectID = "BE2-lI-4UF"; */
+"BE2-lI-4UF.text" = "Navegación de nueva generación";
+
+/* Class = "UILabel"; text = "Ocultar depuración"; ObjectID = "G3G-EB-V3I"; */
+"G3G-EB-V3I.text" = "Ocultar depuración";
+
+/* Class = "UILabel"; text = "Tu dispositivo tambien te localiza, con un dispositivo lo tienes todo."; ObjectID = "G7P-5S-oj9"; */
+"G7P-5S-oj9.text" = "Tu dispositivo tambien te localiza, con un dispositivo lo tienes todo.";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Gsz-KX-LMJ"; */
+"Gsz-KX-LMJ.title" = "Item";
+
+/* Class = "UILabel"; text = "Servidor"; ObjectID = "Hsu-o1-gyJ"; */
+"Hsu-o1-gyJ.text" = "Servidor";
+
+/* Class = "UILabel"; text = "https://www.xtremeloc.rdnest.com"; ObjectID = "JMr-iW-rzi"; */
+"JMr-iW-rzi.text" = "https://www.xtremeloc.rdnest.com";
+
+/* Class = "UILabel"; text = "URL invalida."; ObjectID = "KSk-c0-H2g"; */
+"KSk-c0-H2g.text" = "URL invalida.";
+
+/* Class = "UILabel"; text = "!"; ObjectID = "Ues-YM-3a8"; */
+"Ues-YM-3a8.text" = "!";
+
+/* Class = "UILabel"; text = "X"; ObjectID = "VdD-bx-FS9"; */
+"VdD-bx-FS9.text" = "X";
+
+/* Class = "UIButton"; normalTitle = "Iniciar sesión"; ObjectID = "W9x-S6-XYN"; */
+"W9x-S6-XYN.normalTitle" = "Iniciar sesión";
+
+/* Class = "UIBarButtonItem"; title = "Cerrar sesión"; ObjectID = "Y1d-FN-hdc"; */
+"Y1d-FN-hdc.title" = "Cerrar sesión";
+
+/* Class = "UIBarButtonItem"; title = "Ninguno"; ObjectID = "ZTs-lt-aS5"; */
+"ZTs-lt-aS5.title" = "Ninguno";
+
+/* Class = "UITextField"; placeholder = "Usuario"; ObjectID = "bKT-Xr-DGG"; */
+"bKT-Xr-DGG.placeholder" = "Usuario";
+
+/* Class = "UILabel"; text = "Y"; ObjectID = "bSe-NU-58s"; */
+"bSe-NU-58s.text" = "Y";
+
+/* Class = "UILabel"; text = "Todo en uno"; ObjectID = "cHX-BT-VNC"; */
+"cHX-BT-VNC.text" = "Todo en uno";
+
+/* Class = "UIButton"; normalTitle = "Modo demostración"; ObjectID = "eHY-OS-bbv"; */
+"eHY-OS-bbv.normalTitle" = "Modo demostración";
+
+/* Class = "UITextField"; placeholder = "URL (Obligatorio)"; ObjectID = "gHm-Iw-LiH"; */
+"gHm-Iw-LiH.placeholder" = "URL (Obligatorio)";
+
+/* Class = "UITabBarItem"; title = "Entrada manual"; ObjectID = "gR5-Kx-7Um"; */
+"gR5-Kx-7Um.title" = "Entrada manual";
+
+/* Class = "UIButton"; normalTitle = "Iniciar sesión"; ObjectID = "gei-lE-XgJ"; */
+"gei-lE-XgJ.normalTitle" = "Iniciar sesión";
+
+/* Class = "UINavigationItem"; title = "Iniciar conexión"; ObjectID = "jre-LR-X9e"; */
+"jre-LR-X9e.title" = "Iniciar conexión";
+
+/* Class = "UIButton"; normalTitle = "Iniciar sesión"; ObjectID = "pay-zx-QVg"; */
+"pay-zx-QVg.normalTitle" = "Iniciar sesión";
+
+/* Class = "UIBarButtonItem"; title = "Todos"; ObjectID = "qjr-oR-cZM"; */
+"qjr-oR-cZM.title" = "Todos";
+
+/* Class = "UILabel"; text = "Utiliza la cámara para localizar objetos y personas."; ObjectID = "vkI-gU-v31"; */
+"vkI-gU-v31.text" = "Utiliza la cámara para localizar objetos y personas.";
+
+/* Class = "UILabel"; text = "Carlos"; ObjectID = "x1Z-3p-EO8"; */
+"x1Z-3p-EO8.text" = "Carlos";
+
+/* Class = "UILabel"; text = "Apunta al código QR."; ObjectID = "xpp-MQ-5Sy"; */
+"xpp-MQ-5Sy.text" = "Apunta al código QR.";
+
+/* Class = "UILabel"; text = "!"; ObjectID = "y7t-tS-Ozm"; */
+"y7t-tS-Ozm.text" = "!";
+
+/* Class = "UIBarButtonItem"; title = "Filtrar elementos"; ObjectID = "z1F-zK-i4J"; */
+"z1F-zK-i4J.title" = "Filtrar elementos";
+
+/* Class = "UILabel"; text = "Usuario o contraseña incorrectas"; ObjectID = "zbP-KX-JJE"; */
+"zbP-KX-JJE.text" = "Usuario o contraseña incorrectas";
+
+/* Class = "UILabel"; text = "Build: 17"; ObjectID = "zuH-m5-K98"; */
+"zuH-m5-K98.text" = "Build: 17";
