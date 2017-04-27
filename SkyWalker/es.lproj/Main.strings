@@ -5,8 +5,8 @@
 /* Class = "UITabBarItem"; title = "Código QR"; ObjectID = "3qw-to-IKl"; */
 "3qw-to-IKl.title" = "Código QR";
 
-/* Class = "UILabel"; text = "Esta App funciona tanto en edificios como al aire libre. Simplemente necesitas un entorno con XtremeLoc."; ObjectID = "4GO-vh-xtZ"; */
-"4GO-vh-xtZ.text" = "Esta App funciona tanto en edificios como al aire libre. Simplemente necesitas un entorno con XtremeLoc.";
+/* Class = "UILabel"; text = "Funciona tanto en edificios como al aire libre. Simplemente necesitas un entorno con XtremeLoc."; ObjectID = "4GO-vh-xtZ"; */
+"4GO-vh-xtZ.text" = "Funciona tanto en edificios como al aire libre. Simplemente necesitas un entorno con XtremeLoc.";
 
 /* Class = "UITextField"; placeholder = "Contraseña"; ObjectID = "4Kx-cT-mg2"; */
 "4Kx-cT-mg2.placeholder" = "Contraseña";
@@ -23,8 +23,8 @@
 /* Class = "UIButton"; normalTitle = "Conectar"; ObjectID = "7wv-Zl-Vym"; */
 "7wv-Zl-Vym.normalTitle" = "Conectar";
 
-/* Class = "UINavigationItem"; title = "Seleccionar elementos a mostrar"; ObjectID = "80C-9Z-3gF"; */
-"80C-9Z-3gF.title" = "Seleccionar elementos a mostrar";
+/* Class = "UINavigationItem"; title = "Elementos visibles"; ObjectID = "80C-9Z-3gF"; */
+"80C-9Z-3gF.title" = "Elementos visibles";
 
 /* Class = "UILabel"; text = "!"; ObjectID = "An4-45-JPS"; */
 "An4-45-JPS.text" = "!";

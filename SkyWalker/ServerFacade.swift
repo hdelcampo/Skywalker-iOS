@@ -22,12 +22,12 @@ class ServerFacade {
     */
     var isDemo: Bool {
         get {
-            return token?.URL == "Demo mode"
+            return token?.URL == NSLocalizedString("Demo_mode", comment: "")
         }
         
         set(state) {
             if (state) {
-              token = Token(URL: "Demo mode", token: nil)
+              token = Token(URL: NSLocalizedString("Demo_mode", comment: ""), token: nil)
             }
         }
     }
