@@ -39,15 +39,16 @@
                                 </connections>
                             </containerView>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5S5-4T-9Tt">
-                                <rect key="frame" x="157.5" y="546" width="60" height="36"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="155" y="544" width="65" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Log in"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -372,7 +373,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="454-pP-wAz">
-                                            <rect key="frame" x="263" y="9.5" width="51" height="31"/>
+                                            <rect key="frame" x="318" y="9.5" width="51" height="31"/>
                                             <connections>
                                                 <action selector="onSwitchChange" destination="whw-hX-M58" eventType="valueChanged" id="zY5-JD-geP"/>
                                             </connections>
@@ -645,14 +646,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wv-Zl-Vym">
-                                <rect key="frame" x="24" y="491" width="327" height="34"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="130" y="491" width="115" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Connect"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -660,14 +663,16 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHY-OS-bbv">
-                                <rect key="frame" x="24" y="533" width="327" height="34"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="130" y="537" width="115" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Demo mode"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -843,19 +848,19 @@
                         <constraints>
                             <constraint firstItem="eHY-OS-bbv" firstAttribute="top" secondItem="7wv-Zl-Vym" secondAttribute="bottom" constant="8" id="FAt-ZR-5Al"/>
                             <constraint firstItem="0es-lG-erY" firstAttribute="height" secondItem="7R5-oF-Zbc" secondAttribute="height" multiplier="0.4" id="HBl-RB-ekR"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="eHY-OS-bbv" secondAttribute="trailing" constant="8" id="Re4-Sh-lKn"/>
-                            <constraint firstItem="7wv-Zl-Vym" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leadingMargin" constant="8" id="WEO-HH-QzW"/>
+                            <constraint firstItem="7wv-Zl-Vym" firstAttribute="centerX" secondItem="7R5-oF-Zbc" secondAttribute="centerX" id="Iop-Kh-fFG"/>
                             <constraint firstItem="7wv-Zl-Vym" firstAttribute="top" secondItem="0es-lG-erY" secondAttribute="bottom" constant="24" id="Xha-2I-H3x"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7wv-Zl-Vym" secondAttribute="trailing" constant="8" id="ZeI-JT-o4k"/>
                             <constraint firstAttribute="trailing" secondItem="0es-lG-erY" secondAttribute="trailing" id="cAj-yU-vHK"/>
                             <constraint firstItem="0es-lG-erY" firstAttribute="centerY" secondItem="7R5-oF-Zbc" secondAttribute="centerY" id="jPg-AG-Lnh"/>
-                            <constraint firstItem="eHY-OS-bbv" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leadingMargin" constant="8" id="kmX-Nw-dbY"/>
                             <constraint firstItem="0es-lG-erY" firstAttribute="leading" secondItem="7R5-oF-Zbc" secondAttribute="leading" id="mO0-6x-e4s"/>
+                            <constraint firstItem="eHY-OS-bbv" firstAttribute="centerX" secondItem="7R5-oF-Zbc" secondAttribute="centerX" id="rhs-Aq-JOC"/>
+                            <constraint firstItem="eHY-OS-bbv" firstAttribute="width" secondItem="7wv-Zl-Vym" secondAttribute="width" id="y06-dh-FuP"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Manual data" image="manual_tab" selectedImage="manual_tab_filled" id="gR5-Kx-7Um"/>
                     <connections>
                         <outlet property="connectButton" destination="7wv-Zl-Vym" id="YK9-4D-mvs"/>
+                        <outlet property="demoButton" destination="eHY-OS-bbv" id="vdr-h5-f4e"/>
                         <outlet property="errPassword" destination="An4-45-JPS" id="txS-kN-eD6"/>
                         <outlet property="errURL" destination="y7t-tS-Ozm" id="OLH-PM-0XX"/>
                         <outlet property="errUsername" destination="Ues-YM-3a8" id="XiH-d6-apG"/>

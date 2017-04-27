@@ -24,6 +24,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     @IBOutlet weak var passwordContainer: UIView!
     
     @IBOutlet weak var connectButton: UIButton!
+    @IBOutlet weak var demoButton: UIButton!
     
     @IBOutlet weak var errURL: UILabel!
     @IBOutlet weak var errUsername: UILabel!
@@ -33,6 +34,9 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        connectButton.layer.borderColor = connectButton.tintColor.cgColor
+        demoButton.layer.borderColor = demoButton.tintColor.cgColor
         
         urlField.delegate = self
         userField.delegate = self
@@ -90,7 +94,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     */
     private func toggleError(view: UIView, error: Bool, errorMsg: String = "") {
         
-        view.layer.cornerRadius = 4
+        view.layer.cornerRadius = 6
         view.layer.borderColor = UIColor.red.cgColor
         
         if !error {
