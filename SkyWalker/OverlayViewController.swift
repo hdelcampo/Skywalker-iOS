@@ -38,7 +38,7 @@ class OverlayViewController: UIViewController {
     
     var points : [PointOfInterest] = []
     var initialLayers : [CALayer] = []
-    var mySelf: Vector2D = Vector2D(x: 0.5, y: 0.5)
+    var mySelf: PointOfInterest!
     
     /*
      Thread that handles tags position updating
@@ -49,7 +49,10 @@ class OverlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialLayers = self.view.layer.sublayers!
-        points = PointOfInterest.points!
+        
+        points = PointOfInterest.points
+        mySelf = PointOfInterest.mySelf
+        
         orientationSensor.registerEvents()
         if (!ServerFacade.instance.isDemo) {
             thread.points = points
@@ -184,7 +187,18 @@ class OverlayViewController: UIViewController {
         let x = Double(view.bounds.width/2) + horizontalTheta*Double(Float(view.bounds.width)/fovWidth),
             y = Double(view.bounds.height/2) - verticalTheta*Double(Float(view.bounds.height)/fovHeight)
         
-        draw(text: [point.name, String(point.distance)], to: view, x: x + 40, y: y + 40)
+        let floorDelta = point.z - mySelf.z
+        let floorLabel: String
+        
+        if (floorDelta == 0) {
+            floorLabel = ""
+        } else if (floorDelta > 0) {
+            floorLabel = " +\(floorDelta)f \u{25B2}"
+        } else {
+            floorLabel = " \(floorDelta)f \u{25BC}"
+        }
+        
+        draw(text: [point.name, "\(point.distance)m" + floorLabel ], to: view, x: x + 40, y: y + 40)
         draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
         
     }

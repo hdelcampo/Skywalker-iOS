@@ -49,7 +49,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         Demo mode click.
     */
     @IBAction func startDemo() {
-        PointOfInterest.points = PointOfInterest.getDemoPoints()
+        PointOfInterest.DemoPoints()
         ServerFacade.instance.isDemo = true
         startAR()
     }
