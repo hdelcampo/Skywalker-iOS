@@ -19,8 +19,6 @@ class PointOfInterest: MapPoint {
     
     static var mySelf: PointOfInterest!
     
-    let distance: Double = 50
-    
     // MARK: Functions
     
     init(id: Int, name: String) {

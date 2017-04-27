@@ -15,6 +15,7 @@ class Center {
     private(set) var mapNorth: Vector2D
     static var centers = [Center]()
     var receivers: [MapPoint]?
+    var scale = 200.0
     
     init(id: Int) {
         self.id = id

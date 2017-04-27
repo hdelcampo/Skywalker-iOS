@@ -51,6 +51,8 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     @IBAction func startDemo() {
         PointOfInterest.DemoPoints()
         ServerFacade.instance.isDemo = true
+        Center.centers.append(Center(id: 0))
+        Center.centers[0].scale = 50
         startAR()
     }
     

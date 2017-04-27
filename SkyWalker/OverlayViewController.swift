@@ -198,7 +198,7 @@ class OverlayViewController: UIViewController {
             floorLabel = " \(floorDelta)f \u{25BC}"
         }
         
-        draw(text: [point.name, "\(point.distance)m" + floorLabel ], to: view, x: x + 40, y: y + 40)
+        draw(text: [point.name, "\(vectorToPoint.module() * Center.centers[0].scale)m" + floorLabel ], to: view, x: x + 40, y: y + 40)
         draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
         
     }
