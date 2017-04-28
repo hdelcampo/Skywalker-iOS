@@ -7,3 +7,5 @@
 */
 
 "Demo_mode" = "Modo demostración";
+"invalid_url" = "URL invalida.";
+"invalid_username_password" = "Usuario o contraseña incorrectos.";

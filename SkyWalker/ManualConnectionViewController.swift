@@ -77,7 +77,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         let password = passwordField.text!
         
         guard let _ = URL(string: url) else {
-            let alert = UIAlertController (title: "Error", message: "URL is invalid", preferredStyle: .alert)
+            let alert = UIAlertController (title: "Error", message: NSLocalizedString("invalid_url", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
             return
         }
@@ -115,8 +115,8 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         switch error {
         case .INVALID_USERNAME_OR_PASSWORD:
             alert.dismiss(animated: true, completion: nil)
-            toggleError(view: userContainer, error: true, errorMsg: "Invalid username or password.")
-            toggleError(view: passwordContainer, error: true, errorMsg: "Invalid username or password.")
+            toggleError(view: userContainer, error: true, errorMsg: NSLocalizedString("invalid_username_password", comment: ""))
+            toggleError(view: passwordContainer, error: true, errorMsg: NSLocalizedString("invalid_username_password", comment: ""))
         case .SERVER_ERROR:
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in self.dismiss(animated: true, completion: nil)}))
             indicator.removeFromSuperview()
@@ -151,7 +151,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
             toggleError(view: urlContainer, error: false)
             connectButton.isEnabled = true
         } else {
-            toggleError(view: urlContainer, error: true, errorMsg: "Invalid URL")
+            toggleError(view: urlContainer, error: true, errorMsg: NSLocalizedString("invalid_url", comment: ""))
             connectButton.isEnabled = false
         }
         
