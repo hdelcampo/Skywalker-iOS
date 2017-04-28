@@ -1,0 +1,74 @@
+-----------------------
+ Build 18 -28/04/2017-
+-----------------------
+
++ Añadida pantalla inicial
++ Cambiado el proceso de cambio de servidor a logout —> login
++ Cambiada la iconografía
++ Ajustada la posición del texto y los iconos
++ Añadido indicador de piso y distancia real
++ Añadida traducción a español
++ Añadido soporte para modo apaisado
+
+-----------------------
+ Build 17 -18/04/2017-
+-----------------------
+
++ Implementado el lector QR
++ Rediseñada la actividad de nuevas conexiones, ahora el diseño es de dialogo en pantallas grandes, y de actividad a pantalla completa en móviles
++ Rediseñado el fragmento de conexiones manuales
++ Rediseñado el sistema de controles, pulsar la pantalla hacer aparecer el menu
++ Para mostrar la información de depuración utilizar switch del submenu información del menu control
++ Cambiada la forma de entrar al modo demo, ahora simplemente pulsar el botón demo
++ Implementada lógica real del sensor de orientación
++ Retocada lógica de dibujado para funcionar con posiciones reales
++ El dispositivo funciona como iBeacon
++ Mejorada la posición de dibujado en pantalla e incrementado el tamaño de los elementos
++ Añadidas nuevas peticiones REST para funcionar con la nueva versión de XtremeLoc
++ Implementada arquitectura en 3 capas.
++ Retoques internos para mejorar el código
+
+-----------------------
+ Build 16 -21/02/2017-
+-----------------------
+
++ Los números de build ahora van a la par entre Android y iOS
++ El dialogo de conexión se ha rehecho completamente, su tamaño ademas es relativamente correcto
++ La tabla de filtrado se ha rehecho completamente
++ La conexión con el servidor REST de login funciona correctamente
++ Se han arreglado las posiciones en multiples layouts para mejorar la apariencia de la UI
++ Se ha añadido una pantalla inicial de conexión
++ Se ha añadido un launch storyboard
+
+-----------------------
+ Build 13 -8/11/2016-
+-----------------------
+
++ Iconos más grandes
++ Añadida la Build Stamp
+
+-----------------------
+ Build 12 -02/11/2016-
+-----------------------
+
++ Añadido dialogo para filtrar elementos
++ Añadido dialogo para conexiones a bases de datos, aún sin funcionalidad
++ Nuevo estilo para los iconos dentro de vista, mismo estilo que Android
++ Nuevo estilo para los iconos fuera de vista, mismo estilo que Android
++ Añadido Crashlytics y Answers de fabric
+
+- Eliminada la información de dirección y velocidad
+
+-----------------------
+ Build 11 -14/10/2016-
+-----------------------
+
++Añadido icono oficial
++Muestra la información de los puntos de interés de la misma forma que la versión Android
+!Los sensores aún no funcionan correctamente!
+
+-----------------------
+ Build 10 -26/09/2016-
+-----------------------
+
++Presenta la visión de la camara trasera
