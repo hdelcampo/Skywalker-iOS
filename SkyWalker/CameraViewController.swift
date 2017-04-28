@@ -25,5 +25,8 @@ class CameraViewController: UIViewController {
  
     }
     
+    override func viewDidLayoutSubviews() {
+        camera.rotate(orientation: UIDevice.current.orientation)
+    }
 
 }

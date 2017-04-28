@@ -53,12 +53,25 @@ class Camera {
             print("error: \(error.localizedDescription)")
         }
         
-        
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer?.frame = (self.view?.layer.bounds)!
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         self.view?.layer.addSublayer(previewLayer!)
         captureSession.startRunning()
+    }
+    
+    func rotate(orientation: UIDeviceOrientation) {
+        previewLayer?.frame = (view?.bounds)!
+        switch orientation {
+        case .portrait:
+            previewLayer?.connection.videoOrientation = .portrait
+        case .landscapeRight:
+            previewLayer?.connection.videoOrientation = .landscapeLeft
+        case .landscapeLeft:
+            previewLayer?.connection.videoOrientation = .landscapeRight
+        default:
+            previewLayer?.connection.videoOrientation = .portrait
+        }
     }
     
 }

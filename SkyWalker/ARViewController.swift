@@ -24,6 +24,9 @@ class ARViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
+            myDelegate.portraitOnly = false
+        }
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -62,6 +65,9 @@ class ARViewController: UIViewController {
     @IBAction func logout(_ sender: UIBarButtonItem) {
         ServerFacade.instance.clear()
         dismiss(animated: true, completion: nil)
+        if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
+            myDelegate.portraitOnly = true
+        }
     }
     
     /**
