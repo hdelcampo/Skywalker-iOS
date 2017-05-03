@@ -9,17 +9,38 @@
 import Foundation
 
 /**
-    Filter cell data class
+    Filter cell data class.
 */
 class FilterCellData {
     
     // MARK: Properties
+    
+    /**
+        Indicates if checkbox is enabled or not.
+    */
     var enabled: Bool
+    
+    /**
+        The text being shown.
+    */
     var title: String
     
-    // MARK: Constructors
+    /**
+        The point represented.
+    */
+    let point: PointOfInterest
     
-    init(title: String, enabled: Bool) {
+    // MARK: Constructors
+
+    /**
+        Constructs a new table cell.
+        - Parameters:
+            - point: The item to show.
+            - title: The text to show.
+            - enabled: The checkbox status.
+    */
+    init(point: PointOfInterest, title: String, enabled: Bool) {
+        self.point = point
         self.enabled = enabled
         self.title = title
     }

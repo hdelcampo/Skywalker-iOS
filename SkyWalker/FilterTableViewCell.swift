@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Switcher delegate protocol.
+*/
 protocol SwitchCellDelegate {
     func onSwitchChange(cell: FilterTableViewCell)
 }
@@ -21,7 +24,16 @@ class FilterTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var `switch`: UISwitch!
     
+    /**
+        The data this cell represents.
+    */
+    weak var cellData: FilterCellData!
+    
     // MARK: delegate
+    
+    /**
+        The view's delegate.
+    */
     var delegate: SwitchCellDelegate?
     
     // MARK: Outlets actions
@@ -30,6 +42,7 @@ class FilterTableViewCell: UITableViewCell {
         Handler for switch
     */
     @IBAction func onSwitchChange() {
+        cellData.enabled = `switch`.isOn
         delegate?.onSwitchChange(cell: self)
     }
     

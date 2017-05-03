@@ -40,7 +40,12 @@ class OverlayViewController: UIViewController {
     var initialLayers : [CALayer] = []
     var mySelf: PointOfInterest!
     
-    /*
+    /**
+        Maximum number of points to draw
+    */
+    static let maxPoints = 5
+    
+    /**
      Thread that handles tags position updating
      */
     let thread: TagsUpdaterThread = TagsUpdaterThread()
@@ -50,7 +55,7 @@ class OverlayViewController: UIViewController {
         super.viewDidLoad()
         initialLayers = self.view.layer.sublayers!
         
-        points = PointOfInterest.points
+        points = Array(PointOfInterest.points.prefix(OverlayViewController.maxPoints))
         mySelf = PointOfInterest.mySelf
         
         orientationSensor.registerEvents()

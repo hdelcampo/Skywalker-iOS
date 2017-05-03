@@ -329,12 +329,6 @@
                                             <action selector="unselectAll" destination="FpA-EO-fcr" id="E3J-HU-mCg"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SvG-Jf-c2L"/>
-                                    <barButtonItem title="All" id="qjr-oR-cZM">
-                                        <connections>
-                                            <action selector="selectAll" destination="FpA-EO-fcr" id="XaF-wa-Bh1"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -372,10 +366,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="454-pP-wAz">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="454-pP-wAz">
                                             <rect key="frame" x="318" y="9.5" width="51" height="31"/>
                                             <connections>
                                                 <action selector="onSwitchChange" destination="whw-hX-M58" eventType="valueChanged" id="zY5-JD-geP"/>
+                                                <action selector="onSwitchTouch" destination="whw-hX-M58" eventType="touchDown" id="fh4-UH-hos"/>
                                             </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carlos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1Z-3p-EO8">

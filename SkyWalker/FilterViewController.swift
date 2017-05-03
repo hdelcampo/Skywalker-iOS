@@ -54,13 +54,6 @@ class FilterViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         
     }
-
-    /**
-        Select alls elements in the points list
-    */
-    @IBAction func selectAll() {
-        tableViewController.selectAll()
-    }
     
     /**
         Unselects all elements in the points list

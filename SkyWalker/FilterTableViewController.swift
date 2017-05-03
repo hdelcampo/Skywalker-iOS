@@ -15,6 +15,18 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
     
     // MARK: Properties
     var cellsData = [FilterCellData]()
+    
+    /**
+        Indicates if maximum elements where exceeded or not.
+    */
+    var excedeedMax: Bool {
+        return OverlayViewController.maxPoints <= selectedItems.count
+    }
+    
+    /**
+        A set containing the selected items
+    */
+    private var selectedItems: Set = Set<PointOfInterest>()
 
     // MARK: Table view data source
 
@@ -34,11 +46,19 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
             fatalError("The dequeued cell is not an instance of FilterTableViewCell")
         }
 
-        let point = cellsData[indexPath.row]
+        let pointCell = cellsData[indexPath.row]
         
-        cell.name.text = point.title
-        cell.`switch`.isOn = point.enabled
+        cell.cellData = pointCell
+        cell.name.text = pointCell.title
         cell.delegate = self
+        if (canBeEnabled(cell)) {
+            cell.switch.isOn = pointCell.enabled
+            cell.switch.isEnabled = true
+            onSwitchChange(cell: cell)
+        } else {
+            cell.switch.isOn = false
+            cell.switch.isEnabled = false
+        }
 
         return cell
         
@@ -54,7 +74,8 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
         cellsData.removeAll()
         
         for point in allPoints {
-            let newCell = FilterCellData(title: point.name,
+            let newCell = FilterCellData(point: point,
+                                         title: point.name,
                                          enabled: usedPoints.contains(point))
             
             cellsData.append(newCell)
@@ -63,20 +84,7 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
     }
     
     /**
-        Selects all items in the table
-    */
-    func selectAll () {
-        
-        for cell in cellsData {
-            cell.enabled = true
-        }
-        
-        tableView.reloadData()
-        
-    }
-    
-    /**
-        Unselects all items in the table
+        Unselects all items in the table.
      */
     func unselectAll () {
         
@@ -88,6 +96,10 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
         
     }
     
+    /**
+        Retrieves the selected point indexes.
+        - Returns: The indexes of the selected points.
+    */
     func getSelectedPointsIndexes () -> [Int] {
         
         var enabledPointsIndexes = [Int]()
@@ -101,10 +113,30 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
         
     }
     
+    func canBeEnabled(_ cell: FilterTableViewCell) -> Bool {
+      return !excedeedMax ||
+        selectedItems.contains(cell.cellData.point)
+    }
+    
     // MARK: Switch delegate implementation
     func onSwitchChange(cell: FilterTableViewCell) {
-        let index = tableView.indexPath(for: cell)!.row
-        cellsData[index].enabled = cell.`switch`.isOn
+                
+        if (cell.cellData.enabled) {
+            selectedItems.insert(cell.cellData.point)
+        } else {
+            selectedItems.remove(cell.cellData.point)
+        }
+        
+        if (excedeedMax) {
+            for cell in tableView.visibleCells as! [FilterTableViewCell] {
+                cell.switch.isEnabled = cell.switch.isOn
+            }
+        } else {
+            for cell in tableView.visibleCells as! [FilterTableViewCell] {
+                cell.switch.isEnabled = true
+            }
+        }
+        
     }
 
 }

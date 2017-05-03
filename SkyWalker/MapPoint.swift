@@ -11,7 +11,7 @@ import Foundation
 /**
  A Map point, with coordinates, number of floor and ID.
  */
-class MapPoint: Equatable {
+class MapPoint: Hashable {
     
     var x: Double, y: Double
     
@@ -38,6 +38,10 @@ class MapPoint: Equatable {
         self.x = x
         self.y = y
         self.z = z
+    }
+    
+    var hashValue: Int {
+        return id.hashValue
     }
     
     static func ==(lhs: MapPoint, rhs: MapPoint) -> Bool {
