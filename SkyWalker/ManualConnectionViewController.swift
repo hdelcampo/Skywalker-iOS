@@ -145,6 +145,11 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
+        
+        if (textField != urlField) {
+            return true
+        }
+        
         let url = textField.text!.appending(string)
         
         if (DataValidator.isValidURL(url: url)) {
