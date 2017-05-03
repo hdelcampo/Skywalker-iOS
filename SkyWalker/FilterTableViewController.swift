@@ -67,7 +67,10 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
     // MARK: Load data methods
     
     /**
-        Replaces data in the data model
+        Replaces data in the data model.
+        - Parameters:
+            - allPoints: All the avialable points.
+            - usedPoints: The already in use points.
      */
     func loadData(allPoints: [PointOfInterest], usedPoints: [PointOfInterest]) {
         
@@ -97,22 +100,21 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
     }
     
     /**
-        Retrieves the selected point indexes.
-        - Returns: The indexes of the selected points.
+        Retrieves the selected items.
+        - Returns: The selected points.
     */
-    func getSelectedPointsIndexes () -> [Int] {
+    func getSelectedItems () -> [PointOfInterest] {
         
-        var enabledPointsIndexes = [Int]()
-        for (index,cell) in cellsData.enumerated() {
-            if cell.enabled {
-                enabledPointsIndexes.append(index)
-            }
-        }
-        
-        return enabledPointsIndexes
+        return Array(selectedItems)
         
     }
     
+    /**
+        Determines whether the cell can be enabled or not.
+        - Parameters:
+            - cell: The cell on which to decide.
+        - Returns: True if can be enabled, false otherwise.
+    */
     func canBeEnabled(_ cell: FilterTableViewCell) -> Bool {
       return !excedeedMax ||
         selectedItems.contains(cell.cellData.point)

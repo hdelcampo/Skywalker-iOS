@@ -43,12 +43,7 @@ class FilterViewController: UIViewController {
     */
     @IBAction func accept() {
         
-        let enabledIndexes = tableViewController.getSelectedPointsIndexes()
-        var enabledPoints = [PointOfInterest]()
-        
-        for index in enabledIndexes {
-            enabledPoints.append(allPoints[index])
-        }
+        let enabledPoints = tableViewController.getSelectedItems()
         
         caller.show(points: enabledPoints)
         dismiss(animated: true, completion: nil)
