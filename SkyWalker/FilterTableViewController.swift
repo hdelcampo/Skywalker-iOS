@@ -15,6 +15,7 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
     
     // MARK: Properties
     var cellsData = [FilterCellData]()
+    var delegate: SelectableTableViewDelegate?
     
     /**
         Indicates if maximum elements where exceeded or not.
@@ -139,6 +140,22 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
             }
         }
         
+        delegate?.onSelectedCountChange(selectedItems.count)
+        
     }
 
+}
+
+/**
+ Delegate for selectable table.
+ */
+protocol SelectableTableViewDelegate {
+    
+    /**
+        Called whenever the selected count changed.
+        - Parameters:
+            - itemCount: The current number of items selecteds.
+    */
+    func onSelectedCountChange (_ itemCount: Int)
+    
 }

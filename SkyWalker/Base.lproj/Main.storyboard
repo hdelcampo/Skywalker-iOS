@@ -299,7 +299,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paC-eV-i1w">
-                                <rect key="frame" x="0.0" y="44" width="375" height="579"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="558"/>
                                 <connections>
                                     <segue destination="W8P-pp-YGY" kind="embed" identifier="filterTableViewController" id="FJu-qC-7EY"/>
                                 </connections>
@@ -331,7 +331,14 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected 4 (Max: 5)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGW-om-9Kq">
+                                <rect key="frame" x="8" y="44" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="paC-eV-i1w" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" id="26U-ar-MTd"/>
                             <constraint firstItem="Igr-jj-vOR" firstAttribute="top" secondItem="aIj-e8-JHg" secondAttribute="bottom" id="48h-I6-Kds"/>
@@ -341,21 +348,27 @@
                             <constraint firstItem="aIj-e8-JHg" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" id="RRj-ZJ-JjU"/>
                             <constraint firstAttribute="trailing" secondItem="VBz-za-KrL" secondAttribute="trailing" id="Ycj-ig-5qt"/>
                             <constraint firstItem="VBz-za-KrL" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" id="cxc-8W-9Wy"/>
-                            <constraint firstItem="paC-eV-i1w" firstAttribute="top" secondItem="VBz-za-KrL" secondAttribute="bottom" id="hQp-ST-zTm"/>
+                            <constraint firstItem="RGW-om-9Kq" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" constant="8" id="mnS-vc-9or"/>
+                            <constraint firstItem="RGW-om-9Kq" firstAttribute="top" secondItem="VBz-za-KrL" secondAttribute="bottom" id="nP4-KT-7Ri"/>
+                            <constraint firstItem="paC-eV-i1w" firstAttribute="top" secondItem="RGW-om-9Kq" secondAttribute="bottom" id="oNk-bL-zL5"/>
                             <constraint firstItem="VBz-za-KrL" firstAttribute="top" secondItem="ZyS-8i-mj4" secondAttribute="bottom" id="wO1-5c-8Jz"/>
+                            <constraint firstAttribute="trailing" secondItem="RGW-om-9Kq" secondAttribute="trailing" constant="8" id="x9N-fn-kfg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="itemCountLabel" destination="RGW-om-9Kq" id="xcY-BV-hft"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7C-gt-WLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="716"/>
+            <point key="canvasLocation" x="1260" y="715.59220389805103"/>
         </scene>
         <!--Filter Table View Controller-->
         <scene sceneID="rEP-z3-Xrm">
             <objects>
                 <tableViewController id="W8P-pp-YGY" customClass="FilterTableViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="A1h-Uu-aG2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -382,9 +395,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="x1Z-3p-EO8" firstAttribute="centerY" secondItem="fUJ-nj-b7Q" secondAttribute="centerY" id="Ihd-Pq-Jfa"/>
+                                        <constraint firstItem="x1Z-3p-EO8" firstAttribute="leading" secondItem="fUJ-nj-b7Q" secondAttribute="leadingMargin" id="Nmp-bE-JYD"/>
                                         <constraint firstItem="454-pP-wAz" firstAttribute="centerY" secondItem="fUJ-nj-b7Q" secondAttribute="centerY" id="Qji-rW-Sb3"/>
-                                        <constraint firstItem="454-pP-wAz" firstAttribute="trailing" secondItem="fUJ-nj-b7Q" secondAttribute="trailingMargin" id="qWd-Yf-Ktk"/>
-                                        <constraint firstItem="x1Z-3p-EO8" firstAttribute="leading" secondItem="fUJ-nj-b7Q" secondAttribute="leadingMargin" id="rJW-YA-o0F"/>
+                                        <constraint firstItem="454-pP-wAz" firstAttribute="trailing" secondItem="fUJ-nj-b7Q" secondAttribute="trailingMargin" id="joF-0M-dh2"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

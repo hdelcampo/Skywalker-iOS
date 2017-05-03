@@ -9,3 +9,4 @@
 "Demo_mode" = "Demo mode";
 "invalid_url" = "Invalid URL.";
 "invalid_username_password" = "Invalid username or password.";
+"selectable_table_count_msg" = "Selected %d (Max %d)";
