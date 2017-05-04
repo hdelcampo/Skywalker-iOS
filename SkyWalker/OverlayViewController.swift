@@ -110,6 +110,11 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             
             var vectorToPoint = Vector2D(x: point.x - mySelf.x,
                                          y: point.y - mySelf.y)
+            
+            if (vectorToPoint.x == 0 && vectorToPoint.y == 0) {
+                continue
+            }
+            
             vectorToPoint.normalize()
             
             if inSight(vectorToPoint: vectorToPoint, orientationVector: orientationVector) {
@@ -349,12 +354,12 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
                     }
                 }
                 
-                let onSuccess: (PointOfInterest) -> Void = { tag in
+                let onSuccess: (MapPoint) -> Void = { position in
                     for point in self.points {
-                        if (point == tag) {
-                            point.x = tag.x
-                            point.y = tag.y
-                            point.z = tag.z
+                        if (point == position) {
+                            point.x = position.x
+                            point.y = position.y
+                            point.z = position.z
                         }
                     }
                 }

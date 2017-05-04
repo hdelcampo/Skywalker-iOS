@@ -14,7 +14,9 @@ class ServerFacade {
      Possible errors
     */
     public enum ErrorType: Error {
-        case INVALID_QR, INVALID_URL, NO_CONNECTION, TIME_OUT, INVALID_USERNAME_OR_PASSWORD, NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
+        case INVALID_QR, INVALID_URL, NO_CONNECTION,
+        TIME_OUT, INVALID_USERNAME_OR_PASSWORD, INVALID_JSON,
+        NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
     }
     
     /*
@@ -283,7 +285,7 @@ class ServerFacade {
         Retrieves a point of interest last position
     */
     func getLastPosition(tag: PointOfInterest,
-                         onSuccess: @escaping (_: PointOfInterest) -> Void,
+                         onSuccess: @escaping (_: MapPoint) -> Void,
                          onError: @escaping (_: ErrorType) -> Void) throws {
         
         if (nil == token) {
@@ -315,17 +317,31 @@ class ServerFacade {
                     onError(ServerFacade.getError(statusCode: httpResponse.statusCode))
                 } else {
                     let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String, Any>
-                    if nil == json["x"] {
-                        return
+                    
+                    if let receiverId = json["nearest_rdhub"] as? Int {
+                        
+                        let receivers = Center.centers[0].receivers!
+                        
+                        var receiver: MapPoint!
+                        
+                        for element in receivers {
+                            if element.id == receiverId {
+                                receiver = element
+                                break
+                            }
+                        }
+                        
+                        let newPosition = MapPoint(id: receiverId,
+                                                   x: receiver.x,
+                                                   y: receiver.y,
+                                                   z: receiver.z)
+                        
+                        onSuccess(newPosition)
+                        
+                    } else {
+                        onError(.INVALID_JSON)
                     }
                     
-                    let newPosition = PointOfInterest(id: tag.id, name: tag.name)
-                    
-                    newPosition.x = json["x"] as! Double
-                    newPosition.y = json["y"] as! Double
-                    newPosition.z = json["z"] as! Int
-                    
-                    onSuccess(newPosition)
                 }
                 
             }
