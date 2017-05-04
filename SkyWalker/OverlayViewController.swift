@@ -67,8 +67,10 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         mySelf = PointOfInterest.mySelf
         
         orientationSensor.registerEvents()
-        if (ServerFacade.instance.isDemo) {
+        if (!ServerFacade.instance.isDemo) {
             bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
+        } else {
+            painterThread = Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
         }
         
     }
@@ -147,6 +149,8 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     private func startThreads() {
         connectionThread = TagsUpdaterThread()
         connectionThread!.points = points
+        connectionThread!.mySelf = mySelf
+        connectionThread!.errorCallback = {_ in self.onInternetError()}
         connectionThread!.start()
         
         painterThread = Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
@@ -161,6 +165,18 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         
         painterThread?.invalidate()
         painterThread = nil
+    }
+    
+    private func onInternetError() {
+        alert = UIAlertController(title: NSLocalizedString("internet_off_title", comment: ""),
+                                  message: NSLocalizedString("internet_off_msg", comment: ""),
+                                  preferredStyle: .alert)
+        alert!.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                       style: .default,
+                                       handler: { _ in
+                                        
+        }))
+        self.present(alert!, animated: true, completion: nil)
     }
     
     /**
@@ -305,12 +321,33 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     class TagsUpdaterThread: Thread {
         
         var points: [PointOfInterest] = []
+        var mySelf: PointOfInterest!
+        
+        var errorCallback: (() -> Void)?
         
         let updateRate: UInt32 = 1000 * 1000   //ms * ns
         
+        let maxErrorsPorc: Float = 0.6
+        let maxLoopsWithoutCheck: Float = 4
+        
         override func main() {
             
+            var numLoopsWithoutCheck: Float = 0
+            var numPetitionsWithoutCheck: Float = 4
+            var numErrors = AtomicInteger()
+
             while(!self.isCancelled) {
+                
+                if (maxLoopsWithoutCheck == numLoopsWithoutCheck) {
+                    if ( Float(numErrors.get()) >= numPetitionsWithoutCheck * maxErrorsPorc) {
+                        errorCallback?()
+                        break;
+                    } else {
+                        numErrors.set(0)
+                        numPetitionsWithoutCheck = 0
+                        numLoopsWithoutCheck = 0
+                    }
+                }
                 
                 let onSuccess: (PointOfInterest) -> Void = { tag in
                     for point in self.points {
@@ -322,12 +359,24 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
                     }
                 }
                 
+                let onError: (ServerFacade.ErrorType) -> Void = { _ in
+                    numErrors.increment()
+                }
+                
+                try? ServerFacade.instance.getLastPosition(tag: mySelf,
+                                                           onSuccess: onSuccess,
+                                                           onError: onError)
+                
+                numPetitionsWithoutCheck += 1
+                
                 for point in points {
                     try? ServerFacade.instance.getLastPosition(tag: point,
                                                                onSuccess: onSuccess,
-                                                               onError: { (error) in print("Error ocurred during update: \(String(describing: error))" )})
+                                                               onError: onError)
+                    numPetitionsWithoutCheck += 1
                 }
                 
+                numLoopsWithoutCheck += 1
                 usleep(updateRate)
                 
             }

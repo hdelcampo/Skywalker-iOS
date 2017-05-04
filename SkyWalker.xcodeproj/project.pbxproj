@@ -42,6 +42,7 @@
 		C468AF001E796A27005AA4EE /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C468AEFE1E796987005AA4EE /* Vector.swift */; };
 		C47343A11DC667CC00475078 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C473439F1DC667CC00475078 /* Fabric.framework */; };
 		C47343A21DC667CC00475078 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C47343A01DC667CC00475078 /* Crashlytics.framework */; };
+		C4759BF21EBB1AEB00BE2948 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4759BF11EBB1AEB00BE2948 /* AtomicInteger.swift */; };
 		C4809CAB1E97B038006520FE /* NewConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */; };
 		C48A293F1E9A708B00EB9EEA /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A293E1E9A708B00EB9EEA /* MapPoint.swift */; };
 		C491CC7B1EB9F3AA00AB23EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C491CC791EB9F3AA00AB23EF /* InfoPlist.strings */; };
@@ -101,6 +102,7 @@
 		C468AEFE1E796987005AA4EE /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		C473439F1DC667CC00475078 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C47343A01DC667CC00475078 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C4759BF11EBB1AEB00BE2948 /* AtomicInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
 		C4809CAA1E97B038006520FE /* NewConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewConnectionViewController.swift; sourceTree = "<group>"; };
 		C48A293E1E9A708B00EB9EEA /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		C491CC7A1EB9F3AA00AB23EF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				C44DB1E01DC65860000CAEED /* Vector3D.swift */,
 				C439BAF81E990D920014544D /* DataValidator.swift */,
 				C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */,
+				C4759BF11EBB1AEB00BE2948 /* AtomicInteger.swift */,
 			);
 			name = services;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				C49B18EA1DC75DD200FDDC2E /* FilterViewController.swift in Sources */,
 				C44DB1E11DC65860000CAEED /* Vector3D.swift in Sources */,
 				C4304A221E5AF7A600202AC6 /* Token.swift in Sources */,
+				C4759BF21EBB1AEB00BE2948 /* AtomicInteger.swift in Sources */,
 				C4583E2A1D9686D3001B1659 /* AppDelegate.swift in Sources */,
 				C468AEFF1E796987005AA4EE /* Vector.swift in Sources */,
 				C4583E4C1D969073001B1659 /* CameraViewController.swift in Sources */,

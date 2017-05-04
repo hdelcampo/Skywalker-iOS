@@ -13,3 +13,6 @@
 "settings" = "Settings";
 "bluetooth_off_title" = "Bluetooth disabled";
 "bluetooth_off_msg" = "Enable Bluetooth so Skywalker can work properly.";
+"internet_off_title" = "Connection error";
+"internet_off_msg" = "You will be redirected to login screen.";
+"ok" = "Ok";
