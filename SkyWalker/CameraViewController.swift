@@ -13,6 +13,11 @@ class CameraViewController: UIViewController {
     // MARK: Properties
     
     let camera = Camera.instance
+    
+    /**
+     View's state
+     */
+    var destroyed = false
 
     // MARK: Functions
     
@@ -25,15 +30,19 @@ class CameraViewController: UIViewController {
  
     }
     
+
     /**
         Callback for view destroy
     */
     func viewWillBeDestroyed() {
+        destroyed = true
         camera.stopSession()
     }
     
     override func viewDidLayoutSubviews() {
-        camera.rotate(orientation: UIDevice.current.orientation)
+        if (!destroyed) {
+            camera.rotate(orientation: UIDevice.current.orientation)
+        }
     }
 
 }
