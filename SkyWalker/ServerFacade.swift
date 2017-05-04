@@ -14,7 +14,7 @@ class ServerFacade {
      Possible errors
     */
     public enum ErrorType: Error {
-        case INVALID_QR, INVALID_USERNAME_OR_PASSWORD, NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
+        case INVALID_QR, INVALID_URL, NO_CONNECTION, TIME_OUT, INVALID_USERNAME_OR_PASSWORD, NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
     }
     
     /*

@@ -16,3 +16,6 @@
 "internet_off_title" = "Error de conexión";
 "internet_off_msg" = "Serás llevado a la pantalla de inicio de sesión.";
 "ok" = "Ok";
+"invalid_qr" = "Código QR no valido.";
+"no_internet" = "Hubo un problema con tu conexión a Internet.";
+"server_bad_connection" = "No se pudo recuperar la información del servidor.";

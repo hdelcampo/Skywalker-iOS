@@ -13,6 +13,11 @@ import AVFoundation
     QR Connection view controller.
  */
 class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadataOutputObjectsDelegate {
+    
+    /**
+     Connection status
+     */
+    var connecting = false
 
     @IBOutlet weak var cameraView: UIView!
     
@@ -59,7 +64,6 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == AVMetadataObjectTypeQRCode {
-            print(metadataObj.stringValue)
             if (isXtremeLocQR(qr: metadataObj.stringValue)) {
                 treat(qr: metadataObj.stringValue)
             } else {
@@ -77,23 +81,64 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         
         let qrData = qr.data(using: .utf8)!
         
-        if let json = try! JSONSerialization.jsonObject(with: qrData, options: []) as? Dictionary<String, Any> {
-            return json["scheme"] != nil
+        if let json = try? JSONSerialization.jsonObject(with: qrData, options: []) as? Dictionary<String, Any> {
+            return json!["scheme"] != nil
         } else {
             return false
         }
 
     }
     
+    
     /**
         Handles a QR code.
     */
     private func treat(qr: String) {
         
+        if connecting {
+            return
+        }
+        
+        connecting = true
+        
+        let data = qr.data(using: .utf8)!
+        let json = try! JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String, String>
+        
+        let url = json["url"]!
+        let username: String? = json["username"]
+        let password: String? = json["password"]
+        
+        newConnection(url: url, username: username, password: password)
+
     }
     
     override func show(error: ServerFacade.ErrorType) {
-        print(String(describing: error))
+        connecting = false
+        
+        var alert: UIAlertController!
+        
+        switch error {
+        case .INVALID_QR, .INVALID_URL:
+            alert = UIAlertController(title: nil,
+                                      message: NSLocalizedString("invalid_qr", comment: ""),
+                                      preferredStyle: .alert)
+        case .INVALID_USERNAME_OR_PASSWORD:
+            alert = UIAlertController(title: nil,
+                                      message: NSLocalizedString("invalid_username_password", comment: ""),
+                                      preferredStyle: .alert)
+        case .NO_CONNECTION, .TIME_OUT:
+            alert = UIAlertController(title: nil,
+                                      message: NSLocalizedString("no_internet", comment: ""),
+                                      preferredStyle: .alert)
+        default:
+            alert = UIAlertController(title: nil,
+                                      message: NSLocalizedString("server_bad_connection", comment: ""),
+                                      preferredStyle: .alert)
+        }
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 
 }

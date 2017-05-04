@@ -16,3 +16,6 @@
 "internet_off_title" = "Connection error";
 "internet_off_msg" = "You will be redirected to login screen.";
 "ok" = "Ok";
+"invalid_qr" = "This QR is not a valid one.";
+"no_internet" = "There was an error with your internet connection.";
+"server_bad_connection" = "Couldn't retrieve server info.";
