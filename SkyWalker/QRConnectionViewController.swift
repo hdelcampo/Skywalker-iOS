@@ -64,6 +64,13 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == AVMetadataObjectTypeQRCode {
+            
+            if connecting {
+                return
+            }
+            
+            connecting = true
+            
             if (isXtremeLocQR(qr: metadataObj.stringValue)) {
                 treat(qr: metadataObj.stringValue)
             } else {
@@ -95,12 +102,6 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     */
     private func treat(qr: String) {
         
-        if connecting {
-            return
-        }
-        
-        connecting = true
-        
         let data = qr.data(using: .utf8)!
         let json = try! JSONSerialization.jsonObject(with: data, options: []) as! Dictionary<String, String>
         
@@ -113,7 +114,6 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     }
     
     override func show(error: ServerFacade.ErrorType) {
-        connecting = false
         
         var alert: UIAlertController!
         
@@ -136,7 +136,11 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
                                       preferredStyle: .alert)
         }
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                      style: .default,
+                                      handler: {_ in
+                                        self.connecting = false
+        }))
         
         self.present(alert, animated: true, completion: nil)
     }
