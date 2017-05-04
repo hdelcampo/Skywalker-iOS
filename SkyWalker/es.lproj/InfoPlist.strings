@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  SkyWalker
+
+  Created by Héctor Del Campo Pando on 3/5/17.
+  Copyright © 2017 Héctor Del Campo Pando. All rights reserved.
+*/
+
+"NSCameraUsageDescription" = "La cámara se utiliza para mostrar imagenes del mundo real, no se harán fotos o videos.";
+"NSBluetoothPeripheralUsageDescription" = "El Bluetooth debe estar encendido, sino Skywalker no funcionará.";

@@ -10,3 +10,6 @@
 "invalid_url" = "Invalid URL.";
 "invalid_username_password" = "Invalid username or password.";
 "selectable_table_count_msg" = "Selected %d (Max %d)";
+"settings" = "Settings";
+"bluetooth_off_title" = "Bluetooth disabled";
+"bluetooth_off_msg" = "Enable Bluetooth so Skywalker can work properly.";

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreBluetooth
 
-class OverlayViewController: UIViewController {
+class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     //MARK: Outlets
     
@@ -40,15 +41,22 @@ class OverlayViewController: UIViewController {
     var initialLayers : [CALayer] = []
     var mySelf: PointOfInterest!
     
+    var bleManager: CBPeripheralManager!
+    
     /**
         Maximum number of points to draw
     */
     static let maxPoints = 5
     
     /**
-     Thread that handles tags position updating
+        Thread that handles tags position updating.
      */
-    let thread: TagsUpdaterThread = TagsUpdaterThread()
+    var connectionThread: TagsUpdaterThread?
+    
+    /**
+        Thread that handles drawing.
+    */
+    var painterThread: Timer?
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -59,12 +67,30 @@ class OverlayViewController: UIViewController {
         mySelf = PointOfInterest.mySelf
         
         orientationSensor.registerEvents()
-        if (!ServerFacade.instance.isDemo) {
-            thread.points = points
-            thread.start()
+        if (ServerFacade.instance.isDemo) {
+            bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         }
-        Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
         
+    }
+    
+    var alert: UIAlertController?
+    
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        if peripheral.state == .poweredOff {
+            stopThreads()
+            alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
+                              message: NSLocalizedString("bluetooth_off_msg", comment: ""),
+                              preferredStyle: .alert)
+            alert!.addAction(UIAlertAction(title: NSLocalizedString("settings", comment: ""),
+                                           style: .default,
+                                           handler: { _ in
+                                            let url = URL(string: "App-Prefs:root=Bluetooth")
+                                            UIApplication.shared.openURL(url!)
+            }))
+            self.present(alert!, animated: true, completion: nil)
+        } else if (peripheral.state == .poweredOn) {
+            startThreads()
+        }
     }
     
     @objc func redraw (_: Any) {
@@ -113,6 +139,28 @@ class OverlayViewController: UIViewController {
         return (horizontalTheta <= Double(fovWidth/2) &&
                 verticalTheta <= Double(fovHeight/2))
         
+    }
+    
+    /**
+        Starts all threads.
+    */
+    private func startThreads() {
+        connectionThread = TagsUpdaterThread()
+        connectionThread!.points = points
+        connectionThread!.start()
+        
+        painterThread = Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
+    }
+    
+    /**
+        Destroys all threads.
+    */
+    private func stopThreads() {
+        connectionThread?.cancel()
+        connectionThread = nil
+        
+        painterThread?.invalidate()
+        painterThread = nil
     }
     
     /**
@@ -262,7 +310,7 @@ class OverlayViewController: UIViewController {
         
         override func main() {
             
-            while(self.isExecuting) {
+            while(!self.isCancelled) {
                 
                 let onSuccess: (PointOfInterest) -> Void = { tag in
                     for point in self.points {
