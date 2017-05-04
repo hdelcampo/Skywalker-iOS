@@ -17,7 +17,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     /**
      Connection status
      */
-    var connecting = false
+    var connecting: Bool!
 
     @IBOutlet weak var cameraView: UIView!
     
