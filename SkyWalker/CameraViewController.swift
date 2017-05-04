@@ -25,6 +25,13 @@ class CameraViewController: UIViewController {
  
     }
     
+    /**
+        Callback for view destroy
+    */
+    func viewWillBeDestroyed() {
+        camera.stopSession()
+    }
+    
     override func viewDidLayoutSubviews() {
         camera.rotate(orientation: UIDevice.current.orientation)
     }

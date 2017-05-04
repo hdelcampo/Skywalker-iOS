@@ -8,16 +8,7 @@
 
 import UIKit
 
-class ConnectionDialogController: UITabBarController, UITabBarControllerDelegate {
-    
-    /**
-        The QR tab view controller
-    */
-    var qrTabController: QRConnectionViewController?
-    
-    override func viewDidLoad() {
-        delegate = self
-    }
+class ConnectionDialogController: UITabBarController {
 
     /**
         Action called when pressed cancel button
@@ -25,15 +16,6 @@ class ConnectionDialogController: UITabBarController, UITabBarControllerDelegate
     */
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let controller = viewController as? QRConnectionViewController {
-            qrTabController = controller
-            controller.connecting = false
-        } else {
-            qrTabController?.connecting = true
-        }
     }
 
 }

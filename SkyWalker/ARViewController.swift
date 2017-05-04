@@ -19,6 +19,8 @@ class ARViewController: UIViewController {
     
     private var areControlsHidden = true
     
+    private var cameraViewController: CameraViewController!
+    
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var bottomBar: UIToolbar!
     
@@ -55,6 +57,8 @@ class ARViewController: UIViewController {
             controller.caller = self
         } else if let controller = segue.destination as? OverlayViewController {
             overlayViewController = controller
+        } else if let controller = segue.destination as? CameraViewController {
+            cameraViewController = controller
         }
         
     }
@@ -64,6 +68,7 @@ class ARViewController: UIViewController {
     */
     @IBAction func logout(_ sender: UIBarButtonItem) {
         ServerFacade.instance.clear()
+        cameraViewController.viewWillBeDestroyed()
         dismiss(animated: true, completion: nil)
         if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
             myDelegate.portraitOnly = true

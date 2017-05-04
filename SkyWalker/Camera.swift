@@ -60,6 +60,11 @@ class Camera {
         captureSession.startRunning()
     }
     
+    func stopSession() {
+        captureSession.removeInput(captureSession.inputs[0] as! AVCaptureInput)
+        captureSession.stopRunning()
+    }
+    
     func rotate(orientation: UIDeviceOrientation) {
         previewLayer?.frame = (view?.bounds)!
         switch orientation {

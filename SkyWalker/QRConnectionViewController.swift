@@ -18,11 +18,27 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
      Connection status
      */
     var connecting: Bool!
+    
+    var captureSession: AVCaptureSession!
 
     @IBOutlet weak var cameraView: UIView!
     
     override func viewDidLayoutSubviews() {
         startCameraPreviewWithQRDetection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        captureSession.stopRunning()
+        connecting = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.global(qos: .default).async {_ in
+            
+            self.captureSession.startRunning()
+            
+        }
+        connecting = false
     }
     
     /**
@@ -33,7 +49,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         let input: AnyObject! = try? AVCaptureDeviceInput.init(device: captureDevice)
-        let captureSession = AVCaptureSession()
+        captureSession = AVCaptureSession()
         captureSession.addInput(input as! AVCaptureInput)
         
         let captureMetadataOutput = AVCaptureMetadataOutput()
@@ -46,12 +62,6 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
         previewLayer?.frame = cameraView.layer.bounds
         previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
         cameraView.layer.addSublayer(previewLayer!)
-        
-        DispatchQueue.global(qos: .default).async {_ in
-
-            captureSession.startRunning()
-            
-        }
         
     }
     
