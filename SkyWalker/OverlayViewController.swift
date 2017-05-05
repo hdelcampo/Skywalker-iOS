@@ -56,7 +56,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     /**
         Thread that handles drawing.
     */
-    var painterThread: Timer?
+    var painterThread: DispatchSourceTimer?
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -70,7 +70,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         if (!ServerFacade.instance.isDemo) {
             bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         } else {
-            painterThread = Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
+            startDrawingThread()
         }
         
     }
@@ -95,59 +95,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         }
     }
     
-    @objc func redraw (_: Any) {
-        
-        // Remove all but debug info
-        self.view.layer.sublayers?.forEach( { if !(self.initialLayers.contains($0)) { $0.removeFromSuperlayer() } })
-        
-        let orientationVector = orientationSensor.orientationVector
-        
-        xLabel.text = String(format: "X %.6f", orientationVector.x)
-        yLabel.text = String(format: "Y %.6f", orientationVector.y)
-        zLabel.text = String(format: "Z %.6f", orientationVector.z)
-        
-        for point in self.points {
-            
-            var vectorToPoint = Vector2D(x: point.x - mySelf.x,
-                                         y: point.y - mySelf.y)
-            
-            if (vectorToPoint.x == 0 && vectorToPoint.y == 0) {
-                continue
-            }
-            
-            vectorToPoint.normalize()
-            
-            if inSight(vectorToPoint: vectorToPoint, orientationVector: orientationVector) {
-                draw(point: point, vectorToPoint: vectorToPoint, orientationVector: orientationVector)
-            } else {
-                drawIndicator(point: point, vectorToPoint: vectorToPoint, orientationVector: orientationVector)
-            }
-        }
-            
-    }
-    
-    /**
-        Checks if a given point is in sight of camera's image.
-    */
-    private func inSight(vectorToPoint: Vector2D, orientationVector: Vector3D) -> Bool {
-        
-        let fovWidth = Camera.instance.horizontalFOV,
-            fovHeight = Camera.instance.verticalFOV
-        
-        // Horizontal
-        var orientationOnMap = Vector2D(x: orientationVector.x, y: orientationVector.y)
-        orientationOnMap.normalize()
-        
-        let horizontalTheta = orientationOnMap.angle(v: vectorToPoint)
-        
-        //Vertical
-        let verticalTheta = abs(-90*orientationVector.z)
-        
-        return (horizontalTheta <= Double(fovWidth/2) &&
-                verticalTheta <= Double(fovHeight/2))
-        
-    }
-    
     /**
         Starts all threads.
     */
@@ -158,7 +105,26 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         connectionThread!.errorCallback = {_ in self.onInternetError()}
         connectionThread!.start()
         
-        painterThread = Timer.scheduledTimer(timeInterval: OrientationSensor.updateRate, target: self, selector: #selector(redraw(_:)), userInfo: nil, repeats: true)
+        startDrawingThread()
+    }
+    
+    /**
+        Starts the drawing thread and layers
+    */
+    private func startDrawingThread() {
+        initLayers()
+        painterThread = DispatchSource.makeTimerSource(queue: queue)
+        painterThread!.scheduleRepeating(deadline: .now(), interval: OrientationSensor.updateRate)
+        painterThread!.setEventHandler { _ in
+            self.redraw()
+        }
+        
+        if #available(iOS 10.0, *) {
+            painterThread!.activate()
+        } else {
+            painterThread!.resume()
+        }
+        
     }
     
     /**
@@ -168,7 +134,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         connectionThread?.cancel()
         connectionThread = nil
         
-        painterThread?.invalidate()
+        painterThread?.cancel()
         painterThread = nil
     }
     
@@ -184,10 +150,49 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         self.present(alert!, animated: true, completion: nil)
     }
     
+    // MARK: Drawing
+    
+    /**
+     In sight layers pool
+     */
+    var inSightLayers = [CALayer?](repeating: nil, count: OverlayViewController.maxPoints)
+    
+    /**
+     Out of sight layers pool
+     */
+    var outOfSighttLayers = [CALayer?](repeating: nil, count: OverlayViewController.maxPoints)
+    
+    /**
+     GDC Queue for painting.
+     */
+    let queue = DispatchQueue(label: "Painter", qos: DispatchQoS.userInitiated)
+    
+    /**
+     Checks if a given point is in sight of camera's image.
+     */
+    private func inSight(vectorToPoint: Vector2D, orientationVector: Vector3D) -> Bool {
+        
+        let fovWidth = Camera.instance.horizontalFOV,
+        fovHeight = Camera.instance.verticalFOV
+        
+        // Horizontal
+        var orientationOnMap = Vector2D(x: orientationVector.x, y: orientationVector.y)
+        orientationOnMap.normalize()
+        
+        let horizontalTheta = orientationOnMap.angle(v: vectorToPoint)
+        
+        //Vertical
+        let verticalTheta = abs(-90*orientationVector.z)
+        
+        return (horizontalTheta <= Double(fovWidth/2) &&
+            verticalTheta <= Double(fovHeight/2))
+        
+    }
+    
     /**
      Draws an indicator for the given point indicating heading direction
      */
-    private func drawIndicator(point: PointOfInterest, vectorToPoint: Vector2D, orientationVector: Vector3D) {
+    private func drawIndicator(index: Int, vectorToPoint: Vector2D, orientationVector: Vector3D) {
         
         
         // Horizontal
@@ -212,6 +217,9 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         let height = Double(view.bounds.height)
         let width = Double(view.bounds.width)
         
+        var textX = iconSize/6
+        var textY = iconSize/4
+        
         if (0 <= angle && angle <= 45 ||
             315 <= angle && angle <= 360) {
             x = width*margin
@@ -225,29 +233,39 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             }
             
             y = height*(1 - margin) + ((correctedAngle/(45*2))) * height*(1 - (1 - margin) * 2)   //Decimal part from div by 45 angles
+            textX *= -2
+            textY *= -1.75
             
         } else if (45 < angle && angle <= 135) {
             correctedAngle =  135 - angle;
             x = width*(1 - margin) + (correctedAngle/(45*2)) * width*(1 - (1 - margin) * 2);
             y = height*margin;
+            textY *= -2
         } else if (135 < angle && angle <= 225) {
             correctedAngle = 225 - angle;
             x = width*(1-margin);
             y = height*(1 - margin) + (correctedAngle/(45*2)) * height*(1 - (1 - margin) * 2);
+            textX *= 2
         } else {
             correctedAngle = angle - 225;
             x = width*(1 - margin) + (correctedAngle/(45*2)) * width*(1 - (1 - margin) * 2);
             y = height*(1-margin);
+            textY *= 2
         }
         
-        draw(text: [point.name], to: view, x: x + iconSize/6, y: y+iconSize/4)
-        draw(icon: outOfSightIconPath, to: view, x: x, y: y, angle: angle + outOfSightIconAngleOffset)
+        transformOutOfSightLayer(outOfSighttLayers[index]!,
+                                 x: x,
+                                 y: y,
+                                 textX: textX,
+                                 textY: textY,
+                                 angle: angle + outOfSightIconAngleOffset)
+        
     }
     
     /**
         Draws a given point at actual image's position
     */
-    private func draw(point: PointOfInterest, vectorToPoint: Vector2D, orientationVector: Vector3D) {
+    private func draw(index: Int, point: PointOfInterest, vectorToPoint: Vector2D, orientationVector: Vector3D) {
         let fovWidth = Camera.instance.horizontalFOV,
             fovHeight = Camera.instance.verticalFOV
         
@@ -272,15 +290,20 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             floorLabel = " \(floorDelta)f \u{25BC}"
         }
         
-        draw(text: [point.name, "\(vectorToPoint.module() * Center.centers[0].scale)m" + floorLabel ], to: view, x: x + iconSize/3, y: y + iconSize/4)
-        draw(icon: inSightIconPath, to: view, x: x , y: y, angle: 0);
+        transformInSightLayer(inSightLayers[index]!,
+                              text: [point.name, "\(vectorToPoint.module() * Center.centers[0].scale)m" + floorLabel],
+                              x: x,
+                              y: y)
         
     }
     
     /**
-     * Draws to given view, at given position, formating text with new line separators
+        Creates a layer with text on the given layer.
+        - Parameters:
+            - text: The text to spawn.
+            - to: Target layer.
      */
-    private func draw(text: [String], to: UIView, x: Double, y: Double) -> Void {
+    private func spawnLayer(text: [String], to: CALayer) {
         
         let textLayer = CATextLayer()
         let text = text.joined(separator: textSeparator)
@@ -294,31 +317,179 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         
         textLayer.string = attrText
         textLayer.contentsScale = UIScreen.main.scale
-        textLayer.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
         let size = attrText.size()
         textLayer.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-        textLayer.position = CGPoint(x: x, y: y)
         textLayer.anchorPoint = CGPoint(x: 0, y: 0.5)
         
-        to.layer.addSublayer(textLayer)
+        to.addSublayer(textLayer)
         
     }
     
     /**
-     * Draws to given view, at given position, a image specified by path, with given rotation in degrees
+        Creates a layer with an icon on the given layer
+        - Parameters:
+            - icon: The icon to spawn.
+            - to: Target layer.
      */
-    private func draw(icon: String, to: UIView, x: Double, y: Double, angle: Double) -> Void {
+    private func spawnLayer(icon: String, to: CALayer) {
         
         let iconLayer = CALayer()
         iconLayer.contents = UIImage(named: icon)?.cgImage
-        iconLayer.transform = CATransform3DMakeRotation(CGFloat(angle.toRadians), 0, 0, 1)
         iconLayer.bounds = CGRect(x: 0, y: 0, width: iconSize, height: iconSize)
-        iconLayer.position = CGPoint(x: x, y: y)
 
-        
-        to.layer.addSublayer(iconLayer)
+        to.addSublayer(iconLayer)
         
     }
+    
+    /**
+        The main painter loop, this will handle the queues and all painting logic.
+    */
+    func redraw () {
+        
+        let orientationVector = orientationSensor.orientationVector
+        
+        DispatchQueue.main.async {
+            self.xLabel.text = String(format: "X %.6f", orientationVector.x)
+            self.yLabel.text = String(format: "Y %.6f", orientationVector.y)
+            self.zLabel.text = String(format: "Z %.6f", orientationVector.z)
+        }
+        
+        
+            for (index, point) in self.points.enumerated() {
+                
+                var vectorToPoint = Vector2D(x: point.x - self.mySelf.x,
+                                             y: point.y - self.mySelf.y)
+                
+                if (vectorToPoint.x == 0 && vectorToPoint.y == 0) {
+                    DispatchQueue.main.async {
+                        self.outOfSighttLayers[index]?.isHidden = true
+                        self.inSightLayers[index]?.isHidden = true
+                    }
+                    continue
+                }
+                
+                vectorToPoint.normalize()
+                
+                if self.inSight(vectorToPoint: vectorToPoint, orientationVector: orientationVector) {
+                    DispatchQueue.main.async {
+                        self.outOfSighttLayers[index]?.isHidden = true
+                        self.inSightLayers[index]?.isHidden = false
+                    }
+                    self.draw(index: index, point: point, vectorToPoint: vectorToPoint, orientationVector: orientationVector)
+                } else {
+                    DispatchQueue.main.async {
+                        self.inSightLayers[index]?.isHidden = true
+                        self.outOfSighttLayers[index]?.isHidden = false
+                    }
+                    self.drawIndicator(index: index, vectorToPoint: vectorToPoint, orientationVector: orientationVector)
+                }
+            }
+        
+    }
+    
+    /**
+     Transforms an already existing layer to the given position and angle.
+     - Parameters:
+     - layer: Target layer.
+     - x: X position.
+     - y: Y position.
+     - textX: text X offset.
+     - textY: text Y offset.
+     - angle: icon angle.
+     */
+    func transformOutOfSightLayer (_ layer: CALayer, x: Double, y: Double, textX: Double, textY: Double, angle: Double) {
+        
+        DispatchQueue.main.async {
+            
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            
+            layer.sublayers![0].transform = CATransform3DMakeRotation(CGFloat(angle.toRadians), 0, 0, 1)
+            layer.sublayers![1].position = CGPoint(x: textX, y: textY)
+            layer.position = CGPoint(x: x, y: y)
+            
+            CATransaction.commit()
+        }
+    }
+    
+    /**
+     Transforms an already existing layer to the given position and test.
+     - Parameters:
+     - layer: Target layer.
+     - text: To draw.
+     - x: X position.
+     - y: Y position.
+     */
+    func transformInSightLayer (_ layer: CALayer, text: [String], x: Double, y: Double) {
+        
+        let text = text.joined(separator: textSeparator)
+        
+        let attrText = NSAttributedString(string: text,
+                                          attributes:
+            [NSForegroundColorAttributeName: textColor,
+             NSStrokeColorAttributeName: strokeColor,
+             NSStrokeWidthAttributeName: -strokeSize,
+             NSFontAttributeName: UIFont.systemFont(ofSize: textSize)])
+        
+        let size = attrText.size()
+        
+        DispatchQueue.main.async {
+            
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            
+            (layer.sublayers![1] as! CATextLayer).string = attrText
+            layer.sublayers![1].bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+            layer.sublayers![1].position = CGPoint(x: self.iconSize/3, y: self.iconSize/4)
+            layer.position = CGPoint(x: x, y: y)
+            
+            CATransaction.commit()
+        }
+        
+    }
+    
+    /**
+     Inits the layer objects pool
+     */
+    func initLayers () {
+        
+        // Remove all but debug info
+        self.view.layer.sublayers?.forEach( { if !(self.initialLayers.contains($0)) { $0.removeFromSuperlayer() } })
+        
+        for (index, point) in points.enumerated() {
+            initOutOfSightLayer(index: index, point: point)
+            initInSightLayer(index: index, point: point)
+        }
+    }
+    
+    /**
+     Starts an out of sight layer.
+     - Parameters:
+     - index: The layer index.
+     - point: To represent.
+     */
+    private func initOutOfSightLayer (index: Int, point: PointOfInterest) {
+        let layer = CALayer()
+        spawnLayer(icon: outOfSightIconPath, to: layer)
+        spawnLayer(text: [point.name], to: layer)
+        outOfSighttLayers[index] = layer
+        view.layer.addSublayer(layer)
+    }
+    
+    /**
+     Starts an in sight layer.
+     - Parameters:
+     - index: The layer index.
+     - point: To represent.
+     */
+    private func initInSightLayer (index: Int, point: PointOfInterest) {
+        let layer = CALayer()
+        spawnLayer(icon: inSightIconPath, to: layer)
+        spawnLayer(text: [point.name], to: layer)
+        inSightLayers[index] = layer
+        view.layer.addSublayer(layer)
+    }
+
 
     /*
      Thread class to handle tags updating

@@ -72,9 +72,9 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         Accept click
     */
     @IBAction func connectClick() {
-        let url = urlField.text!
-        let user = userField.text!
-        let password = passwordField.text!
+        let url = "https://xtremeloc.rdnest.com"//urlField.text!
+        let user = "hector"//userField.text!
+        let password = "hector"//passwordField.text!
         
         guard let _ = URL(string: url) else {
             let alert = UIAlertController (title: "Error", message: NSLocalizedString("invalid_url", comment: ""), preferredStyle: .alert)

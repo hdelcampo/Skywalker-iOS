@@ -63,6 +63,7 @@ class NewConnectionViewController: UIViewController {
         
         let onSuccess: ([MapPoint]) -> Void = {receivers in
             Center.centers[0].receivers = receivers
+            Center.centers[0].scale = 128
             self.retrieveTags()
         }
         
