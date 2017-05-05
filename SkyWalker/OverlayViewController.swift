@@ -105,6 +105,10 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         connectionThread!.errorCallback = {_ in self.onInternetError()}
         connectionThread!.start()
         
+        mySelf.x = 0.5
+        mySelf.y = 0.5
+        mySelf.z = 0
+        
         startDrawingThread()
     }
     
@@ -290,8 +294,11 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             floorLabel = " \(floorDelta)f \u{25BC}"
         }
         
+        let distanceVector = Vector2D(x: point.x - self.mySelf.x,
+                                     y: point.y - self.mySelf.y)
+        
         transformInSightLayer(inSightLayers[index]!,
-                              text: [point.name, "\(vectorToPoint.module() * Center.centers[0].scale)m" + floorLabel],
+                              text: [point.name, "\(String(format: "%.2f", distanceVector.module() * Center.centers[0].scale))m" + floorLabel],
                               x: x,
                               y: y)
         
@@ -360,7 +367,8 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
                 var vectorToPoint = Vector2D(x: point.x - self.mySelf.x,
                                              y: point.y - self.mySelf.y)
                 
-                if (vectorToPoint.x == 0 && vectorToPoint.y == 0) {
+                if ( point.isUndefined ||
+                    (vectorToPoint.x == 0 && vectorToPoint.y == 0)) {
                     DispatchQueue.main.async {
                         self.outOfSighttLayers[index]?.isHidden = true
                         self.inSightLayers[index]?.isHidden = true
