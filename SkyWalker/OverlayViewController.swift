@@ -422,9 +422,9 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
      */
     func transformInSightLayer (_ layer: CALayer, text: [String], x: Double, y: Double) {
         
-        let text = text.joined(separator: textSeparator)
+        let textSplitted = text.joined(separator: textSeparator)
         
-        let attrText = NSAttributedString(string: text,
+        let attrText = NSAttributedString(string: textSplitted,
                                           attributes:
             [NSForegroundColorAttributeName: textColor,
              NSStrokeColorAttributeName: strokeColor,
@@ -535,12 +535,18 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
                     }
                 }
                 
+                let onSuccessSelf: (MapPoint) -> Void = { position in
+                    self.mySelf.x = position.x
+                    self.mySelf.y = position.y
+                    self.mySelf.z = position.z
+                }
+                
                 let onError: (ServerFacade.ErrorType) -> Void = { _ in
                     numErrors.increment()
                 }
                 
                 try? ServerFacade.instance.getLastPosition(tag: mySelf,
-                                                           onSuccess: onSuccess,
+                                                           onSuccess: onSuccessSelf,
                                                            onError: onError)
                 
                 numPetitionsWithoutCheck += 1

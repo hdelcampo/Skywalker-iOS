@@ -316,7 +316,10 @@ class ServerFacade {
                 if (httpResponse.statusCode != 200) {
                     onError(ServerFacade.getError(statusCode: httpResponse.statusCode))
                 } else {
-                    let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String, Any>
+                    guard let json = try! JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String, Any> else {
+                        onError(.INVALID_JSON)
+                        return
+                    }
                     
                     if let receiverId = json["nearest_rdhub"] as? Int {
                         
@@ -338,8 +341,6 @@ class ServerFacade {
                         
                         onSuccess(newPosition)
                         
-                    } else {
-                        onError(.INVALID_JSON)
                     }
                     
                 }
