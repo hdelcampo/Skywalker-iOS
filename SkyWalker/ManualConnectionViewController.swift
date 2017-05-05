@@ -83,7 +83,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         
         guard let _ = URL(string: url) else {
             let alert = UIAlertController (title: "Error", message: NSLocalizedString("invalid_url", comment: ""), preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: { (_) in alert.dismiss(animated: true, completion: nil) } ))
+            alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil ))
             return
         }
         
@@ -118,18 +118,24 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     override func show(error: ServerFacade.ErrorType) {
         
         switch error {
+        case .INVALID_URL:
+            alert.dismiss(animated: true, completion: nil)
+            toggleError(view: urlContainer, error: true, errorMsg: NSLocalizedString("invalid_url", comment: ""))
+            connectButton.isEnabled = false
         case .INVALID_USERNAME_OR_PASSWORD:
             alert.dismiss(animated: true, completion: nil)
             toggleError(view: userContainer, error: true, errorMsg: NSLocalizedString("invalid_username_password", comment: ""))
             toggleError(view: passwordContainer, error: true, errorMsg: NSLocalizedString("invalid_username_password", comment: ""))
-        case .SERVER_ERROR:
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in self.dismiss(animated: true, completion: nil)}))
+        case .NO_CONNECTION, .TIME_OUT:
+            alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
             indicator.removeFromSuperview()
-            alert.message = "A server error ocurred"
+            alert.message = NSLocalizedString("no_internet", comment: "")
+            print("conexion")
         default:
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in self.dismiss(animated: true, completion: nil)}))
+            print("defecto")
+            alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
             indicator.removeFromSuperview()
-            alert.message = "An error ocurred during the connection"
+            alert.message = NSLocalizedString("server_bad_connection", comment: "")
         }
         
     }

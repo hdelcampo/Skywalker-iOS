@@ -125,25 +125,17 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     
     override func show(error: ServerFacade.ErrorType) {
         
-        var alert: UIAlertController!
+        indicator.removeFromSuperview()
         
         switch error {
         case .INVALID_QR, .INVALID_URL:
-            alert = UIAlertController(title: nil,
-                                      message: NSLocalizedString("invalid_qr", comment: ""),
-                                      preferredStyle: .alert)
+            alert.message = NSLocalizedString("invalid_qr", comment: "")
         case .INVALID_USERNAME_OR_PASSWORD:
-            alert = UIAlertController(title: nil,
-                                      message: NSLocalizedString("invalid_username_password", comment: ""),
-                                      preferredStyle: .alert)
+            alert.message = NSLocalizedString("invalid_username_password", comment: "")
         case .NO_CONNECTION, .TIME_OUT:
-            alert = UIAlertController(title: nil,
-                                      message: NSLocalizedString("no_internet", comment: ""),
-                                      preferredStyle: .alert)
+            alert.message = NSLocalizedString("no_internet", comment: "")
         default:
-            alert = UIAlertController(title: nil,
-                                      message: NSLocalizedString("server_bad_connection", comment: ""),
-                                      preferredStyle: .alert)
+            alert.message = NSLocalizedString("server_bad_connection", comment: "")
         }
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
@@ -152,7 +144,6 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
                                         self.connecting = false
         }))
         
-        self.present(alert, animated: true, completion: nil)
     }
 
 }

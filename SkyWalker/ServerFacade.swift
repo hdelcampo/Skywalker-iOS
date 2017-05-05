@@ -44,6 +44,26 @@ class ServerFacade {
     static let instance: ServerFacade! = ServerFacade()
     
     /**
+        Treats a connection error.
+        - Parameters:
+            - error: The connection error to treat.
+    */
+    private func treatError (error: Error, onError: @escaping (_: ErrorType) -> Void) {
+        if let networkErr = error as? URLError {
+            switch networkErr.code {
+            case .timedOut:
+                onError(.TIME_OUT)
+            case .notConnectedToInternet:
+                onError(.NO_CONNECTION)
+            default:
+                onError(.UNKNOWN)
+            }
+        } else {
+            onError(.UNKNOWN)
+        }
+    }
+    
+    /**
         Retrieves a new token
     */
     func getToken (url: String, username: String?, password: String?,
@@ -74,7 +94,7 @@ class ServerFacade {
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
                 guard error == nil else {
-                    onError(.UNKNOWN)
+                    self.treatError(error: error!, onError: onError)
                     return;
                 }
             
@@ -125,7 +145,7 @@ class ServerFacade {
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
             guard error == nil else {
-                onError(.UNKNOWN)
+                self.treatError(error: error!, onError: onError)
                 return;
             }
             
@@ -184,7 +204,7 @@ class ServerFacade {
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
             guard error == nil else {
-                onError(.UNKNOWN)
+                self.treatError(error: error!, onError: onError)
                 return;
             }
             
@@ -251,7 +271,7 @@ class ServerFacade {
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
             guard error == nil else {
-                onError(.UNKNOWN)
+                self.treatError(error: error!, onError: onError)
                 return;
             }
             
@@ -307,7 +327,7 @@ class ServerFacade {
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             
             guard error == nil else {
-                onError(.UNKNOWN)
+                self.treatError(error: error!, onError: onError)
                 return;
             }
             
