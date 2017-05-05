@@ -33,14 +33,14 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
     }
   
     override func viewDidAppear(_ animated: Bool) {
-        carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+        carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime, target: self, selector: #selector(changePage(_:)), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         carrouselTimer?.invalidate()
     }
     
-    func test(_ value: Any) {
+    func changePage(_ value: Any) {
         let currentIndex = pageControl.currentPage
         
         let newIndex = currentIndex == pageControl.numberOfPages - 1 ? 0 : currentIndex + 1
@@ -56,7 +56,7 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
         
         if ( carrouselTime == carrouselTimer?.timeInterval) {
             carrouselTimer?.invalidate()
-            carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime*2, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+            carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime*2, target: self, selector: #selector(changePage(_:)), userInfo: nil, repeats: true)
         }
         
     }
