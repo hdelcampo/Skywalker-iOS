@@ -87,8 +87,13 @@ class NewConnectionViewController: UIViewController {
         }
         
         let onSuccess: ([PointOfInterest]) -> Void = {points in
+            
+            PointOfInterest.points = points
+            if let myIndex = points.index(of: PointOfInterest.mySelf) {
+                PointOfInterest.points.remove(at: myIndex)
+            }
+            
             DispatchQueue.main.sync {
-                PointOfInterest.points = points
                 self.alert.dismiss(animated: true, completion: nil)
                 self.startAR()
             }
