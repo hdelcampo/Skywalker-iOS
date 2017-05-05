@@ -17,9 +17,48 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
     
     var pageViewController: OnBoardingPagerViewController?
     
+    /**
+        The carrousel page changing handler
+    */
+    var carrouselTimer: Timer?
+    
+    /**
+        The inital time between pages change
+    */
+    let carrouselTime = 1.5
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.borderColor = loginButton.tintColor.cgColor
+    }
+  
+    override func viewDidAppear(_ animated: Bool) {
+        carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        carrouselTimer?.invalidate()
+    }
+    
+    func test(_ value: Any) {
+        let currentIndex = pageControl.currentPage
+        
+        let newIndex = currentIndex == pageControl.numberOfPages - 1 ? 0 : currentIndex + 1
+        
+        let pages = pageViewController?.orderedViewControllers
+        pageViewController?.setViewControllers([(pages?[newIndex])!],
+                                               direction: newIndex == 0 ?
+                                                UIPageViewControllerNavigationDirection.reverse : UIPageViewControllerNavigationDirection.forward,
+                                               animated: true,
+                                               completion: { _ in
+            self.pageControl.currentPage = newIndex
+        })
+        
+        if ( carrouselTime == carrouselTimer?.timeInterval) {
+            carrouselTimer?.invalidate()
+            carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime*2, target: self, selector: #selector(self.test), userInfo: nil, repeats: true)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,6 +79,7 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
             requestCameraPermission()
         }
     }
+    
     
     /*
      Checks whether user has granted camera permissions.
@@ -73,9 +113,14 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
                                     didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
     }
+    
+    func updatingPage() {
+        carrouselTimer?.invalidate()
+    }
 
     @IBAction func pageControlValueChanged(_ sender: UIPageControl) {
         pageViewController?.pagerControlValueChanged(index: sender.currentPage)
+        updatingPage()
     }
     
 }

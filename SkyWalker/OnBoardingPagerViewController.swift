@@ -112,6 +112,10 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
         setViewControllers([orderedViewControllers[index]], direction: direction, animated: true, completion: nil)
         
     }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        pagerDelegate?.updatingPage()
+    }
 
 }
 
@@ -134,5 +138,10 @@ protocol OnBoardingPagerViewControllerDelegate {
      */
     func updatePageControlIndex(_ viewController: OnBoardingPagerViewController,
                                     didUpdatePageIndex index: Int)
+    
+    /**
+        Called when a transition to a new page begins
+    */
+    func updatingPage()
     
 }
