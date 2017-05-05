@@ -149,7 +149,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         alert!.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
                                        style: .default,
                                        handler: { _ in
-                                        
+                                        self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert!, animated: true, completion: nil)
     }
