@@ -37,7 +37,33 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     let strokeSize = 2
     let textSeparator = "\n"
     
-    var points : [PointOfInterest] = []
+    var points : [PointOfInterest] = [] {
+        
+        willSet {
+            for index in 0..<outOfSighttLayers.count {
+                self.outOfSighttLayers[index]?.isHidden = true
+                self.inSightLayers[index]?.isHidden = true
+            }
+        }
+        
+        didSet {
+            for index in 0..<points.count {
+                let attrText = NSAttributedString(string: points[index].name,
+                                                  attributes:
+                    [NSForegroundColorAttributeName: textColor,
+                     NSStrokeColorAttributeName: strokeColor,
+                     NSStrokeWidthAttributeName: -strokeSize,
+                     NSFontAttributeName: UIFont.systemFont(ofSize: textSize)])
+                
+                let size = attrText.size()
+                
+                (outOfSighttLayers[index]?.sublayers?[1] as? CATextLayer)?.string = attrText
+                (outOfSighttLayers[index]?.sublayers?[1] as? CATextLayer)?.bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+
+            }
+        }
+        
+    }
     var initialLayers : [CALayer] = []
     var mySelf: PointOfInterest!
     
