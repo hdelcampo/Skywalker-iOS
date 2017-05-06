@@ -204,7 +204,7 @@
                             <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sos-Ro-316">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem image="info_icon" id="Rd9-YK-eXm">
+                                    <barButtonItem image="info_button" id="Rd9-YK-eXm">
                                         <connections>
                                             <segue destination="Mfq-9b-irG" kind="popoverPresentation" popoverAnchorBarButtonItem="Rd9-YK-eXm" id="cRX-FB-FHP">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -1054,7 +1054,7 @@
     <resources>
         <image name="ar_page" width="333" height="333"/>
         <image name="beacon_page" width="333" height="333"/>
-        <image name="info_icon" width="33" height="33"/>
+        <image name="info_button" width="25" height="25"/>
         <image name="manual_tab" width="25" height="25"/>
         <image name="manual_tab_filled" width="25" height="25"/>
         <image name="outdoor_page" width="333" height="333"/>
