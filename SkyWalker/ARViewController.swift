@@ -40,9 +40,23 @@ class ARViewController: UIViewController {
         
         let ANIMATION_TIME = 0.5
         
-        UIView.transition(with: view, duration: ANIMATION_TIME, options: .transitionCrossDissolve,
-                          animations: {self.bottomBar.isHidden = self.areControlsHidden; self.topBar.isHidden = self.areControlsHidden},
-                          completion: {(_) in self.setNeedsStatusBarAppearanceUpdate()})
+        let hide: (Bool) -> Void = { _ in
+            self.bottomBar.isHidden = self.areControlsHidden
+            self.topBar.isHidden = self.areControlsHidden
+        }
+        
+        if !areControlsHidden {
+            hide(true)
+        }
+
+        UIView.animate(withDuration: ANIMATION_TIME,
+                       delay: 0,
+                       options: UIViewAnimationOptions.transitionCrossDissolve,
+                       animations: {
+                        self.bottomBar.alpha = self.areControlsHidden ? 0 : 1
+                        self.topBar.alpha = self.areControlsHidden ? 0 : 1
+                        self.setNeedsStatusBarAppearanceUpdate()
+        }, completion: areControlsHidden ? hide : nil)
         
     }
     
