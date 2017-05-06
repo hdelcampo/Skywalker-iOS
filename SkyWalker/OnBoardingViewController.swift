@@ -34,10 +34,31 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
   
     override func viewDidAppear(_ animated: Bool) {
         carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime, target: self, selector: #selector(changePage(_:)), userInfo: nil, repeats: true)
+        if (!OrientationSensor.isAvailable()) {
+            onIncompatibleDevice()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         carrouselTimer?.invalidate()
+    }
+    
+    /**
+        Handles when the device is not compatible, warning user and preventing login.
+    */
+    private func onIncompatibleDevice () {
+        
+        self.loginButton.isEnabled = false
+        
+        let alert = UIAlertController(title: NSLocalizedString("incompatible_device_title", comment: ""),
+                                      message: NSLocalizedString("incompatible_device_msg", comment: ""),
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                      style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+        
     }
     
     func changePage(_ value: Any) {

@@ -19,3 +19,5 @@
 "invalid_qr" = "Código QR no valido.";
 "no_internet" = "Hubo un problema con tu conexión a Internet.";
 "server_bad_connection" = "No se pudo recuperar la información del servidor.";
+"incompatible_device_title" = "Dispositivo incompatible";
+"incompatible_device_msg" = "Este dispositivo carece de los sensores necesarios para funcionar. No podrás iniciar sesión.";

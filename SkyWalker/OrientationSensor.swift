@@ -42,14 +42,35 @@ class OrientationSensor {
     let alpha = 0.25
     let deviceReference = Vector3D(x: 1, y: 0, z: 0)
     
+    /**
+        The reference frame for the sensor.
+    */
+    private static let referenceFrame = CMAttitudeReferenceFrame.xMagneticNorthZVertical
+    
     //MARK: Functions
+    
+    /**
+        Checks whether sensor is available or not.
+        - Returns: true if available, false otherwise.
+    */
+    static func isAvailable () -> Bool {
+        
+        let availableReferences = CMMotionManager.availableAttitudeReferenceFrames()
+        
+        if (availableReferences.contains(referenceFrame)) {
+            return true
+        }
+        
+        return false
+        
+    }
     
     /**
         Starts registering events from the sensor
     */
     func registerEvents () {
         motionManager.deviceMotionUpdateInterval = OrientationSensor.updateRate
-        motionManager.startDeviceMotionUpdates(using: .xMagneticNorthZVertical,
+        motionManager.startDeviceMotionUpdates(using: OrientationSensor.referenceFrame,
                                                to: OperationQueue(),
                                                withHandler: {
                                                 (deviceMotion, error) -> Void in

@@ -19,3 +19,5 @@
 "invalid_qr" = "This QR is not a valid one.";
 "no_internet" = "There was an error with your internet connection.";
 "server_bad_connection" = "Couldn't retrieve server info.";
+"incompatible_device_title" = "Incompatible device";
+"incompatible_device_msg" = "This device lacks needed sensors. You will not be able to login.";
