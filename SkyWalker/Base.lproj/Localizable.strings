@@ -21,3 +21,7 @@
 "server_bad_connection" = "Couldn't retrieve server info.";
 "incompatible_device_title" = "Incompatible device";
 "incompatible_device_msg" = "This device lacks needed sensors. You will not be able to login.";
+"connection_started" = "Connecting…";
+"connection_receivers" = "Retrieving receivers…";
+"connection_tags" = "Retrieving tags…";
+"connection_register_beacon" = "Registering as beacon…";

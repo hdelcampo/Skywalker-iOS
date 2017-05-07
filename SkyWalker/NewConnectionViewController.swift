@@ -28,7 +28,9 @@ class NewConnectionViewController: UIViewController {
      */
     func newConnection (url: String, username: String?, password: String?) {
         
-        alert = UIAlertController(title: nil, message: "Connecting...", preferredStyle: .alert)
+        alert = UIAlertController(title: nil,
+                                  message: NSLocalizedString("connection_started", comment: ""),
+                                  preferredStyle: .alert)
         indicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         indicator.hidesWhenStopped = false
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
@@ -58,7 +60,7 @@ class NewConnectionViewController: UIViewController {
         Center.centers.append(Center(id: 0))
         
         DispatchQueue.main.sync {
-            self.alert.message = "Retrieving receivers..."
+            self.alert.message = NSLocalizedString("connection_receivers", comment: "")
         }
         
         let onSuccess: ([MapPoint]) -> Void = {receivers in
@@ -83,7 +85,7 @@ class NewConnectionViewController: UIViewController {
     private func retrieveTags () {
         
         DispatchQueue.main.sync {
-            self.alert.message = "Retrieving tags..."
+            self.alert.message = NSLocalizedString("connection_tags", comment: "")
         }
         
         let onSuccess: ([PointOfInterest]) -> Void = {points in
@@ -95,7 +97,7 @@ class NewConnectionViewController: UIViewController {
             
             DispatchQueue.main.sync {
                 self.alert.dismiss(animated: true, completion: nil)
-                self.startAR()
+                //self.startAR()
             }
         }
         
@@ -112,7 +114,7 @@ class NewConnectionViewController: UIViewController {
     private func registerAsBeacon(username: String) {
         
         DispatchQueue.main.sync {
-            self.alert.message = "Registering as Beacon..."
+            self.alert.message = NSLocalizedString("connection_register_beacon", comment: "")
         }
         
         let onSuccess: (IBeaconFrame) -> Void = {frame in
