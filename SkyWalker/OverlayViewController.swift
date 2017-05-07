@@ -109,22 +109,20 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         stopThreads()
     }
     
-    var alert: UIAlertController?
-    
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if peripheral.state == .poweredOff {
             IBeaconTransmitter.instance.stopTransmission()
             stopThreads()
-            alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
+            let alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
                               message: NSLocalizedString("bluetooth_off_msg", comment: ""),
                               preferredStyle: .alert)
-            alert!.addAction(UIAlertAction(title: NSLocalizedString("settings", comment: ""),
+            alert.addAction(UIAlertAction(title: NSLocalizedString("settings", comment: ""),
                                            style: .default,
                                            handler: { _ in
                                             let url = URL(string: "App-Prefs:root=Bluetooth")
                                             UIApplication.shared.openURL(url!)
             }))
-            self.present(alert!, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         } else if (peripheral.state == .poweredOn) {
             IBeaconTransmitter.instance.startTransmission()
             startThreads()
@@ -179,15 +177,15 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     private func onInternetError() {
-        alert = UIAlertController(title: NSLocalizedString("internet_off_title", comment: ""),
+        let alert = UIAlertController(title: NSLocalizedString("internet_off_title", comment: ""),
                                   message: NSLocalizedString("internet_off_msg", comment: ""),
                                   preferredStyle: .alert)
-        alert!.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
                                        style: .default,
                                        handler: { _ in
                                         self.dismiss(animated: true, completion: nil)
         }))
-        self.present(alert!, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Drawing
