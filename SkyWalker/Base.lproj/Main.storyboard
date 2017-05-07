@@ -299,7 +299,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paC-eV-i1w">
-                                <rect key="frame" x="0.0" y="65" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="63.5" width="375" height="559.5"/>
                                 <connections>
                                     <segue destination="W8P-pp-YGY" kind="embed" identifier="filterTableViewController" id="FJu-qC-7EY"/>
                                 </connections>
@@ -331,12 +331,28 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected 4 (Max: 5)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGW-om-9Kq">
-                                <rect key="frame" x="8" y="44" width="359" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7r-Rp-tq2">
+                                <rect key="frame" x="0.0" y="44" width="375" height="19.5"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cqf-O6-mYI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="19.5"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected 4 (Max: 5)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGW-om-9Kq">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="19.5"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="RGW-om-9Kq" secondAttribute="trailing" constant="8" id="DTE-sU-aqv"/>
+                                        <constraint firstAttribute="bottom" secondItem="RGW-om-9Kq" secondAttribute="bottom" id="Hhj-c2-dkX"/>
+                                        <constraint firstItem="RGW-om-9Kq" firstAttribute="leading" secondItem="cqf-O6-mYI" secondAttribute="leading" constant="8" id="QtW-OH-oVf"/>
+                                        <constraint firstItem="RGW-om-9Kq" firstAttribute="top" secondItem="cqf-O6-mYI" secondAttribute="top" id="RCN-Vy-97O"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -345,14 +361,14 @@
                             <constraint firstAttribute="trailing" secondItem="aIj-e8-JHg" secondAttribute="trailing" id="6Yb-mf-qou"/>
                             <constraint firstItem="aIj-e8-JHg" firstAttribute="top" secondItem="paC-eV-i1w" secondAttribute="bottom" id="8rp-QX-Thn"/>
                             <constraint firstAttribute="trailing" secondItem="paC-eV-i1w" secondAttribute="trailing" id="NaI-6R-VDr"/>
+                            <constraint firstItem="paC-eV-i1w" firstAttribute="top" secondItem="r7r-Rp-tq2" secondAttribute="bottom" id="OXl-j7-b72"/>
                             <constraint firstItem="aIj-e8-JHg" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" id="RRj-ZJ-JjU"/>
+                            <constraint firstItem="r7r-Rp-tq2" firstAttribute="top" secondItem="VBz-za-KrL" secondAttribute="bottom" id="UVF-nO-5s8"/>
                             <constraint firstAttribute="trailing" secondItem="VBz-za-KrL" secondAttribute="trailing" id="Ycj-ig-5qt"/>
                             <constraint firstItem="VBz-za-KrL" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" id="cxc-8W-9Wy"/>
-                            <constraint firstItem="RGW-om-9Kq" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" constant="8" id="mnS-vc-9or"/>
-                            <constraint firstItem="RGW-om-9Kq" firstAttribute="top" secondItem="VBz-za-KrL" secondAttribute="bottom" id="nP4-KT-7Ri"/>
-                            <constraint firstItem="paC-eV-i1w" firstAttribute="top" secondItem="RGW-om-9Kq" secondAttribute="bottom" id="oNk-bL-zL5"/>
+                            <constraint firstItem="r7r-Rp-tq2" firstAttribute="leading" secondItem="hbg-eV-tO0" secondAttribute="leading" id="gBq-6l-eWu"/>
+                            <constraint firstAttribute="trailing" secondItem="r7r-Rp-tq2" secondAttribute="trailing" id="gu2-I8-AaS"/>
                             <constraint firstItem="VBz-za-KrL" firstAttribute="top" secondItem="ZyS-8i-mj4" secondAttribute="bottom" id="wO1-5c-8Jz"/>
-                            <constraint firstAttribute="trailing" secondItem="RGW-om-9Kq" secondAttribute="trailing" constant="8" id="x9N-fn-kfg"/>
                         </constraints>
                     </view>
                     <connections>
@@ -368,7 +384,7 @@
             <objects>
                 <tableViewController id="W8P-pp-YGY" customClass="FilterTableViewController" customModule="SkyWalker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="A1h-Uu-aG2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="558"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="559.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
