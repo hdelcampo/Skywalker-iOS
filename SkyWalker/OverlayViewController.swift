@@ -39,13 +39,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     var points : [PointOfInterest] = [] {
         
-        willSet {
-            for index in 0..<outOfSighttLayers.count {
-                self.outOfSighttLayers[index]?.isHidden = true
-                self.inSightLayers[index]?.isHidden = true
-            }
-        }
-        
         didSet {
             for index in 0..<points.count {
                 let attrText = NSAttributedString(string: points[index].name,
@@ -404,7 +397,18 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         }
         
         
-            for (index, point) in self.points.enumerated() {
+            for index in 0..<OverlayViewController.maxPoints {
+                
+                if (index >= points.count) {
+                    DispatchQueue.main.async {
+                        self.outOfSighttLayers[index]?.isHidden = true
+                        self.inSightLayers[index]?.isHidden = true
+                    }
+                    
+                    continue
+                }
+                
+                let point = points[index]
                 
                 var vectorToPoint = Vector2D(x: point.x - self.mySelf.x,
                                              y: point.y - self.mySelf.y)
