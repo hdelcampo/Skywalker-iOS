@@ -101,10 +101,19 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if (!ServerFacade.instance.isDemo) {
+            IBeaconTransmitter.instance.stopTransmission()
+        }
+        stopThreads()
+    }
+    
     var alert: UIAlertController?
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if peripheral.state == .poweredOff {
+            IBeaconTransmitter.instance.stopTransmission()
             stopThreads()
             alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
                               message: NSLocalizedString("bluetooth_off_msg", comment: ""),
@@ -117,6 +126,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             }))
             self.present(alert!, animated: true, completion: nil)
         } else if (peripheral.state == .poweredOn) {
+            IBeaconTransmitter.instance.startTransmission()
             startThreads()
         }
     }

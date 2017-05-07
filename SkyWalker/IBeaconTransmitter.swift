@@ -37,6 +37,16 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     private let id = "es.rdnest.xtremeloc"
     
     /**
+        iBeacon frame to transmit.
+    */
+    private var iBeacon: CLBeaconRegion?
+    
+    /**
+        The txPower to transmit.
+    */
+    private var txPower: NSNumber?
+    
+    /**
         Singleton instance
     */
     static let instance = IBeaconTransmitter()
@@ -56,26 +66,26 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     
     /**
         Set ups a new beacon transmitter with the given values.
-        When bluetooth is available, transmission will begin.
         - Parameters:
-            - uuid: The UUID.
-            - major: The major.
-            - minor: The minor.
+            - frame: The desired iBeacon frame to transmit.
             - txPower: The measured TX Power, can be nil to use device's default value.
     */
     func configure(frame: IBeaconFrame, txPower: NSNumber? = nil) {
-        let localBeacon = CLBeaconRegion(proximityUUID: frame.uuid, major: frame.major, minor: frame.minor, identifier: id)
-        beaconPeripheralData = localBeacon.peripheralData(withMeasuredPower: txPower)
+        iBeacon = CLBeaconRegion(proximityUUID: frame.uuid, major: frame.major, minor: frame.minor, identifier: id)
+    }
+    
+    /**
+        Starts the iBeacon transmission as soon as bluetooth is available.
+    */
+    func startTransmission() {
+        beaconPeripheralData = iBeacon!.peripheralData(withMeasuredPower: txPower)
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        switch (peripheral.state) {
-        case .poweredOn:
-            print ("Comenzando...")
+        if (peripheral.state == .poweredOn) {
+            print("Empezando... \(iBeacon?.minor)")
             peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
-            print ("Comenzado!")
-        default:
-            print("iBeacon event")
+            print("Empezado...")
         }
     }
     
@@ -83,7 +93,9 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
         Stopts the iBeacon transmission.
     */
     func stopTransmission() {
+        print("Parando...")
         peripheralManager.stopAdvertising()
+        print("Parado...")
     }
     
 }
