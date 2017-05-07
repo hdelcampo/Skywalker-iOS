@@ -103,7 +103,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if (!ServerFacade.instance.isDemo) {
+        if (IBeaconTransmitter.instance.isTransmitting) {
             IBeaconTransmitter.instance.stopTransmission()
         }
         stopThreads()

@@ -24,7 +24,7 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     /**
         Bluetooth manager.
     */
-    var peripheralManager: CBPeripheralManager!
+    var peripheralManager: CBPeripheralManager?
     
     /**
         Serial background queue for all emissions.
@@ -51,6 +51,18 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     */
     static let instance = IBeaconTransmitter()
     
+    /**
+        Indicates if an ongoing transmission is on.
+    */
+    var isTransmitting: Bool {
+        
+        if peripheralManager == nil {
+            return false
+        }
+        
+        return peripheralManager!.isAdvertising
+    }
+    
     // MARK: Init
     
     /**
@@ -59,7 +71,6 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     override init() {
         queue = DispatchQueue(label: "Bluetooth queue")
         super.init()
-        peripheralManager = CBPeripheralManager(delegate: self, queue: queue)
     }
     
     // MARK: Functions
@@ -78,14 +89,13 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
         Starts the iBeacon transmission as soon as bluetooth is available.
     */
     func startTransmission() {
+        peripheralManager = CBPeripheralManager(delegate: self, queue: queue)
         beaconPeripheralData = iBeacon!.peripheralData(withMeasuredPower: txPower)
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if (peripheral.state == .poweredOn) {
-            print("Empezando... \(iBeacon?.minor)")
-            peripheralManager.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
-            print("Empezado...")
+            peripheralManager!.startAdvertising(beaconPeripheralData as! [String: AnyObject]!)
         }
     }
     
@@ -93,9 +103,9 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
         Stopts the iBeacon transmission.
     */
     func stopTransmission() {
-        print("Parando...")
-        peripheralManager.stopAdvertising()
-        print("Parado...")
+        peripheralManager!.stopAdvertising()
+        peripheralManager!.removeAllServices()
+        peripheralManager = nil
     }
     
 }
