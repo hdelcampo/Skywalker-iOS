@@ -84,6 +84,13 @@ class OrientationSensor {
     }
     
     /**
+        Stops the sensor
+    */
+    func unregisterEvents () {
+        motionManager.stopDeviceMotionUpdates()
+    }
+    
+    /**
         Handler to update class members with correspondant data from the hardware
     */
     private func updateData(from: CMDeviceMotion) {

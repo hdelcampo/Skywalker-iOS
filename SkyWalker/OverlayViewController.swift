@@ -92,13 +92,14 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         points = Array(PointOfInterest.points.prefix(OverlayViewController.maxPoints))
         mySelf = PointOfInterest.mySelf
         
-        orientationSensor.registerEvents()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if (!ServerFacade.instance.isDemo) {
             bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         } else {
             startDrawingThread()
         }
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -133,6 +134,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         Starts all threads.
     */
     private func startThreads() {
+        
         connectionThread = TagsUpdaterThread()
         connectionThread!.points = points
         connectionThread!.mySelf = mySelf
@@ -150,6 +152,9 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         Starts the drawing thread and layers
     */
     private func startDrawingThread() {
+        
+        orientationSensor.registerEvents()
+        
         initLayers()
         painterThread = DispatchSource.makeTimerSource(queue: queue)
         painterThread!.scheduleRepeating(deadline: .now(), interval: OrientationSensor.updateRate)
@@ -169,6 +174,9 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         Destroys all threads.
     */
     private func stopThreads() {
+        
+        orientationSensor.registerEvents()
+        
         connectionThread?.cancel()
         connectionThread = nil
         
