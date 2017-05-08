@@ -97,7 +97,7 @@ class NewConnectionViewController: UIViewController {
             
             DispatchQueue.main.sync {
                 self.alert.dismiss(animated: true, completion: nil)
-                //self.startAR()
+                self.startAR()
             }
         }
         

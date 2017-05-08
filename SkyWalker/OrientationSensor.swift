@@ -56,12 +56,9 @@ class OrientationSensor {
     static func isAvailable () -> Bool {
         
         let availableReferences = CMMotionManager.availableAttitudeReferenceFrames()
+        let motionManager = CMMotionManager()
         
-        if (availableReferences.contains(referenceFrame)) {
-            return true
-        }
-        
-        return false
+        return motionManager.isDeviceMotionAvailable && availableReferences.contains(referenceFrame)
         
     }
     
@@ -69,6 +66,7 @@ class OrientationSensor {
         Starts registering events from the sensor
     */
     func registerEvents () {
+        motionManager.showsDeviceMovementDisplay = true
         motionManager.deviceMotionUpdateInterval = OrientationSensor.updateRate
         motionManager.startDeviceMotionUpdates(using: OrientationSensor.referenceFrame,
                                                to: OperationQueue(),
@@ -110,7 +108,10 @@ class OrientationSensor {
         
         let result = GLKQuaternionRotateVector3(orientationQuat, myVector)
         
-        let filteredData = lowFilter(input: [result.x, result.y, result.z],
+        var calibratedVector = Vector2D(x: Double(result.x), y: Double(result.y))
+        calibratedVector.rotateClockwise(degrees: 30)
+        
+        let filteredData = lowFilter(input: [Float(calibratedVector.x), Float(calibratedVector.y), result.z],
                   previousValues: [orientationVector.x, orientationVector.y, orientationVector.z])
         
         orientationVector = Vector3D(x: filteredData[0], y: filteredData[1], z: filteredData[2])
