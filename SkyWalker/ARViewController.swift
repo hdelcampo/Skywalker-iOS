@@ -81,7 +81,7 @@ class ARViewController: UIViewController {
         Log outs and finishes current view
     */
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        ServerFacade.instance.clear()
+        User.instance.logout()
         cameraViewController.viewWillBeDestroyed()
         if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
             myDelegate.portraitOnly = true

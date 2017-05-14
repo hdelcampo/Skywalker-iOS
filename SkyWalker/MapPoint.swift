@@ -40,6 +40,34 @@ class MapPoint: Hashable {
         self.z = z
     }
     
+    func updatePosition(successDelegate: (() -> Void)?,
+                        errorDelegate: ((PersistenceErrors) -> Void)?) {
+        
+        let onSuccess: (MapPoint) -> Void = { position in
+                self.x = position.x
+                self.y = position.y
+                self.z = position.z
+        }
+        
+        let onError: (ServerFacade.ErrorType) -> Void = {error in
+            
+            let realError: PersistenceErrors
+            
+            switch(error) {
+            case .NO_CONNECTION, .TIME_OUT:
+                realError = .INTERNET_ERROR
+            default:
+                realError = .SERVER_ERROR
+            }
+            
+            errorDelegate?(realError)
+            
+        }
+        
+        try! ServerFacade.instance.getLastPosition(tag: self, onSuccess: onSuccess, onError: onError)
+        
+    }
+    
     var hashValue: Int {
         return id.hashValue
     }

@@ -88,7 +88,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if (!ServerFacade.instance.isDemo) {
+        if (!User.instance.isDemo) {
             bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         } else {
             startDrawingThread()
@@ -565,6 +565,10 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             var numLoopsWithoutCheck: Float = 0
             var numPetitionsWithoutCheck: Float = 4
             var numErrors = AtomicInteger()
+            
+            let onError: (PersistenceErrors) -> Void = { _ in
+                numErrors.increment()
+            }
 
             while(!self.isCancelled) {
                 
@@ -579,36 +583,12 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
                     }
                 }
                 
-                let onSuccess: (MapPoint) -> Void = { position in
-                    for point in self.points {
-                        if (point == position) {
-                            point.x = position.x
-                            point.y = position.y
-                            point.z = position.z
-                        }
-                    }
-                }
-                
-                let onSuccessSelf: (MapPoint) -> Void = { position in
-                    self.mySelf.x = position.x
-                    self.mySelf.y = position.y
-                    self.mySelf.z = position.z
-                }
-                
-                let onError: (ServerFacade.ErrorType) -> Void = { _ in
-                    numErrors.increment()
-                }
-                
-                try? ServerFacade.instance.getLastPosition(tag: mySelf,
-                                                           onSuccess: onSuccessSelf,
-                                                           onError: onError)
+                mySelf.updatePosition(successDelegate: nil, errorDelegate: onError)
                 
                 numPetitionsWithoutCheck += 1
                 
                 for point in points {
-                    try? ServerFacade.instance.getLastPosition(tag: point,
-                                                               onSuccess: onSuccess,
-                                                               onError: onError)
+                    point.updatePosition(successDelegate: nil, errorDelegate: onError)
                     numPetitionsWithoutCheck += 1
                 }
                 

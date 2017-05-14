@@ -75,9 +75,8 @@ class OrientationSensor {
                                                 
                                                 if (nil == error) {
                                                     self.updateData(from: deviceMotion!)
-                                                } else {
-                                                    //TODO: error
                                                 }
+                        
         })
     }
     

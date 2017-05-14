@@ -84,7 +84,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
             if (isXtremeLocQR(qr: metadataObj.stringValue)) {
                 treat(qr: metadataObj.stringValue)
             } else {
-                show(error: .INVALID_QR)
+                show(error: .INVALID_URL)
             }
         }
         
@@ -123,16 +123,16 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
 
     }
     
-    override func show(error: ServerFacade.ErrorType) {
+    override func show(error: PersistenceErrors) {
         
         indicator.removeFromSuperview()
         
         switch error {
-        case .INVALID_QR, .INVALID_URL:
+        case .INVALID_URL:
             alert.message = NSLocalizedString("invalid_qr", comment: "")
-        case .INVALID_USERNAME_OR_PASSWORD:
+        case .INVALID_CREDENTIALS:
             alert.message = NSLocalizedString("invalid_username_password", comment: "")
-        case .NO_CONNECTION, .TIME_OUT:
+        case .INTERNET_ERROR:
             alert.message = NSLocalizedString("no_internet", comment: "")
         default:
             alert.message = NSLocalizedString("server_bad_connection", comment: "")

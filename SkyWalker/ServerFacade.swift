@@ -14,29 +14,10 @@ class ServerFacade {
      Possible errors
     */
     public enum ErrorType: Error {
-        case INVALID_QR, INVALID_URL, NO_CONNECTION,
+        case NO_CONNECTION,
         TIME_OUT, INVALID_USERNAME_OR_PASSWORD, INVALID_JSON,
         NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
     }
-    
-    /*
-        Computed property to indicate whether connection is in demo mode or not
-    */
-    var isDemo: Bool {
-        get {
-            return token?.URL == NSLocalizedString("Demo_mode", comment: "")
-        }
-        
-        set(state) {
-            if (state) {
-              token = Token(URL: NSLocalizedString("Demo_mode", comment: ""), token: nil)
-            }
-        }
-    }
-    /*
-        Connection token
-    */
-    var token: Token?
     
     /*
         Singleton instance
@@ -105,7 +86,6 @@ class ServerFacade {
                     } else {
                         let data = String(data: data!, encoding: String.Encoding.utf8)
                         let token = Token(URL: url, token: data!)
-                        ServerFacade.instance.token = token
                         onSuccess(token)
                     }
             
@@ -126,11 +106,11 @@ class ServerFacade {
                              onSuccess: @escaping (_: [MapPoint]) -> Void,
                              onError: @escaping (_: ErrorType) -> Void) throws {
         
-        if (nil == token) {
+        if (nil == User.instance.token) {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = token!.URL.appending("/api/centers/\(center.id)/rdhubs")
+        let realURL = User.instance.token!.URL.appending("/api/centers/\(center.id)/rdhubs")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -139,7 +119,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(User.instance.token!.token!)", forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
@@ -185,11 +165,11 @@ class ServerFacade {
     */
     func getAvaliableTags (onSuccess: @escaping (_: [PointOfInterest]) -> Void, onError: @escaping (_: ErrorType) -> Void) throws {
     
-        if (nil == token) {
+        if (nil == User.instance.token) {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = token!.URL.appending("/api/centers/0/tags")
+        let realURL = User.instance.token!.URL.appending("/api/centers/0/tags")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -198,7 +178,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(User.instance.token!.token!)", forHTTPHeaderField: "Authorization")
                 
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
@@ -243,11 +223,11 @@ class ServerFacade {
                            onSuccess: @escaping (_: IBeaconFrame) -> Void,
                            onError: @escaping (_: ErrorType) -> Void) throws {
         
-        if (nil == token) {
+        if (nil == User.instance.token) {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = token!.URL.appending("/api/centers/0/tags")
+        let realURL = User.instance.token!.URL.appending("/api/centers/0/tags")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -256,7 +236,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(User.instance.token!.token!)", forHTTPHeaderField: "Authorization")
         
         do {
             let params: [String: String] = ["name" : username]
@@ -304,15 +284,15 @@ class ServerFacade {
     /*
         Retrieves a point of interest last position
     */
-    func getLastPosition(tag: PointOfInterest,
+    func getLastPosition(tag: MapPoint,
                          onSuccess: @escaping (_: MapPoint) -> Void,
                          onError: @escaping (_: ErrorType) -> Void) throws {
         
-        if (nil == token) {
+        if (nil == User.instance.token) {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = token!.URL.appending("/api/centers/0/tags/\(tag.id)")
+        let realURL = User.instance.token!.URL.appending("/api/centers/0/tags/\(tag.id)")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -321,7 +301,7 @@ class ServerFacade {
         var request = URLRequest(url: URL)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(self.token!.token!)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(User.instance.token!.token!)", forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
@@ -373,13 +353,6 @@ class ServerFacade {
         
         task.resume()
         
-    }
-    
-    /*
-        Clears the current connection.
-    */
-    func clear () {
-        token = nil
     }
     
     /*

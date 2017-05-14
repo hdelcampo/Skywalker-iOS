@@ -38,17 +38,17 @@ class NewConnectionViewController: UIViewController {
         alert.view.addSubview(indicator)
         present(alert, animated: true, completion: nil)
         
-        let onSuccess: (Token) -> Void = {_ in
+        let onSuccess: () -> Void = {_ in
             self.registerAsBeacon(username: username!)
         }
         
-        let onError: (ServerFacade.ErrorType) -> Void = {error in
+        let onError: (PersistenceErrors) -> Void = {error in
             DispatchQueue.main.sync {
                 self.show(error: error)
             }
         }
         
-        ServerFacade.instance.getToken(url: url, username: username, password: password, onSuccess: onSuccess, onError: onError)
+        User.instance.login(server: url, username: username, password: password, successDelegate: onSuccess, errorDelegate: onError)
         
     }
     
@@ -63,19 +63,17 @@ class NewConnectionViewController: UIViewController {
             self.alert.message = NSLocalizedString("connection_receivers", comment: "")
         }
         
-        let onSuccess: ([MapPoint]) -> Void = {receivers in
-            Center.centers[0].receivers = receivers
-            Center.centers[0].scale = 128
+        let onSuccess: () -> Void = {_ in
             self.retrieveTags()
         }
         
-        let onError: (ServerFacade.ErrorType) -> Void = {error in
+        let onError: (PersistenceErrors) -> Void = {error in
             DispatchQueue.main.sync {
                 self.show(error: error)
             }
         }
         
-        try! ServerFacade.instance.getCenterReceivers(center: Center.centers[0], onSuccess: onSuccess, onError: onError)
+        Center.centers[0].loadReceivers(successDelegate: onSuccess, errorDelegate: onError)
         
     }
     
@@ -88,26 +86,20 @@ class NewConnectionViewController: UIViewController {
             self.alert.message = NSLocalizedString("connection_tags", comment: "")
         }
         
-        let onSuccess: ([PointOfInterest]) -> Void = {points in
-            
-            PointOfInterest.points = points
-            if let myIndex = points.index(of: PointOfInterest.mySelf) {
-                PointOfInterest.points.remove(at: myIndex)
-            }
-            
+        let onSuccess: () -> Void = {_ in
             DispatchQueue.main.sync {
                 self.alert.dismiss(animated: true, completion: nil)
                 self.startAR()
             }
         }
         
-        let onError: (ServerFacade.ErrorType) -> Void = {error in
+        let onError: (PersistenceErrors) -> Void = {error in
             DispatchQueue.main.sync {
                 self.show(error: error)
             }
         }
         
-        try! ServerFacade.instance.getAvaliableTags(onSuccess: onSuccess, onError: onError)
+        Center.centers[0].loadTags(successDelegate: onSuccess, errorDelegate: onError)
         
     }
     
@@ -117,21 +109,17 @@ class NewConnectionViewController: UIViewController {
             self.alert.message = NSLocalizedString("connection_register_beacon", comment: "")
         }
         
-        let onSuccess: (IBeaconFrame) -> Void = {frame in
-            IBeaconTransmitter.instance.configure(frame: frame)
-            PointOfInterest.mySelf = PointOfInterest(id: Int(frame.minor), name: username)
+        let onSuccess: () -> Void = {_ in
             self.retrieveReceivers()
         }
         
-        let onError: (ServerFacade.ErrorType) -> Void = {error in
+        let onError: (PersistenceErrors) -> Void = {error in
             DispatchQueue.main.sync {
                 self.show(error: error)
             }
         }
         
-        try! ServerFacade.instance.registerAsBeacon(username: username,
-                                                    onSuccess: onSuccess,
-                                                    onError: onError)
+        User.instance.registerBeacon(successDelegate: onSuccess, errorDelegate: onError)
     }
     
     /**
@@ -148,7 +136,7 @@ class NewConnectionViewController: UIViewController {
         Shows an error to the user.
         Must be implemented by inheritors.
     */
-    func show(error: ServerFacade.ErrorType) {
+    func show(error: PersistenceErrors) {
         preconditionFailure("Not implemented")
     }
 

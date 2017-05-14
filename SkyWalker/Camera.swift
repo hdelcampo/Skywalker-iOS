@@ -14,7 +14,7 @@ class Camera {
     
     let captureSession = AVCaptureSession()
     
-    var captureDevice: AVCaptureDevice? = nil
+    var captureDevice: AVCaptureDevice?
     
     var previewLayer : AVCaptureVideoPreviewLayer?
     

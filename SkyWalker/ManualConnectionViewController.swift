@@ -62,7 +62,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
     */
     @IBAction func startDemo() {
         PointOfInterest.DemoPoints()
-        ServerFacade.instance.isDemo = true
+        User.instance.isDemo = true
         Center.centers.append(Center(id: 0))
         Center.centers[0].scale = 50
         startAR()
@@ -115,24 +115,22 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         
     }
     
-    override func show(error: ServerFacade.ErrorType) {
+    override func show(error: PersistenceErrors) {
         
         switch error {
         case .INVALID_URL:
             alert.dismiss(animated: true, completion: nil)
             toggleError(view: urlContainer, error: true, errorMsg: NSLocalizedString("invalid_url", comment: ""))
             connectButton.isEnabled = false
-        case .INVALID_USERNAME_OR_PASSWORD:
+        case .INVALID_CREDENTIALS:
             alert.dismiss(animated: true, completion: nil)
             toggleError(view: userContainer, error: true, errorMsg: NSLocalizedString("invalid_username_password", comment: ""))
             toggleError(view: passwordContainer, error: true, errorMsg: NSLocalizedString("invalid_username_password", comment: ""))
-        case .NO_CONNECTION, .TIME_OUT:
+        case .INTERNET_ERROR:
             alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
             indicator.removeFromSuperview()
             alert.message = NSLocalizedString("no_internet", comment: "")
-            print("conexion")
         default:
-            print("defecto")
             alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
             indicator.removeFromSuperview()
             alert.message = NSLocalizedString("server_bad_connection", comment: "")

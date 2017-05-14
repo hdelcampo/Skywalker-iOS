@@ -18,7 +18,7 @@ class InformationViewController: UIViewController, UIPopoverPresentationControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        serverLabel.text = ServerFacade.instance.token?.URL
+        serverLabel.text = User.instance.token?.URL
         setBuildStamp()
     }
 
