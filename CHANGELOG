@@ -1,4 +1,22 @@
 -----------------------
+ Build 19 -08/05/2017-
+
+ Release Candidate
+
+-----------------------
+
++ Añadido un máximo de elementos a mostrar en pantalla
++ Añadida detección de dispositivos incompatibles
++ Implementada detección del estado del bluetooth
++ Implementada detección de la calibración del sensor de orientación
++ Implementada el login mediante QR
++ Mejorada la animación para mostrar/ocultar los controles
++ Mejorada la iconografía e incluidos algunos iconos faltantes
++ Mejorado el manejo de errores en la conexión
++ Mejorada la implementación del dibujado, ahora no se bloquea la UI y se ha reducido en un ~30% el uso de la CPU
++ Arreglados varios crashes y bugs
+
+-----------------------
  Build 18 -28/04/2017-
 -----------------------
 
