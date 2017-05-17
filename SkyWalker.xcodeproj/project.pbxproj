@@ -54,6 +54,7 @@
 		C4C0DF4F1EC5A714005158EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0DF4E1EC5A714005158EA /* User.swift */; };
 		C4C0DF511EC5AA25005158EA /* PersistenceErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0DF501EC5AA25005158EA /* PersistenceErrors.swift */; };
 		C4E6295F1E9A7AD80010352B /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */; };
+		C4FF62CC1ECC8475006F0C5B /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -413,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FF62CC1ECC8475006F0C5B /* DoubleExtension.swift in Sources */,
 				C468AEF41E794730005AA4EE /* Matrix.swift in Sources */,
 				C468AEF31E794376005AA4EE /* MatrixTests.swift in Sources */,
 				C44DB1E41DC65A98000CAEED /* Vector3DTests.swift in Sources */,
