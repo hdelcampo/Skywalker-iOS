@@ -185,6 +185,8 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     private func onInternetError() {
         DispatchQueue.main.sync {
+            connectionThread?.cancel()
+            connectionThread = nil
             let alert = UIAlertController(title: NSLocalizedString("internet_off_title", comment: ""),
                                       message: NSLocalizedString("internet_off_msg", comment: ""),
                                       preferredStyle: .alert)
@@ -556,38 +558,39 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     let maxErrorsPorc: Float = 0.6
     let maxLoopsWithoutCheck: Float = 4
+    var numLoopsWithoutCheck: Float = 0
+    var numPetitionsWithoutCheck: Float = 0
+    var numErrors = AtomicInteger()
+
     
     func updatePoints() {
         
-        var numLoopsWithoutCheck: Float = 0
-        var numPetitionsWithoutCheck: Float = 4
-        var numErrors = AtomicInteger()
-        
         let onError: (PersistenceErrors) -> Void = { _ in
-            numErrors.increment()
+            self.numErrors.increment()
         }
         
-            if (maxLoopsWithoutCheck == numLoopsWithoutCheck) {
-                if ( Float(numErrors.get()) >= numPetitionsWithoutCheck * maxErrorsPorc) {
-                    onInternetError()
-                    return;
-                } else {
-                    numErrors.set(0)
-                    numPetitionsWithoutCheck = 0
-                    numLoopsWithoutCheck = 0
-                }
+        if (maxLoopsWithoutCheck == numLoopsWithoutCheck) {
+            if ( Float(numErrors.get()) >= numPetitionsWithoutCheck * maxErrorsPorc) {
+                onInternetError()
+                return;
+            } else {
+                numErrors.set(0)
+                numPetitionsWithoutCheck = 0
+                numLoopsWithoutCheck = 0
             }
-            
-            mySelf.updatePosition(successDelegate: nil, errorDelegate: onError)
-            
+        }
+        
+        mySelf.updatePosition(successDelegate: nil, errorDelegate: onError)
+        
+        numPetitionsWithoutCheck += 1
+        
+        for point in points {
+            point.updatePosition(successDelegate: nil, errorDelegate: onError)
             numPetitionsWithoutCheck += 1
-            
-            for point in points {
-                point.updatePosition(successDelegate: nil, errorDelegate: onError)
-                numPetitionsWithoutCheck += 1
-            }
-            
-            numLoopsWithoutCheck += 1
+        }
+        
+        numLoopsWithoutCheck += 1
+        
     }
     
     
