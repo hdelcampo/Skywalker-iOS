@@ -58,8 +58,10 @@ class Center {
         let onSuccess: ([PointOfInterest]) -> Void = {points in
             
             self.points = points
-            if let myIndex = points.index(of: PointOfInterest.mySelf) {
-                self.points!.remove(at: myIndex)
+            for (index, point) in self.points!.enumerated() {
+                if (User.instance.position == point) {
+                    self.points?.remove(at: index)
+                }
             }
             
             successDelegate?()
