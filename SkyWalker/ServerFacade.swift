@@ -169,7 +169,7 @@ class ServerFacade {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = User.instance.token!.URL.appending("/api/centers/0/tags")
+        let realURL = User.instance.token!.URL.appending("/api/centers/\(User.instance.center!.id)/tags")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -227,7 +227,7 @@ class ServerFacade {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = User.instance.token!.URL.appending("/api/centers/0/tags")
+        let realURL = User.instance.token!.URL.appending("/api/centers/\(User.instance.center!.id)/tags")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -292,7 +292,7 @@ class ServerFacade {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = User.instance.token!.URL.appending("/api/centers/0/tags/\(tag.id)")
+        let realURL = User.instance.token!.URL.appending("/api/centers/\(User.instance.center!.id)/tags/\(tag.id)")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -323,7 +323,7 @@ class ServerFacade {
                     
                     if let receiverId = json["nearest_rdhub"] as? Int {
                         
-                        let receivers = Center.centers[0].receivers!
+                        let receivers = User.instance.center!.receivers!
                         
                         var receiver: MapPoint!
                         

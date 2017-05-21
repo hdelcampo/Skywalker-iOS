@@ -41,15 +41,12 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     */
     private var iBeacon: CLBeaconRegion?
     
+    private(set) var frame: IBeaconFrame?
+    
     /**
         The txPower to transmit.
     */
     private var txPower: NSNumber?
-    
-    /**
-        Singleton instance
-    */
-    static let instance = IBeaconTransmitter()
     
     /**
         Indicates if an ongoing transmission is on.
@@ -82,6 +79,7 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
             - txPower: The measured TX Power, can be nil to use device's default value.
     */
     func configure(frame: IBeaconFrame, txPower: NSNumber? = nil) {
+        self.frame = frame
         iBeacon = CLBeaconRegion(proximityUUID: frame.uuid, major: frame.major, minor: frame.minor, identifier: id)
     }
     

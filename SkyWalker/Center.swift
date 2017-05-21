@@ -14,12 +14,8 @@ class Center {
     
     var scale: Double = 40
 
-    
     private(set) var mapNorth: Vector2D
-    
-    
-    static var centers = [Center]()
-    
+        
     var receivers: [MapPoint]?
     
     var points: [PointOfInterest]?
@@ -62,9 +58,8 @@ class Center {
         let onSuccess: ([PointOfInterest]) -> Void = {points in
             
             self.points = points
-            PointOfInterest.points = points
             if let myIndex = points.index(of: PointOfInterest.mySelf) {
-                PointOfInterest.points.remove(at: myIndex)
+                self.points!.remove(at: myIndex)
             }
             
             successDelegate?()

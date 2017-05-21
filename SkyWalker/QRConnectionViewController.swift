@@ -28,11 +28,13 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         captureSession.stopRunning()
         connecting = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         DispatchQueue.global(qos: .default).async {_ in
             
             self.captureSession.startRunning()

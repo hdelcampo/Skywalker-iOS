@@ -66,7 +66,7 @@ class ARViewController: UIViewController {
             controller.popoverPresentationController?.delegate = controller
             controller.debugController = overlayViewController
         } else if let controller = segue.destination as? FilterViewController {
-            controller.allPoints = PointOfInterest.points!
+            controller.allPoints = User.instance.center!.points!
             controller.usedPoints = overlayViewController.points
             controller.caller = self
         } else if let controller = segue.destination as? OverlayViewController {
@@ -82,7 +82,7 @@ class ARViewController: UIViewController {
     */
     @IBAction func logout(_ sender: UIBarButtonItem) {
         User.instance.logout()
-        cameraViewController.viewWillBeDestroyed()
+        //cameraViewController.viewWillBeDestroyed()
         if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
             myDelegate.portraitOnly = true
         }

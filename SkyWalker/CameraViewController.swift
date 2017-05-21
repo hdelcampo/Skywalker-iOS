@@ -13,16 +13,11 @@ class CameraViewController: UIViewController {
     // MARK: Properties
     
     let camera = Camera.instance
-    
-    /**
-     View's state
-     */
-    var destroyed = false
 
     // MARK: Functions
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         camera.view = view
         camera.setRearCamera()
@@ -30,19 +25,14 @@ class CameraViewController: UIViewController {
  
     }
     
-
-    /**
-        Callback for view destroy
-    */
-    func viewWillBeDestroyed() {
-        destroyed = true
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         camera.stopSession()
     }
     
+    
     override func viewDidLayoutSubviews() {
-        if (!destroyed) {
-            camera.rotate(orientation: UIDevice.current.orientation)
-        }
+        camera.rotate(orientation: UIDevice.current.orientation)
     }
 
 }

@@ -15,24 +15,6 @@ class OrientationSensor {
     
     static let updateRate: Double = 1/60
     
-    var x: Double {
-        get {
-            return orientationVector.x
-        }
-    }
-    
-    var y: Double {
-        get {
-            return orientationVector.y
-        }
-    }
-    
-    var z: Double {
-        get {
-            return orientationVector.z
-        }
-    }
-    
     /**
         Orientation vector
     */

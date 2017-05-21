@@ -20,6 +20,12 @@ class User {
     */
     private(set) var token: Token?
     
+    var center: Center?
+    
+    let transmitter = IBeaconTransmitter()
+    
+    private(set) var position: MapPoint?
+    
     /**
         User's username.
     */
@@ -49,6 +55,7 @@ class User {
         let onSuccess: (Token) -> Void = {token in
             self.token = token
             self.username = username
+            self.center = Center(id: 0)
             successDelegate?()
         }
         
@@ -84,8 +91,8 @@ class User {
                         errorDelegate: ((PersistenceErrors) -> Void)?) {
         
         let onSuccess: (IBeaconFrame) -> Void = {frame in
-            IBeaconTransmitter.instance.configure(frame: frame)
-            PointOfInterest.mySelf = PointOfInterest(id: Int(frame.minor), name: self.username!)
+            self.transmitter.configure(frame: frame)
+            self.position = MapPoint(id: Int(frame.minor), x: -1, y: -1, z: -1)
             successDelegate?()
         }
         

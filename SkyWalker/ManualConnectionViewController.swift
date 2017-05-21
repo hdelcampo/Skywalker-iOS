@@ -61,10 +61,10 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         Demo mode click.
     */
     @IBAction func startDemo() {
-        PointOfInterest.DemoPoints()
         User.instance.isDemo = true
-        Center.centers.append(Center(id: 0))
-        Center.centers[0].scale = 50
+        User.instance.center = Center(id: 0)
+        User.instance.center!.points = PointOfInterest.demoPoints
+        User.instance.center!.scale = 50
         startAR()
     }
     

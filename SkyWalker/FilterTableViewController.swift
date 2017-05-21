@@ -116,7 +116,7 @@ class FilterTableViewController: UITableViewController, SwitchCellDelegate {
             - cell: The cell on which to decide.
         - Returns: True if can be enabled, false otherwise.
     */
-    func canBeEnabled(_ cell: FilterTableViewCell) -> Bool {
+    private func canBeEnabled(_ cell: FilterTableViewCell) -> Bool {
       return !excedeedMax ||
         selectedItems.contains(cell.cellData.point)
     }

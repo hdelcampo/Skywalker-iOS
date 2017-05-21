@@ -33,6 +33,7 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
     }
   
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         carrouselTimer = Timer.scheduledTimer(timeInterval: carrouselTime, target: self, selector: #selector(changePage(_:)), userInfo: nil, repeats: true)
         if (!OrientationSensor.isAvailable()) {
             onIncompatibleDevice()
@@ -40,6 +41,7 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         carrouselTimer?.invalidate()
     }
     

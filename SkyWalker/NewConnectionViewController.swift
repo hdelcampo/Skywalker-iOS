@@ -57,7 +57,7 @@ class NewConnectionViewController: UIViewController {
      */
     private func retrieveReceivers () {
         
-        Center.centers.append(Center(id: 0))
+        User.instance.center = Center(id: 0)
         
         DispatchQueue.main.sync {
             self.alert.message = NSLocalizedString("connection_receivers", comment: "")
@@ -73,7 +73,7 @@ class NewConnectionViewController: UIViewController {
             }
         }
         
-        Center.centers[0].loadReceivers(successDelegate: onSuccess, errorDelegate: onError)
+        User.instance.center?.loadReceivers(successDelegate: onSuccess, errorDelegate: onError)
         
     }
     
@@ -99,7 +99,7 @@ class NewConnectionViewController: UIViewController {
             }
         }
         
-        Center.centers[0].loadTags(successDelegate: onSuccess, errorDelegate: onError)
+        User.instance.center?.loadTags(successDelegate: onSuccess, errorDelegate: onError)
         
     }
     

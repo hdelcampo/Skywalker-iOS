@@ -15,10 +15,6 @@ class PointOfInterest: MapPoint {
 
     let name: String
     
-    static var points: [PointOfInterest]!
-    
-    static var mySelf: PointOfInterest!
-    
     // MARK: Functions
     
     init(id: Int, name: String) {
@@ -27,15 +23,12 @@ class PointOfInterest: MapPoint {
     }
     
     /**
-        Sets a list of points prepared for demostration purposes.
+        Gets a list of points prepared for demostration purposes.
     */
-    static func DemoPoints() {
-        
-        mySelf = PointOfInterest(id: 999, name: "MySelf")
-        mySelf.x = 0.5
-        mySelf.y = 0.5
-        
-        points = []
+    static var demoPoints: [PointOfInterest] {
+    
+        var points = [PointOfInterest]()
+   
         points.append(PointOfInterest(id: 0, name: "Dani"))
         points[0].y = 0.5
         points[0].x = 0
@@ -55,8 +48,16 @@ class PointOfInterest: MapPoint {
         points[3].y = 0.5
         points[3].z = 0
         
+        return points
+        
     }
     
-
+    static var mySelf: PointOfInterest {
+        let mySelf = PointOfInterest(id: 999, name: "mySelf")
+        mySelf.x = 0.5
+        mySelf.y = 0.5
+        
+        return mySelf
+    }
     
 }

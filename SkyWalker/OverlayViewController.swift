@@ -82,12 +82,13 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         super.viewDidLoad()
         initialLayers = self.view.layer.sublayers!
         
-        points = Array(PointOfInterest.points.prefix(OverlayViewController.maxPoints))
+        points = Array(User.instance.center!.points!.prefix(OverlayViewController.maxPoints))
         mySelf = PointOfInterest.mySelf
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if (!User.instance.isDemo) {
             bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         } else {
@@ -97,15 +98,15 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if (IBeaconTransmitter.instance.isTransmitting) {
-            IBeaconTransmitter.instance.stopTransmission()
+        if (User.instance.transmitter.isTransmitting) {
+            User.instance.transmitter.stopTransmission()
         }
         stopThreads()
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if peripheral.state == .poweredOff {
-            IBeaconTransmitter.instance.stopTransmission()
+            User.instance.transmitter.stopTransmission()
             stopThreads()
             let alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
                               message: NSLocalizedString("bluetooth_off_msg", comment: ""),
@@ -118,7 +119,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             }))
             self.present(alert, animated: true, completion: nil)
         } else if (peripheral.state == .poweredOn) {
-            IBeaconTransmitter.instance.startTransmission()
+            User.instance.transmitter.startTransmission()
             startThreads()
         }
     }
@@ -333,7 +334,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
                                      y: point.y - self.mySelf.y)
         
         transformInSightLayer(inSightLayers[index]!,
-                              text: [point.name, "\(String(format: "%.2f", distanceVector.module() * Center.centers[0].scale))m" + floorLabel],
+                              text: [point.name, "\(String(format: "%.2f", distanceVector.module() * User.instance.center!.scale))m" + floorLabel],
                               x: x,
                               y: y)
         
@@ -386,7 +387,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     /**
         The main painter loop, this will handle the queues and all painting logic.
     */
-    func redraw () {
+    private func redraw () {
         
         let orientationVector = orientationSensor.orientationVector
         
