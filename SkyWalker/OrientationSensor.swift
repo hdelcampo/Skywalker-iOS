@@ -22,7 +22,6 @@ class OrientationSensor {
     
     let motionManager = CMMotionManager()
     let alpha = 0.25
-    let deviceReference = Vector3D(x: 1, y: 0, z: 0)
     
     /**
         The reference frame for the sensor.
@@ -74,28 +73,16 @@ class OrientationSensor {
     */
     private func updateData(from: CMDeviceMotion) {
         
-        let r = from.attitude.rotationMatrix
-        let rMatrix = GLKMatrix4Make(Float(r.m11), Float(r.m12), Float(r.m13), 0,
-                                        Float(r.m21), Float(r.m22), Float(r.m23), 0,
-                                        Float(r.m31), Float(r.m32), Float(r.m33), 0,
-                                        0,     0,     0,     1)
+        let rotationMatrix = from.attitude.rotationMatrix
         
-        let rotated = GLKMatrix4RotateY(rMatrix, GLKMathDegreesToRadians(90))
-        
-        let orientationQuat = GLKQuaternionMakeWithMatrix4(rotated)
-        let myVector = GLKVector3Make(Float(deviceReference.x),
-                                      Float(deviceReference.y),
-                                      0)
-        
-        let result = GLKQuaternionRotateVector3(orientationQuat, myVector)
-        
-        var calibratedVector = Vector2D(x: Double(result.x), y: Double(result.y))
+        var calibratedVector = Vector2D(x: Double(-rotationMatrix.m31), y: Double(-rotationMatrix.m32))
         calibratedVector.rotateClockwise(degrees: 30)
         
-        let filteredData = lowFilter(input: [Float(calibratedVector.x), Float(calibratedVector.y), result.z],
+        let filteredData = lowFilter(input: [calibratedVector.x, calibratedVector.y, -rotationMatrix.m33],
                   previousValues: [orientationVector.x, orientationVector.y, orientationVector.z])
         
         orientationVector = Vector3D(x: filteredData[0], y: filteredData[1], z: filteredData[2])
+
         orientationVector.normalize()
         
     }
@@ -103,12 +90,12 @@ class OrientationSensor {
     /**
         Low-pass filter to sensor data
     */
-    private func lowFilter(input: [Float], previousValues: [Double]) -> [Double] {
+    private func lowFilter(input: [Double], previousValues: [Double]) -> [Double] {
         
         var output: [Double] = [0, 0, 0]
         
         for i in 0..<3 {
-            output[i] = previousValues[i] + alpha * (Double(input[i]) - previousValues[i]);
+            output[i] = previousValues[i] + alpha * (input[i] - previousValues[i]);
         }
         
         return output;
