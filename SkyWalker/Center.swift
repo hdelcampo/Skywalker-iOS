@@ -49,7 +49,7 @@ class Center {
             
         }
         
-        try! ServerFacade.instance.getCenterReceivers(center: self, onSuccess: onSuccess, onError: onError)
+        try! ServerFacade.instance.getCenterReceivers(center: id, onSuccess: onSuccess, onError: onError)
     }
     
     func loadTags(successDelegate: (() -> Void)?,

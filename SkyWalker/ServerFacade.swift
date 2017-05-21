@@ -102,7 +102,7 @@ class ServerFacade {
     /**
      Retrieves a center's receivers
      */
-    func getCenterReceivers (center: Center,
+    func getCenterReceivers (center: Int,
                              onSuccess: @escaping (_: [MapPoint]) -> Void,
                              onError: @escaping (_: ErrorType) -> Void) throws {
         
@@ -110,7 +110,7 @@ class ServerFacade {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = User.instance.token!.URL.appending("/api/centers/\(center.id)/rdhubs")
+        let realURL = User.instance.token!.URL.appending("/api/centers/\(center)/rdhubs")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
