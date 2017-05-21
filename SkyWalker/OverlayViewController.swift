@@ -68,11 +68,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     static let maxPoints = 5
     
     /**
-        Thread that handles tags position updating.
-     */
-    var connectionThread: TagsUpdaterThread?
-    
-    /**
         Thread that handles drawing.
     */
     var painterThread: DispatchSourceTimer?
@@ -124,16 +119,24 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         }
     }
     
+    private var connectionThread: DispatchSourceTimer?
+    
     /**
         Starts all threads.
     */
     private func startThreads() {
         
-        connectionThread = TagsUpdaterThread()
-        connectionThread!.points = points
-        connectionThread!.mySelf = mySelf
-        connectionThread!.errorCallback = {_ in self.onInternetError()}
-        connectionThread!.start()
+        connectionThread = DispatchSource.makeTimerSource(queue: connectionQueue)
+        connectionThread!.scheduleRepeating(deadline: .now(), interval: 1)
+        connectionThread!.setEventHandler { _ in
+            self.updatePoints()
+        }
+        
+        if #available(iOS 10.0, *) {
+            connectionThread!.activate()
+        } else {
+            connectionThread!.resume()
+        }
         
         mySelf.x = 0.5
         mySelf.y = 0.5
@@ -179,15 +182,17 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     private func onInternetError() {
-        let alert = UIAlertController(title: NSLocalizedString("internet_off_title", comment: ""),
-                                  message: NSLocalizedString("internet_off_msg", comment: ""),
-                                  preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
-                                       style: .default,
-                                       handler: { _ in
-                                        self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.sync {
+            let alert = UIAlertController(title: NSLocalizedString("internet_off_title", comment: ""),
+                                      message: NSLocalizedString("internet_off_msg", comment: ""),
+                                      preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""),
+                                           style: .default,
+                                           handler: { _ in
+                                            self.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     // MARK: Drawing
@@ -545,61 +550,43 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         view.layer.addSublayer(layer)
     }
 
-
-    /*
-     Thread class to handle tags updating
-     */
-    class TagsUpdaterThread: Thread {
+    let connectionQueue = DispatchQueue(label: "Connection", qos: DispatchQoS.userInitiated)
+    
+    let maxErrorsPorc: Float = 0.6
+    let maxLoopsWithoutCheck: Float = 4
+    
+    func updatePoints() {
         
-        var points: [PointOfInterest] = []
-        var mySelf: PointOfInterest!
+        var numLoopsWithoutCheck: Float = 0
+        var numPetitionsWithoutCheck: Float = 4
+        var numErrors = AtomicInteger()
         
-        var errorCallback: (() -> Void)?
-        
-        let updateRate: UInt32 = 1000 * 1000   //ms * ns
-        
-        let maxErrorsPorc: Float = 0.6
-        let maxLoopsWithoutCheck: Float = 4
-        
-        override func main() {
-            
-            var numLoopsWithoutCheck: Float = 0
-            var numPetitionsWithoutCheck: Float = 4
-            var numErrors = AtomicInteger()
-            
-            let onError: (PersistenceErrors) -> Void = { _ in
-                numErrors.increment()
-            }
-
-            while(!self.isCancelled) {
-                
-                if (maxLoopsWithoutCheck == numLoopsWithoutCheck) {
-                    if ( Float(numErrors.get()) >= numPetitionsWithoutCheck * maxErrorsPorc) {
-                        errorCallback?()
-                        break;
-                    } else {
-                        numErrors.set(0)
-                        numPetitionsWithoutCheck = 0
-                        numLoopsWithoutCheck = 0
-                    }
-                }
-                
-                mySelf.updatePosition(successDelegate: nil, errorDelegate: onError)
-                
-                numPetitionsWithoutCheck += 1
-                
-                for point in points {
-                    point.updatePosition(successDelegate: nil, errorDelegate: onError)
-                    numPetitionsWithoutCheck += 1
-                }
-                
-                numLoopsWithoutCheck += 1
-                usleep(updateRate)
-                
-            }
-            
+        let onError: (PersistenceErrors) -> Void = { _ in
+            numErrors.increment()
         }
         
+            if (maxLoopsWithoutCheck == numLoopsWithoutCheck) {
+                if ( Float(numErrors.get()) >= numPetitionsWithoutCheck * maxErrorsPorc) {
+                    onInternetError()
+                    return;
+                } else {
+                    numErrors.set(0)
+                    numPetitionsWithoutCheck = 0
+                    numLoopsWithoutCheck = 0
+                }
+            }
+            
+            mySelf.updatePosition(successDelegate: nil, errorDelegate: onError)
+            
+            numPetitionsWithoutCheck += 1
+            
+            for point in points {
+                point.updatePosition(successDelegate: nil, errorDelegate: onError)
+                numPetitionsWithoutCheck += 1
+            }
+            
+            numLoopsWithoutCheck += 1
     }
+    
     
 }
