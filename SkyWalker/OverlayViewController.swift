@@ -121,13 +121,15 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     private var connectionThread: DispatchSourceTimer?
     
+    private let updateRate = 0.25
+    
     /**
         Starts all threads.
     */
     private func startThreads() {
         
         connectionThread = DispatchSource.makeTimerSource(queue: connectionQueue)
-        connectionThread!.scheduleRepeating(deadline: .now(), interval: 1)
+        connectionThread!.scheduleRepeating(deadline: .now(), interval: updateRate)
         connectionThread!.setEventHandler { _ in
             self.updatePoints()
         }
