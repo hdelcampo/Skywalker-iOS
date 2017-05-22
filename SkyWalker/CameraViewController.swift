@@ -22,11 +22,27 @@ class CameraViewController: UIViewController {
         camera.view = view
         camera.setRearCamera()
         camera.beginSession()
- 
+        NotificationCenter.default.addObserver(self, selector: #selector(onBackgroundStateChange(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onBackgroundStateChange(_:)), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+    }
+    
+    /**
+        Callback to handle foreground/background changes.
+    */
+    func onBackgroundStateChange(_ notification: Any) {
+        if let not = notification as? NSNotification {
+            switch not.name {
+            case NSNotification.Name.UIApplicationDidBecomeActive:
+                camera.resume()
+            default:
+                camera.pause()
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
         camera.stopSession()
     }
     
@@ -34,5 +50,5 @@ class CameraViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         camera.rotate(orientation: UIDevice.current.orientation)
     }
-
+    
 }

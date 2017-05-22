@@ -44,6 +44,20 @@ class Camera {
     }
     
     /**
+        Resumes a previous camera session.
+    */
+    func resume() {
+        captureSession.startRunning()
+    }
+    
+    /**
+        Pauses the camera without destroying anything.
+    */
+    func pause() {
+        captureSession.stopRunning()
+    }
+    
+    /**
      Begins images live preview
      */
     func beginSession() {
