@@ -195,7 +195,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     */
     private func stopThreads() {
         
-        orientationSensor.registerEvents()
+        orientationSensor.unregisterEvents()
         
         connectionThread?.cancel()
         connectionThread = nil
