@@ -91,8 +91,8 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         if (User.instance.transmitter.isTransmitting) {
             User.instance.transmitter.stopTransmission()
         }
@@ -176,6 +176,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         
         orientationSensor.registerEvents()
         
+        connectionThread?.setCancelHandler(handler: {User.instance.logout()})
         connectionThread?.cancel()
         connectionThread = nil
         
