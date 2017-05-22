@@ -101,7 +101,9 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if peripheral.state == .poweredOff {
-            User.instance.transmitter.stopTransmission()
+            if (User.instance.transmitter.isTransmitting) {
+                User.instance.transmitter.stopTransmission()
+            }
             stopThreads()
             let alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
                               message: NSLocalizedString("bluetooth_off_msg", comment: ""),
