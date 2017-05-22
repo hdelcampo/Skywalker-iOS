@@ -89,15 +89,33 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         } else {
             startDrawingThread()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onBackgroundStateChange(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onBackgroundStateChange(_:)), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
         if (User.instance.transmitter.isTransmitting) {
             User.instance.transmitter.stopTransmission()
         }
         connectionThread?.setCancelHandler(handler: { User.instance.logout() })
         stopThreads()
+    }
+    
+    /**
+     Callback to handle foreground/background changes.
+     - Parameters:
+     - notification: The notification itself.
+     */
+    func onBackgroundStateChange(_ notification: NSNotification) {
+        switch notification.name {
+        case NSNotification.Name.UIApplicationDidBecomeActive:
+            User.instance.isDemo ? startDrawingThread() : startThreads()
+        default:
+            stopThreads()
+        }
     }
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {

@@ -28,15 +28,15 @@ class CameraViewController: UIViewController {
     
     /**
         Callback to handle foreground/background changes.
+        - Parameters:
+            - notification: The notification itself.
     */
-    func onBackgroundStateChange(_ notification: Any) {
-        if let not = notification as? NSNotification {
-            switch not.name {
+    func onBackgroundStateChange(_ notification: NSNotification) {
+        switch notification.name {
             case NSNotification.Name.UIApplicationDidBecomeActive:
                 camera.resume()
             default:
                 camera.pause()
-            }
         }
     }
     
