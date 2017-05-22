@@ -85,6 +85,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if (!User.instance.isDemo) {
+            startThreads()
             bleManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         } else {
             startDrawingThread()
@@ -123,7 +124,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             if (User.instance.transmitter.isTransmitting) {
                 User.instance.transmitter.stopTransmission()
             }
-            stopThreads()
             let alert = UIAlertController(title: NSLocalizedString("bluetooth_off_title", comment: ""),
                               message: NSLocalizedString("bluetooth_off_msg", comment: ""),
                               preferredStyle: .alert)
@@ -136,7 +136,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
             self.present(alert, animated: true, completion: nil)
         } else if (peripheral.state == .poweredOn) {
             User.instance.transmitter.startTransmission()
-            startThreads()
         }
     }
     
