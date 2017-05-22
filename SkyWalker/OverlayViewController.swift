@@ -96,6 +96,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         if (User.instance.transmitter.isTransmitting) {
             User.instance.transmitter.stopTransmission()
         }
+        connectionThread?.setCancelHandler(handler: { User.instance.logout() })
         stopThreads()
     }
     
@@ -178,7 +179,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         
         orientationSensor.registerEvents()
         
-        connectionThread?.setCancelHandler(handler: {User.instance.logout()})
         connectionThread?.cancel()
         connectionThread = nil
         
