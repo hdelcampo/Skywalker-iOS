@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ XtremeLoc system user.
+*/
 class User {
     
     /**
@@ -20,10 +23,19 @@ class User {
     */
     private(set) var token: Token?
     
+    /**
+        Centers where user is registered.
+    */
     var center: Center?
     
+    /**
+        Bluetooth transmitter.
+    */
     let transmitter = IBeaconTransmitter()
     
+    /**
+        Position on map.
+    */
     private(set) var position: MapPoint?
     
     /**
@@ -32,7 +44,7 @@ class User {
     private(set) var username: String?
     
     /**
-        Computed property to indicate whether connection is in demo mode or not
+        Indicates whether connection is in demo mode or not
      */
     var isDemo: Bool {
         
@@ -46,6 +58,15 @@ class User {
         
     }
     
+    /**
+        Logs this user on the server.
+        - Parameters:
+            - server: The server where to log in.
+            - username: Of the user.
+            - password: Of the user.
+            - successDelegate: Success callback.
+            - errorDelegate: Error delegate.
+    */
     func login(server: String,
                username: String?,
                password: String?,
@@ -63,6 +84,8 @@ class User {
             let realError: PersistenceErrors
             
             switch(error) {
+            case .INVALID_USERNAME_OR_PASSWORD:
+                realError = .INVALID_CREDENTIALS
             case .NO_CONNECTION, .TIME_OUT:
                 realError = .INTERNET_ERROR
             default:
@@ -86,6 +109,9 @@ class User {
     
     /**
         Registers this device as beacon.
+        - Parameters:
+            - successDelegate: Success callback.
+            - errorDelegate: Error callback.
     */
     func registerBeacon(successDelegate: (() -> Void)?,
                         errorDelegate: ((PersistenceErrors) -> Void)?) {
