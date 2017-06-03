@@ -13,6 +13,9 @@ import Foundation
  */
 class Matrix {
     
+    /**
+        Errors that can be thrown.
+    */
     enum MathError: Error {
         case INVALID_SIZES
     }
@@ -40,7 +43,7 @@ class Matrix {
             return data[row][col]
         }
         
-        set(newValue) {
+        set {
             data[row][col] = newValue
         }
     }

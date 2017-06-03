@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Possible persistence errors.
+*/
 enum PersistenceErrors: Error {
     case INTERNET_ERROR, SERVER_ERROR, INVALID_CREDENTIALS, INVALID_URL
 }

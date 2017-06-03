@@ -10,6 +10,14 @@ import Foundation
 import GLKit
 
 extension Double {
+    
+    /**
+        Transforms this value to degrees.
+    */
     var toDegrees: Double { return Double(GLKMathRadiansToDegrees(Float(self))) }
+    
+    /**
+        Transforms this value to radians.
+     */
     var toRadians: Double { return Double(GLKMathDegreesToRadians(Float(self))) }
 }
