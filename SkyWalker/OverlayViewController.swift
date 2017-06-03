@@ -271,7 +271,7 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         //Vertical
         var y = orientationVector.z
         
-        let angle = Vector3D.getAngle(x: x, y: y)
+        let angle = Vector2D.getAngle(x: x, y: y)
         
         /*
          * So once we get angle, we must remap it to coordinates. There are 2 kinds:

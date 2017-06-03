@@ -11,14 +11,12 @@ import Foundation
 /**
  Geometric 2D Vector.
 */
-struct Vector2D: Vector {
+struct Vector2D {
     
     /**
         Vector's components
     */
     private(set) var x: Double, y: Double
-    
-    typealias ItemType = Vector2D
     
     /**
      Constructs a new 2D Vector.
@@ -31,18 +29,30 @@ struct Vector2D: Vector {
         self.y = y
     }
     
+    /**
+     Normalizes the vector.
+     */
     mutating func normalize() {
         let length = module()
         x /= length
         y /= length
     }
     
+    /**
+     Finds the inner angle between vectors.
+     - Parameter v: The other vector.
+     - Returns: The inner angle in degrees.
+     */
     func angle(v: Vector2D) -> Double {
         let product = self * v
         let cos = product/(module()*v.module())
         return acos(cos).toDegrees
     }
     
+    /**
+        Retrieves the vector's length.
+     - Returns: The vector's length.
+     */
     func module() -> Double {
         return sqrt((x*x) + (y*y))
     }
@@ -54,7 +64,7 @@ struct Vector2D: Vector {
             -v2: Right side of the multiplication.
         - Returns the scalar product of the two vectors.
     */
-    static func * (v1: ItemType, v2: ItemType) -> Double {
+    static func * (v1: Vector2D, v2: Vector2D) -> Double {
         return (v1.x*v2.x) + (v1.y*v2.y)
     }
     
@@ -85,6 +95,22 @@ struct Vector2D: Vector {
     
         x = newX
         y = newY
+    }
+    
+    /**
+     Retrieves angle in degrees, values from [0, 360).
+     - Returns: The angle in degrees.
+     */
+    static func getAngle(x: Double, y: Double) -> Double {
+        
+        var angle = atan2(y, x).toDegrees
+        
+        if (angle < 0) {
+            // Sum complete circle
+            angle += 180*2;
+        }
+        
+        return angle
     }
     
     

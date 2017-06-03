@@ -8,9 +8,13 @@
 
 import XCTest
 
+/**
+    Vector 2D unit tests.
+*/
 class Vector2DTests: XCTestCase {
     
     let rotatingAccuracy = 0.0001
+    let accuracy = 0.0001
     
     //MARK: Constructors tests
     func testConstructor() {
@@ -150,4 +154,47 @@ class Vector2DTests: XCTestCase {
         XCTAssertEqualWithAccuracy(1/sqrt(2), vector.x, accuracy: rotatingAccuracy)
         XCTAssertEqualWithAccuracy(1/sqrt(2), vector.y, accuracy: rotatingAccuracy)
     }
+    
+    
+    //MARK: getAngle tests
+    func testGetAngle0() {
+        let angle = Vector2D.getAngle(x: 1, y: 0)
+        XCTAssertEqualWithAccuracy(0, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle45() {
+        let angle = Vector2D.getAngle(x: 1, y: 1)
+        XCTAssertEqualWithAccuracy(45, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle90() {
+        let angle = Vector2D.getAngle(x: 0, y: 1)
+        XCTAssertEqualWithAccuracy(90, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle135() {
+        let angle = Vector2D.getAngle(x: -1, y: 1)
+        XCTAssertEqualWithAccuracy(135, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle180() {
+        let angle = Vector2D.getAngle(x: -1, y: 0)
+        XCTAssertEqualWithAccuracy(180, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle225() {
+        let angle = Vector2D.getAngle(x: -1, y: -1)
+        XCTAssertEqualWithAccuracy(225, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle270() {
+        let angle = Vector2D.getAngle(x: 0, y: -1)
+        XCTAssertEqualWithAccuracy(270, angle, accuracy: accuracy)
+    }
+    
+    func testGetAngle315() {
+        let angle = Vector2D.getAngle(x: 1, y: -1)
+        XCTAssertEqualWithAccuracy(315, angle, accuracy: accuracy)
+    }
+    
 }

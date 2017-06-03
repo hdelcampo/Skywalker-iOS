@@ -11,10 +11,8 @@ import Foundation
 /**
  Geometric 3D Vector.
 */
-struct Vector3D: Vector {
-    
-    typealias ItemType = Vector3D
-    
+struct Vector3D {
+        
     /**
      Vector's components
      */
@@ -33,10 +31,17 @@ struct Vector3D: Vector {
         self.z = z
     }
     
+    /**
+     Retrieves the vector's length.
+     - Returns: The vector's length.
+     */
     func module() -> Double {
         return sqrt((x*x) + (y*y) + (z*z))
     }
     
+    /**
+     Normalizes the vector.
+     */
     mutating func normalize() {
         let length = module()
         x /= length
@@ -44,6 +49,11 @@ struct Vector3D: Vector {
         z /= length
     }
     
+    /**
+     Finds the inner angle between vectors.
+     - Parameter v: The other vector.
+     - Returns: The inner angle in degrees.
+     */
     func angle(v: Vector3D) -> Double {
         let product = self * v
         let cos = product/(module()*v.module())
@@ -57,23 +67,8 @@ struct Vector3D: Vector {
         -v2: Right side of the multiplication.
      - Returns the scalar product of the two vectors.
      */
-    static func * (v1: ItemType, v2: ItemType) -> Double {
+    static func * (v1: Vector3D, v2: Vector3D) -> Double {
         return (v1.x*v2.x) + (v1.y*v2.y) + (v1.z*v2.z)
-    }
-    
-    /**
-        Retrieves angle in degrees, values from [0, 360).
-    */
-    static func getAngle(x: Double, y: Double) -> Double {
-        
-        var angle = atan2(y, x).toDegrees
-        
-        if (angle < 0) {
-            // Sum complete circle
-            angle += 180*2;
-        }
-        
-        return angle
     }
     
 }
