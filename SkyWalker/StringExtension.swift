@@ -9,23 +9,21 @@
 import Foundation
 
 /**
- Helper class to check certain data against a scheme
+ String extension with some utilites.
 */
-class DataValidator {
+extension String {
     
     /**
         Checks whether given parameter is a valid URL or not.
-        - Parameters:
-            - url: Url to check.
         - Returns: True if valid URL, false otherwise.
     */
-    static func isValidURL(url: String) -> Bool {
+    var isValidURL: Bool {
         
         let types: NSTextCheckingResult.CheckingType = .link
         
         let detector = try? NSDataDetector(types: types.rawValue)
         
-        let matches = detector?.matches(in: url, options: .reportCompletion, range: NSMakeRange(0, url.characters.count))
+        let matches = detector?.matches(in: self, options: .reportCompletion, range: NSMakeRange(0, characters.count))
         
         return matches!.count != 0
         

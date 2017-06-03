@@ -161,7 +161,7 @@ class ManualConnectionViewController: NewConnectionViewController, UITextFieldDe
         
         let url = textField.text!.appending(string)
         
-        if (DataValidator.isValidURL(url: url)) {
+        if (url.isValidURL) {
             toggleError(view: urlContainer, error: false)
             connectButton.isEnabled = true
         } else {

@@ -15,7 +15,7 @@
 		C4304A221E5AF7A600202AC6 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4304A211E5AF7A600202AC6 /* Token.swift */; };
 		C43458D01E96391E006B16EE /* IBeaconTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */; };
 		C43458D21E963A6F006B16EE /* OnBoardingPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43458D11E963A6F006B16EE /* OnBoardingPagerViewController.swift */; };
-		C439BAF91E990D920014544D /* DataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439BAF81E990D920014544D /* DataValidator.swift */; };
+		C439BAF91E990D920014544D /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439BAF81E990D920014544D /* StringExtension.swift */; };
 		C439F2071EA604DE00CFC6D9 /* IBeaconFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */; };
 		C443207B1E97901500B59C43 /* QRConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C443207A1E97901500B59C43 /* QRConnectionViewController.swift */; };
 		C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4461E3B1D9D83F800EE90BF /* Camera.swift */; };
@@ -76,7 +76,7 @@
 		C4304A211E5AF7A600202AC6 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		C43458CF1E96391E006B16EE /* IBeaconTransmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconTransmitter.swift; sourceTree = "<group>"; };
 		C43458D11E963A6F006B16EE /* OnBoardingPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingPagerViewController.swift; sourceTree = "<group>"; };
-		C439BAF81E990D920014544D /* DataValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidator.swift; sourceTree = "<group>"; };
+		C439BAF81E990D920014544D /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		C439F2061EA604DE00CFC6D9 /* IBeaconFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBeaconFrame.swift; sourceTree = "<group>"; };
 		C443207A1E97901500B59C43 /* QRConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRConnectionViewController.swift; sourceTree = "<group>"; };
 		C4461E3B1D9D83F800EE90BF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				C468AEF01E793D2E005AA4EE /* Matrix.swift */,
 				C468AEF71E7960CC005AA4EE /* Vector2D.swift */,
 				C44DB1E01DC65860000CAEED /* Vector3D.swift */,
-				C439BAF81E990D920014544D /* DataValidator.swift */,
+				C439BAF81E990D920014544D /* StringExtension.swift */,
 				C4E6295E1E9A7AD80010352B /* DoubleExtension.swift */,
 				C4759BF11EBB1AEB00BE2948 /* AtomicInteger.swift */,
 				C4C0DF501EC5AA25005158EA /* PersistenceErrors.swift */,
@@ -377,7 +377,7 @@
 				C4C0DF4F1EC5A714005158EA /* User.swift in Sources */,
 				C468AEF11E793D2E005AA4EE /* Matrix.swift in Sources */,
 				C439F2071EA604DE00CFC6D9 /* IBeaconFrame.swift in Sources */,
-				C439BAF91E990D920014544D /* DataValidator.swift in Sources */,
+				C439BAF91E990D920014544D /* StringExtension.swift in Sources */,
 				C4583E2C1D9686D3001B1659 /* ARViewController.swift in Sources */,
 				C4461E3D1D9D83F800EE90BF /* Camera.swift in Sources */,
 				C4241F3E1EAF63900042F7D1 /* OnBoardingViewController.swift in Sources */,
