@@ -64,7 +64,7 @@ class MapPoint: Hashable {
             
         }
         
-        try! ServerFacade.instance.getLastPosition(tag: self, onSuccess: onSuccess, onError: onError)
+        try! ServerFacade.instance.getLastPosition(tag: self.id, onSuccess: onSuccess, onError: onError)
         
     }
     

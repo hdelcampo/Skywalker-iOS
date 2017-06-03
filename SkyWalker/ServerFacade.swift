@@ -8,9 +8,12 @@
 
 import Foundation
 
+/**
+ XtremeLoc persistence facade
+ */
 class ServerFacade {
     
-    /*
+    /**
      Possible errors
     */
     public enum ErrorType: Error {
@@ -19,7 +22,7 @@ class ServerFacade {
         NO_TOKEN_SET, SERVER_ERROR, UNKNOWN
     }
     
-    /*
+    /**
         Singleton instance
     */
     static let instance: ServerFacade! = ServerFacade()
@@ -28,6 +31,7 @@ class ServerFacade {
         Treats a connection error.
         - Parameters:
             - error: The connection error to treat.
+            - onError: Callback.
     */
     private func treatError (error: Error, onError: @escaping (_: ErrorType) -> Void) {
         if let networkErr = error as? URLError {
@@ -45,7 +49,13 @@ class ServerFacade {
     }
     
     /**
-        Retrieves a new token
+        Retrieves a new token.
+        - Parameters:
+            - url: The server url.
+            - username: Login username.
+            - password: Login password.
+            - onSuccess: Success callback.
+            - onError: Error callback.
     */
     func getToken (url: String, username: String?, password: String?,
                           onSuccess: @escaping (_: Token) -> Void, onError: @escaping (_: ErrorType) -> Void) {
@@ -100,7 +110,11 @@ class ServerFacade {
     }
     
     /**
-     Retrieves a center's receivers
+     Retrieves a center's receivers.
+     - Parameters:
+        - center: The center id
+        - onSuccess: Success callback.
+        - onError: Error callback.
      */
     func getCenterReceivers (center: Int,
                              onSuccess: @escaping (_: [MapPoint]) -> Void,
@@ -160,10 +174,14 @@ class ServerFacade {
     }
 
     
-    /*
-        Retrieves the avaliable tags for the token in use
+    /**
+        Retrieves the avaliable tags for the token in use.
+        - Parameters:
+            - onSuccess: Success callback.
+            - onError: Error callback.
     */
-    func getAvaliableTags (onSuccess: @escaping (_: [PointOfInterest]) -> Void, onError: @escaping (_: ErrorType) -> Void) throws {
+    func getAvaliableTags (onSuccess: @escaping (_: [PointOfInterest]) -> Void,
+                           onError: @escaping (_: ErrorType) -> Void) throws {
     
         if (nil == User.instance.token) {
             throw ErrorType.NO_TOKEN_SET
@@ -216,8 +234,12 @@ class ServerFacade {
 
     }
     
-    /*
-     Registers this device as an iBeacon transmitter
+    /**
+        Registers this device as an iBeacon transmitter
+        - Parameters:
+            - username: User to register.
+            - onSuccess: Success callback.
+            - onError: Error callback.
      */
     func registerAsBeacon (username: String,
                            onSuccess: @escaping (_: IBeaconFrame) -> Void,
@@ -262,7 +284,7 @@ class ServerFacade {
                 } else {
                     let json = try! JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String, Any>
                     
-                    let uuid: UUID = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!//UUID(uuidString: json["uuid"] as! String)!
+                    let uuid: UUID = UUID(uuidString: "3E8C0296-168B-4940-ADB0-B3088F7EE30E")!
                     let major: Int = json["major"] as! Int
                     let minor: Int = json["minor"] as! Int
                     
@@ -282,9 +304,13 @@ class ServerFacade {
     }
     
     /*
-        Retrieves a point of interest last position
+        Retrieves a point of interest last position.
+        - Parameters:
+            - tag: Tag to retrieve.
+            - onSuccess: Success callback.
+            - onError: Error callback.
     */
-    func getLastPosition(tag: MapPoint,
+    func getLastPosition(tag: Int,
                          onSuccess: @escaping (_: MapPoint) -> Void,
                          onError: @escaping (_: ErrorType) -> Void) throws {
         
@@ -292,7 +318,7 @@ class ServerFacade {
             throw ErrorType.NO_TOKEN_SET
         }
         
-        let realURL = User.instance.token!.URL.appending("/api/centers/\(User.instance.center!.id)/tags/\(tag.id)")
+        let realURL = User.instance.token!.URL.appending("/api/centers/\(User.instance.center!.id)/tags/\(tag)")
         guard let URL = URL(string: realURL) else {
             print ("Error \(realURL) is invalid")
             return
@@ -355,10 +381,11 @@ class ServerFacade {
         
     }
     
-    /*
+    /**
         Retrieves actual server error
-        - parameters:
+        - Parameters:
             - statusCode: http status code
+        - Returns: The actual error
     */
     static func getError (statusCode : Int) -> ErrorType {
         
