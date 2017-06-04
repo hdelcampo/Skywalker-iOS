@@ -7,7 +7,7 @@
 //
 
 /**
- A point to be shown on screen
+ A point to be shown on screen.
  */
 class PointOfInterest: MapPoint {
     
@@ -52,6 +52,9 @@ class PointOfInterest: MapPoint {
         
     }
     
+    /**
+        My self point for demo purposes.
+    */
     static var mySelf: PointOfInterest {
         let mySelf = PointOfInterest(id: 999, name: "mySelf")
         mySelf.x = 0.5

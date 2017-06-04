@@ -41,6 +41,9 @@ class IBeaconTransmitter: NSObject, CBPeripheralManagerDelegate {
     */
     private var iBeacon: CLBeaconRegion?
     
+    /**
+        Frame to transmit.
+    */
     private(set) var frame: IBeaconFrame?
     
     /**

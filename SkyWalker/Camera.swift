@@ -9,21 +9,45 @@
 import AVFoundation
 import UIKit
 
+/**
+    Camera facade.
+*/
 class Camera {
     // MARK: Properties
     
+    /**
+        Camera's capture session.
+    */
     let captureSession = AVCaptureSession()
     
+    /**
+        Camera's device.
+    */
     var captureDevice: AVCaptureDevice?
     
+    /**
+        Layer where camera will preview video.
+    */
     var previewLayer : AVCaptureVideoPreviewLayer?
     
+    /**
+        Horizontal field of view.
+    */
     var horizontalFOV : Float { return (captureDevice?.activeFormat.videoFieldOfView)!}
     
+    /**
+        Vertical field of view.
+    */
     var verticalFOV : Float { return horizontalFOV * Float(view!.frame.width/view!.frame.height) }
     
+    /**
+        The view that holds preview layer.
+    */
     var view : UIView?
     
+    /**
+        Singleton instance.
+    */
     static let instance = Camera()
     
     // MARK: Functions
@@ -58,7 +82,7 @@ class Camera {
     }
     
     /**
-     Begins images live preview
+     Begins images live preview.
      */
     func beginSession() {
         do {
@@ -74,11 +98,18 @@ class Camera {
         captureSession.startRunning()
     }
     
+    /**
+        Stops camera session.
+    */
     func stopSession() {
         captureSession.removeInput(captureSession.inputs[0] as! AVCaptureInput)
         captureSession.stopRunning()
     }
     
+    /**
+        Rotates preview image.
+        - Parameter orientation: Device's orientation.
+    */
     func rotate(orientation: UIDeviceOrientation) {
         previewLayer?.frame = (view?.bounds)!
         switch orientation {

@@ -57,7 +57,7 @@ class NewConnectionViewController: UIViewController {
      */
     private func retrieveReceivers () {
         
-        User.instance.center = Center(id: 0)
+        User.instance.center = Center(id: 0, northOffset: 5)
         
         DispatchQueue.main.sync {
             self.alert.message = NSLocalizedString("connection_receivers", comment: "")

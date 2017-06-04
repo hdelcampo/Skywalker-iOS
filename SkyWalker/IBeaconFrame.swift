@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 /**
- iBeacon frame struct.
+ iBeacon frame.
  */
 struct IBeaconFrame {
     

@@ -8,23 +8,53 @@
 
 import Foundation
 
+/**
+ XtremeLoc center.
+*/
 class Center {
     
+    /**
+        Center's id.
+    */
     let id: Int
     
+    /**
+        Map scale
+    */
     var scale: Double = 40
 
-    private(set) var mapNorth: Vector2D
-        
+    /**
+     Map north offset
+    */
+    private(set) var mapNorthOffset: Double
+    
+    /**
+        List of antennas.
+    */
     var receivers: [MapPoint]?
     
+    /**
+        List of points.
+    */
     var points: [PointOfInterest]?
     
-    init(id: Int) {
+    /**
+        Unique constructor.
+        - Parameters:
+            - id: Center id.
+            - northOffset: Map north offset in degrees.
+    */
+    init(id: Int, northOffset: Double) {
         self.id = id
-        mapNorth = Vector2D(x: 1, y: 0)
+        self.mapNorthOffset = northOffset
     }
     
+    /**
+        Retrieves receivers from persistence system.
+        - Parameters:
+            - successDelegate: Success callback.
+            - errorDelegate: Error callback.
+    */
     func loadReceivers(successDelegate: (() -> Void)?,
                        errorDelegate: ((PersistenceErrors) -> Void)?) {
         
@@ -52,6 +82,12 @@ class Center {
         try! ServerFacade.instance.getCenterReceivers(center: id, onSuccess: onSuccess, onError: onError)
     }
     
+    /**
+     Retrieves beacons from persistence system.
+        - Parameters:
+            - successDelegate: Success callback.
+            - errorDelegate: Error callback.
+     */
     func loadTags(successDelegate: (() -> Void)?,
                        errorDelegate: ((PersistenceErrors) -> Void)?) {
         

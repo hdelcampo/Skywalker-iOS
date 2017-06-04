@@ -10,11 +10,17 @@ import Foundation
 
 /**
  Connection info.
- - author: Hector Del Campo Pando
 */
 class Token {
     
+    /**
+        Server url.
+    */
     let URL : String
+    
+    /**
+        Token itself.
+    */
     let token : String?
     
     /**

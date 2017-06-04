@@ -13,12 +13,25 @@ import Foundation
  */
 class MapPoint: Hashable {
     
-    var x: Double, y: Double
+    /**
+        Map coordinates.
+    */
+    var x: Double,
+        y: Double
     
+    /**
+        Floor number.
+    */
     var z: Int
     
+    /**
+        Point's id.
+    */
     let id: Int
     
+    /**
+        Indicates if position is undefined.
+    */
     var isUndefined: Bool {
         get {
             return (x == -1 && y == -1)
@@ -40,6 +53,12 @@ class MapPoint: Hashable {
         self.z = z
     }
     
+    /**
+     Retrieves the updated position from persistence system.
+        - Parameters:
+            - successDelegate: Success callback.
+            - errorDelegate: Error callback.
+     */
     func updatePosition(successDelegate: (() -> Void)?,
                         errorDelegate: ((PersistenceErrors) -> Void)?) {
         
