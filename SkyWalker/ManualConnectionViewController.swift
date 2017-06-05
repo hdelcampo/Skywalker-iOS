@@ -13,7 +13,7 @@ import UIKit
  */
 class ManualConnectionViewController: NewConnectionViewController, UITextFieldDelegate {
     
-    // MARK: Properties
+    // MARK: Outlets
     
     @IBOutlet weak var urlField: UITextField!
     @IBOutlet weak var userField: UITextField!

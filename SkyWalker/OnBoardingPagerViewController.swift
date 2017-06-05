@@ -8,8 +8,14 @@
 
 import UIKit
 
+/**
+    The on boarding pages controller.
+*/
 class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
+    /**
+        Delegate if any.
+    */
     var pagerDelegate: OnBoardingPagerViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -39,6 +45,7 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
         Creates a new page view
         - Parameters:
             - label: The view storyboard's id
+        - Returns: The page itself.
     */
     private func newPage(label: String) -> UIViewController {
         return storyboard!.instantiateViewController(withIdentifier:label)
@@ -119,6 +126,9 @@ class OnBoardingPagerViewController: UIPageViewController, UIPageViewControllerD
 
 }
 
+/**
+ Pager delegate protocol.
+*/
 protocol OnBoardingPagerViewControllerDelegate {
     
     /**

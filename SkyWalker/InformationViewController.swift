@@ -8,12 +8,19 @@
 
 import UIKit
 
+/**
+   Controller for connection information view.
+ */
 class InformationViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
+    // MARK: Properties
     @IBOutlet weak var serverLabel: UILabel!
     @IBOutlet weak var buildLabel: UILabel!
     @IBOutlet weak var switcher: UISwitch!
     
+    /**
+        The container controller.
+    */
     var debugController: OverlayViewController!
     
     override func viewDidLoad() {

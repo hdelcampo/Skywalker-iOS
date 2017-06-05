@@ -12,6 +12,11 @@ import UIKit
  Switcher delegate protocol.
 */
 protocol SwitchCellDelegate {
+    
+    /**
+        Called when a cell has switched.
+        - Parameter cell: The cell that changed.
+    */
     func onSwitchChange(cell: FilterTableViewCell)
 }
 

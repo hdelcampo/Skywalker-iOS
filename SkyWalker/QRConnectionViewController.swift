@@ -19,8 +19,12 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
      */
     var connecting: Bool!
     
+    /**
+        Camera's session.
+    */
     var captureSession: AVCaptureSession!
 
+    //MARK: Outlets
     @IBOutlet weak var cameraView: UIView!
     
     override func viewDidLayoutSubviews() {
@@ -94,6 +98,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     
     /**
         Detects whether a QR is valid as XtremeLoc scheme or not.
+        - Parameter qr: QR content.
         - Returns: True if QR is a valid XtremeLoc one, false otherwise.
     */
     private func isXtremeLocQR(qr: String) -> Bool {
@@ -111,6 +116,7 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     
     /**
         Handles a QR code.
+        - Parameter qr: QR content.
     */
     private func treat(qr: String) {
         

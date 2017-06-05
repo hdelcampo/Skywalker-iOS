@@ -9,12 +9,19 @@
 import UIKit
 import AVFoundation
 
+/**
+ On Boarding View Controller.
+*/
 class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerDelegate {
 
+    // MARK: Outlets
     @IBOutlet weak var pagerContainer: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var loginButton: UIButton!
     
+    /**
+        Pager view controller inside the view.
+    */
     var pageViewController: OnBoardingPagerViewController?
     
     /**
@@ -63,6 +70,10 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
         
     }
     
+    /**
+        Changes page.
+        - Parameter value: Caller.
+    */
     func changePage(_ value: Any) {
         let currentIndex = pageControl.currentPage
         
@@ -106,7 +117,6 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
     
     /*
      Checks whether user has granted camera permissions.
-     
      - Returns: True if permissions are granted, false otherwise.
      */
     private func hasCameraPermission() -> Bool {
@@ -114,6 +124,9 @@ class OnBoardingViewController: UIViewController, OnBoardingPagerViewControllerD
             AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo))
     }
     
+    /**
+        Requests camera permission to the user.
+    */
     private func requestCameraPermission () {
         AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
                                       completionHandler: {granted in

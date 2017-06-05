@@ -103,6 +103,10 @@ class NewConnectionViewController: UIViewController {
         
     }
     
+    /**
+        Registers this device as a beacon.
+        - Parameter username: The user's username.
+    */
     private func registerAsBeacon(username: String) {
         
         DispatchQueue.main.sync {

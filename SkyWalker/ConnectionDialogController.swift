@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+    New Connection view controller.
+*/
 class ConnectionDialogController: UITabBarController {
 
     /**

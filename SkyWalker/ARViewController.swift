@@ -9,20 +9,26 @@
 import UIKit
 import AVFoundation
 
+/**
+    Augment reality view controller.
+*/
 class ARViewController: UIViewController {
+    
+    //MARK: Outlets
+    @IBOutlet weak var topBar: UIView!
+    @IBOutlet weak var bottomBar: UIToolbar!
     
     //MARK: SubView controllers
     
     private var overlayViewController: OverlayViewController!
+    private var cameraViewController: CameraViewController!
     
     //MARK: Controls properties
     
+    /**
+        Indicator for controls hidden status.
+    */
     private var areControlsHidden = true
-    
-    private var cameraViewController: CameraViewController!
-    
-    @IBOutlet weak var topBar: UIView!
-    @IBOutlet weak var bottomBar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +41,10 @@ class ARViewController: UIViewController {
         return areControlsHidden
     }
     
+    /**
+        Toggle controls hidden status.
+        - Parameter sender: Who called this function.
+    */
     @IBAction func toggleControls(_ sender: UITapGestureRecognizer) {
         areControlsHidden = !areControlsHidden
         

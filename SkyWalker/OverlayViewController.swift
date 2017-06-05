@@ -9,6 +9,9 @@
 import UIKit
 import CoreBluetooth
 
+/**
+ The Augmented reality overlay view controller.
+*/
 class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     //MARK: Outlets
@@ -19,23 +22,26 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     @IBOutlet weak var debugView: UIView!
     
-    let orientationSensor = OrientationSensor()
+    /**
+        Orientation sensor.
+    */
+    private let orientationSensor = OrientationSensor()
     
     //MARK: Indicator properties
-    let margin = 0.9
+    private let margin = 0.9
     
     //MARK: Icon properties
-    let outOfSightIconPath = "out_of_sight_icon.png"
-    let outOfSightIconAngleOffset: Double = 90
-    let inSightIconPath = "in_sight_icon.png"
-    let iconSize = 60.0
+    private let outOfSightIconPath = "out_of_sight_icon.png"
+    private let outOfSightIconAngleOffset: Double = 90
+    private let inSightIconPath = "in_sight_icon.png"
+    private let iconSize = 60.0
 
     //MARK: Text properties
-    let textSize = CGFloat(24)
-    let textColor = UIColor.white.cgColor
-    let strokeColor = UIColor.black.cgColor
-    let strokeSize = 2
-    let textSeparator = "\n"
+    private let textSize = CGFloat(24)
+    private let textColor = UIColor.white.cgColor
+    private let strokeColor = UIColor.black.cgColor
+    private let strokeSize = 2
+    private let textSeparator = "\n"
     
     var points : [PointOfInterest] = [] {
         
@@ -57,9 +63,20 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         }
         
     }
+    
+    /**
+        Debugging layers not to remove.
+    */
     var initialLayers : [CALayer] = []
+    
+    /**
+        Users point.
+    */
     var mySelf: PointOfInterest!
     
+    /**
+        Bluetooth manager.
+    */
     var bleManager: CBPeripheralManager!
     
     /**
@@ -139,10 +156,6 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         }
     }
     
-    private var connectionThread: DispatchSourceTimer?
-    
-    private let updateRate = 0.25
-    
     /**
         Starts all threads.
     */
@@ -203,6 +216,9 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         painterThread = nil
     }
     
+    /**
+        Handles an internet error. Prompting the user with the info and finishing this view.
+    */
     private func onInternetError() {
         DispatchQueue.main.sync {
             connectionThread?.cancel()
@@ -238,6 +254,10 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     /**
      Checks if a given point is in sight of camera's image.
+        - Parameters:
+            - vectorToPoint: Geometric vector from device to point.
+            - orientationVector: The device's orientation vector on map.
+        - Returns: True if point is in sight, false otherwise.
      */
     private func inSight(vectorToPoint: Vector2D, orientationVector: Vector3D) -> Bool {
         
@@ -260,6 +280,10 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     /**
      Draws an indicator for the given point indicating heading direction
+     - Parameters:
+     - index: Point index.
+     - vectorToPoint: Geometric vector from device to point.
+     - orientationVector: The device's orientation vector on map.
      */
     private func drawIndicator(index: Int, vectorToPoint: Vector2D, orientationVector: Vector3D) {
         
@@ -333,6 +357,11 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
     
     /**
         Draws a given point at actual image's position
+        - Parameters:
+            - index: The point index.
+            - point: The point to draw.
+            - vectorToPoint: Geometric vector from device to point.
+            - orientationVector: The device's orientation vector on map.
     */
     private func draw(index: Int, point: PointOfInterest, vectorToPoint: Vector2D, orientationVector: Vector3D) {
         let fovWidth = Camera.instance.horizontalFOV,
@@ -574,15 +603,20 @@ class OverlayViewController: UIViewController, CBPeripheralManagerDelegate {
         view.layer.addSublayer(layer)
     }
 
-    let connectionQueue = DispatchQueue(label: "Connection", qos: DispatchQoS.userInitiated)
+    //MARK: Connection properties
+    private var connectionThread: DispatchSourceTimer?
+    private let updateRate = 0.25
+    private let connectionQueue = DispatchQueue(label: "Connection", qos: DispatchQoS.userInitiated)
     
-    let maxErrorsPorc: Float = 0.6
-    let maxLoopsWithoutCheck: Float = 4
-    var numLoopsWithoutCheck: Float = 0
-    var numPetitionsWithoutCheck: Float = 0
-    var numErrors = AtomicInteger()
+    private let maxErrorsPorc: Float = 0.6
+    private let maxLoopsWithoutCheck: Float = 4
+    private var numLoopsWithoutCheck: Float = 0
+    private var numPetitionsWithoutCheck: Float = 0
+    private var numErrors = AtomicInteger()
 
-    
+    /**
+        Updates points position.
+    */
     func updatePoints() {
         
         let onError: (PersistenceErrors) -> Void = { _ in
