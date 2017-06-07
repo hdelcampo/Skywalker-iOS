@@ -34,7 +34,12 @@ class Camera {
     /**
         Horizontal field of view.
     */
-    var horizontalFOV : Float { return captureDevice!.activeFormat.videoFieldOfView }
+    var horizontalFOV : Float {
+        let aspectRatio = Float(view!.frame.height/view!.frame.width)
+        return aspectRatio < 1 ?
+            captureDevice!.activeFormat.videoFieldOfView :
+            captureDevice!.activeFormat.videoFieldOfView/aspectRatio
+    }
     
     /**
         Vertical field of view.
