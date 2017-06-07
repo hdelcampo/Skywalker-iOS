@@ -76,7 +76,7 @@ class User {
         let onSuccess: (Token) -> Void = {token in
             self.token = token
             self.username = username
-            self.center = Center(id: 0, northOffset: 5)
+            self.center = Center(id: 0, northOffset: 80)
             successDelegate?()
         }
         

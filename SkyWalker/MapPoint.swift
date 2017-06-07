@@ -63,8 +63,8 @@ class MapPoint: Hashable {
                         errorDelegate: ((PersistenceErrors) -> Void)?) {
         
         let onSuccess: (MapPoint) -> Void = { position in
-                self.x = position.x
-                self.y = position.y
+                self.x = position.y
+                self.y = position.x
                 self.z = position.z
         }
         
