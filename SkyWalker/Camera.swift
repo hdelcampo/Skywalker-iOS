@@ -8,6 +8,7 @@
 
 import AVFoundation
 import UIKit
+import GLKit
 
 /**
     Camera facade.
@@ -33,12 +34,15 @@ class Camera {
     /**
         Horizontal field of view.
     */
-    var horizontalFOV : Float { return (captureDevice?.activeFormat.videoFieldOfView)!}
+    var horizontalFOV : Float { return captureDevice!.activeFormat.videoFieldOfView }
     
     /**
         Vertical field of view.
     */
-    var verticalFOV : Float { return horizontalFOV * Float(view!.frame.width/view!.frame.height) }
+    var verticalFOV : Float {
+        let aspectRatio = Float(view!.frame.height/view!.frame.width)
+        return GLKMathRadiansToDegrees(2 * atan((GLKMathDegreesToRadians(horizontalFOV)/2)*aspectRatio))
+    }
     
     /**
         The view that holds preview layer.
