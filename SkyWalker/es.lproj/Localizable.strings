@@ -22,6 +22,6 @@
 "incompatible_device_title" = "Dispositivo incompatible";
 "incompatible_device_msg" = "Este dispositivo carece de los sensores necesarios para funcionar. No podrás iniciar sesión.";
 "connection_started" = "Conectando…";
-"connection_receivers" = "Reciviendo antenas…";
-"connection_tags" = "Reciviendo elementos…";
+"connection_receivers" = "Recibiendo antenas…";
+"connection_tags" = "Recibiendo elementos…";
 "connection_register_beacon" = "Registrandose como localizador…";
