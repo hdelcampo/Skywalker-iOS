@@ -133,11 +133,15 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
     
     override func show(error: PersistenceErrors) {
         
-        indicator.removeFromSuperview()
+        
+        indicator?.removeFromSuperview()
         
         switch error {
         case .INVALID_URL:
-            alert.message = NSLocalizedString("invalid_qr", comment: "")
+            alert = UIAlertController(title: nil,
+                                      message: NSLocalizedString("invalid_qr", comment: ""),
+                                      preferredStyle: .alert)
+            
         case .INVALID_CREDENTIALS:
             alert.message = NSLocalizedString("invalid_username_password", comment: "")
         case .INTERNET_ERROR:
@@ -151,6 +155,10 @@ class QRConnectionViewController: NewConnectionViewController, AVCaptureMetadata
                                       handler: {_ in
                                         self.connecting = false
         }))
+        
+        if (error == .INVALID_URL) {
+            present(alert, animated: true, completion: nil)
+        }
         
     }
 
